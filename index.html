@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
   <title>DevKlyntic — Premium Roblox Scripting Engineer</title>
-  <meta name="description" content="DevKlyntic — Premium Roblox Scripting Engineer. Building next-generation, studio-grade systems for Roblox.">
+  <meta name="description" content="DevKlyntic — Premium Roblox Scripting Engineer. Studio-grade Luau systems focused on performance, security, and scalability.">
   <meta property="og:title" content="DevKlyntic — Premium Roblox Scripting Engineer">
-  <meta property="og:description" content="Building next-generation, studio-grade systems for Roblox.">
+  <meta property="og:description" content="Studio-grade Luau systems focused on performance, security, and scalability.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --font-ui: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --font-display: "Space Grotesk", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-display: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
       --bg: #0b0f17;
       --bg2: #070a10;
@@ -81,7 +81,6 @@
 
     a{ color: inherit; text-decoration: none; }
     button, a{ -webkit-tap-highlight-color: transparent; }
-
     ::selection{ background: rgba(124,92,255,.32); }
 
     .skip{
@@ -115,10 +114,7 @@
     }
     html[data-theme="light"] .noise{ opacity: .06; mix-blend-mode: multiply; }
 
-    .wrap{
-      position: relative;
-      z-index: 1;
-    }
+    .wrap{ position: relative; z-index: 1; }
 
     .container{
       width: min(var(--container), calc(100% - (var(--gutter) * 2)));
@@ -177,7 +173,7 @@
 
     .brandName{
       font-family: var(--font-display);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -.02em;
       font-size: 14px;
     }
@@ -259,14 +255,11 @@
     .iconBtn:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
 
     .iconBtn svg{ width: 18px; height: 18px; }
-
     .menuBtn{ display: none; }
 
     main{ scroll-margin-top: 90px; }
 
-    .hero{
-      padding: 64px 0 24px;
-    }
+    .hero{ padding: 64px 0 24px; }
 
     .heroGrid{
       display: grid;
@@ -302,10 +295,11 @@
 
     .heroTitle{
       font-family: var(--font-display);
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -.04em;
-      margin: 18px 0 12px;
+      font-size: clamp(42px, 5.2vw, 66px);
+      line-height: 1.01;
+      letter-spacing: -.03em;
+      font-weight: 900;
+      margin: 18px 0 10px;
     }
 
     .gradText{
@@ -320,10 +314,10 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-weight: 600;
-      color: var(--muted);
+      font-weight: 700;
+      color: var(--text);
       font-size: 15px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .subtitle .spark{
@@ -334,50 +328,65 @@
       box-shadow: 0 0 0 4px rgba(37,240,201,.10), 0 0 18px rgba(37,240,201,.18);
     }
 
-    .rotator{
-      display: inline-grid;
-      grid-auto-flow: column;
+    .titleBadge{
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    html[data-theme="light"] .titleBadge{ background: rgba(255,255,255,.70); }
+
+    .focusRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .focusWord{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
       padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid var(--border2);
       background: rgba(255,255,255,.03);
-      color: var(--text);
       box-shadow: var(--shadow2);
-    }
-    html[data-theme="light"] .rotator{ background: rgba(255,255,255,.65); }
-
-    .rotatorWord{
-      font-family: var(--font-display);
-      letter-spacing: -.02em;
-      font-weight: 700;
-      font-size: 13px;
-      min-width: 170px;
-      position: relative;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: -.01em;
       overflow: hidden;
-      height: 18px;
     }
+    html[data-theme="light"] .focusWord{ background: rgba(255,255,255,.70); }
 
-    .rotatorWord span{
-      position: absolute;
-      inset: 0;
+    .focusWord span{
       display: inline-flex;
       align-items: center;
-      opacity: 0;
-      transform: translateY(8px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
       will-change: opacity, transform;
     }
 
-    .rotatorWord span.is-on{ opacity: 1; transform: translateY(0); }
+    .focusWord span.is-out{ opacity: 0; transform: translateY(-8px); }
+    .focusWord span.is-in{ opacity: 0; transform: translateY(8px); }
 
     .heroDesc{
       font-size: 16px;
       line-height: 1.7;
       color: var(--muted);
-      max-width: 58ch;
-      margin: 0 0 22px;
+      max-width: 62ch;
+      margin: 14px 0 22px;
     }
 
     .ctaRow{
@@ -398,7 +407,7 @@
       border: 1px solid var(--border2);
       background: rgba(255,255,255,.03);
       color: var(--text);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
       cursor: pointer;
       transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
@@ -425,21 +434,12 @@
 
     .btnPrimary:hover{ box-shadow: var(--glow), var(--shadow); }
 
-    .btnGhost{
-      background: rgba(255,255,255,.02);
-    }
+    .btnGhost{ background: rgba(255,255,255,.02); }
     html[data-theme="light"] .btnGhost{ background: rgba(255,255,255,.55); }
 
-    .btnIcon{
-      width: 16px;
-      height: 16px;
-      opacity: .9;
-    }
+    .btnIcon{ width: 16px; height: 16px; opacity: .92; }
 
-    .heroSide{
-      display: grid;
-      gap: 14px;
-    }
+    .heroSide{ display: grid; gap: 14px; }
 
     .featureCard{
       border-radius: var(--radius2);
@@ -464,44 +464,20 @@
       pointer-events: none;
     }
 
-    .featureInner{
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-    }
+    .featureInner{ position: relative; z-index: 1; display: grid; gap: 12px; }
 
-    .featureKicker{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .kickerLeft{
-      display: grid;
-      gap: 6px;
-    }
+    .featureKicker{ display: grid; gap: 6px; }
 
     .kickerTitle{
       font-family: var(--font-display);
-      font-weight: 700;
+      font-weight: 900;
       letter-spacing: -.02em;
       font-size: 14px;
     }
 
-    .kickerSub{
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.35;
-    }
+    .kickerSub{ font-size: 13px; color: var(--muted); line-height: 1.35; }
 
-    .chips{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 6px;
-    }
+    .chips{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 
     .chip{
       font-size: 12px;
@@ -515,14 +491,9 @@
       transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), background var(--t-med) var(--ease);
     }
     html[data-theme="light"] .chip{ background: rgba(255,255,255,.68); }
-
     .chip:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.26); }
 
-    .miniLinks{
-      display: grid;
-      gap: 10px;
-      margin-top: 8px;
-    }
+    .miniLinks{ display: grid; gap: 10px; margin-top: 10px; }
 
     .miniLink{
       display: flex;
@@ -539,10 +510,25 @@
 
     .miniLink:hover{ transform: translateY(-2px); box-shadow: var(--shadow2); border-color: rgba(124,92,255,.22); }
 
-    .miniLeft{ display: grid; gap: 2px; }
+    .miniLeft{ display: flex; align-items: center; gap: 10px; min-width: 0; }
 
+    .miniIcon{
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(124,92,255,.08);
+    }
+    html[data-theme="light"] .miniIcon{ background: rgba(255,255,255,.75); }
+    .miniIcon svg{ width: 18px; height: 18px; }
+
+    .miniText{ display: grid; gap: 2px; min-width: 0; }
     .miniLabel{ font-size: 12px; color: var(--muted2); }
-    .miniValue{ font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .miniValue{ font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     .arrow{
       width: 34px;
@@ -552,15 +538,11 @@
       place-items: center;
       border: 1px solid var(--border2);
       background: rgba(255,255,255,.03);
+      flex: 0 0 auto;
     }
     html[data-theme="light"] .arrow{ background: rgba(255,255,255,.75); }
 
-    .scrollHint{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 0 6px;
-    }
+    .scrollHint{ display: flex; align-items: center; justify-content: center; padding: 18px 0 6px; }
 
     .scrollPill{
       display: inline-flex;
@@ -581,27 +563,13 @@
     .scrollPill:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); }
     .scrollPill:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
 
-    .bounce{
-      width: 16px;
-      height: 16px;
-      opacity: .9;
-      animation: bounce 1.6s var(--ease) infinite;
-    }
+    .bounce{ width: 16px; height: 16px; opacity: .9; animation: bounce 1.6s var(--ease) infinite; }
 
-    @keyframes bounce{
-      0%, 100%{ transform: translateY(0); }
-      50%{ transform: translateY(4px); }
-    }
+    @keyframes bounce{ 0%, 100%{ transform: translateY(0); } 50%{ transform: translateY(4px); } }
 
-    section{
-      padding: 62px 0;
-    }
+    section{ padding: 62px 0; }
 
-    .sectionHead{
-      display: grid;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
+    .sectionHead{ display: grid; gap: 10px; margin-bottom: 22px; }
 
     .kicker{
       display: inline-flex;
@@ -625,21 +593,12 @@
       font-size: clamp(26px, 3.2vw, 36px);
       letter-spacing: -.03em;
       margin: 0;
+      font-weight: 900;
     }
 
-    .lead{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 70ch;
-      font-size: 15px;
-    }
+    .lead{ margin: 0; color: var(--muted); line-height: 1.75; max-width: 74ch; font-size: 15px; }
 
-    .cardGrid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
+    .cardGrid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 
     .card{
       border-radius: var(--radius2);
@@ -666,24 +625,12 @@
       transition: opacity var(--t-med) var(--ease);
     }
 
-    .card:hover{
-      transform: translateY(-6px) scale(1.01);
-      border-color: rgba(124,92,255,.22);
-      box-shadow: var(--shadow);
-    }
-
+    .card:hover{ transform: translateY(-6px) scale(1.01); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow); }
     .card:hover::before{ opacity: 1; }
 
     .cardInner{ position: relative; z-index: 1; display: grid; gap: 10px; }
 
-    .cardTitle{
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin: 0;
-      font-size: 16px;
-    }
-
+    .cardTitle{ font-family: var(--font-display); font-weight: 900; letter-spacing: -.02em; margin: 0; font-size: 16px; }
     .cardText{ margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
 
     .tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
@@ -698,22 +645,11 @@
       transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
     }
     html[data-theme="light"] .tag{ background: rgba(255,255,255,.65); }
-
     .tag:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.24); }
 
-    .split{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    .split{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    .list{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
+    .list{ margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 
     .li{
       display: grid;
@@ -747,20 +683,9 @@
 
     .check svg{ width: 12px; height: 12px; }
 
-    .pricingGrid{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      align-items: stretch;
-    }
+    .pricingGrid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
 
-    .price{
-      font-family: var(--font-display);
-      font-size: 22px;
-      letter-spacing: -.02em;
-      margin: 2px 0 0;
-    }
-
+    .price{ font-family: var(--font-display); font-size: 22px; letter-spacing: -.02em; margin: 2px 0 0; font-weight: 900; }
     .priceSub{ margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 
     .callout{
@@ -787,16 +712,8 @@
 
     .calloutInner{ position: relative; z-index: 1; display: grid; gap: 12px; }
 
-    .contactRow{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .copyBtn{
-      padding: 12px 14px;
-    }
+    .contactRow{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .copyBtn{ padding: 12px 14px; }
 
     .footer{
       padding: 34px 0 44px;
@@ -805,21 +722,9 @@
     }
     html[data-theme="light"] .footer{ background: rgba(255,255,255,.55); }
 
-    .footerGrid{
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items: start;
-    }
+    .footerGrid{ display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; align-items: start; }
 
-    .footTitle{
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin: 0;
-      font-size: 16px;
-    }
-
+    .footTitle{ font-family: var(--font-display); font-weight: 900; letter-spacing: -.02em; margin: 0; font-size: 16px; }
     .footText{ margin: 10px 0 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
 
     .footLinks{ display: grid; gap: 10px; justify-items: end; }
@@ -839,8 +744,7 @@
     html[data-theme="light"] .footLink{ background: rgba(255,255,255,.68); }
 
     .footLink:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow2); color: var(--text); }
-
-    .footLink svg{ width: 16px; height: 16px; opacity: .9; }
+    .footLink svg{ width: 16px; height: 16px; opacity: .92; }
 
     .mutedSmall{ font-size: 12px; color: var(--muted2); margin-top: 8px; }
 
@@ -852,15 +756,9 @@
       will-change: transform, opacity;
     }
 
-    .reveal.is-visible{
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
-    }
+    .reveal.is-visible{ opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
-    .themeTransition *{
-      transition: background-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
-    }
+    .themeTransition *{ transition: background-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease); }
 
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
@@ -891,11 +789,7 @@
         z-index: 60;
       }
 
-      .header.nav-open .nav{
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(-50%) translateY(0);
-      }
+      .header.nav-open .nav{ opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 
       .menuBtn{ display: grid; }
       .navRow{ padding: 12px 0; }
@@ -903,7 +797,6 @@
       .cardGrid{ grid-template-columns: 1fr; }
       .pricingGrid{ grid-template-columns: 1fr; }
       .heroSide{ order: -1; }
-      .rotatorWord{ min-width: 150px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -911,7 +804,7 @@
       .bounce{ animation: none; }
       .reveal{ opacity: 1; transform: none; filter: none; transition: none; }
       .btn, .card, .li, .iconBtn, .nav a, .tag, .chip, .miniLink, .footLink{ transition: none; }
-      .rotatorWord span{ transition: none; }
+      .focusWord span{ transition: none; }
     }
   </style>
 </head>
@@ -975,25 +868,20 @@
                 <span>5+ Years Experience</span>
               </div>
 
-              <h1 class="heroTitle">
-                <span class="gradText">DevKlyntic</span>
-              </h1>
+              <h1 class="heroTitle"><span class="gradText">DevKlyntic</span></h1>
 
               <div class="subtitle">
                 <span class="spark" aria-hidden="true"></span>
-                <span class="rotator" aria-label="Title">
-                  <span>Premium Roblox Scripting Engineer</span>
-                  <span aria-hidden="true">•</span>
-                  <span class="rotatorWord" id="RotatorWord">
-                    <span class="is-on">Studio-grade systems</span>
-                    <span>Performance-first</span>
-                    <span>Secure architecture</span>
-                    <span>Scalable frameworks</span>
-                  </span>
-                </span>
+                <span class="titleBadge">Premium Roblox Scripting Engineer</span>
               </div>
 
-              <p class="heroDesc">Building next-generation, studio-grade systems for Roblox.</p>
+              <div class="focusRow" aria-label="Focus">
+                <span>Building</span>
+                <span class="focusWord" id="FocusWord"><span>studio-grade systems</span></span>
+                <span>for Roblox.</span>
+              </div>
+
+              <p class="heroDesc">I engineer clean, secure, and high-performance Luau systems that hold up under real player counts—designed for long-term scaling, fast iteration, and production stability.</p>
 
               <div class="ctaRow">
                 <a class="btn btnPrimary" href="#contact">
@@ -1022,26 +910,28 @@
               </div>
             </div>
 
-            <aside class="heroSide reveal" aria-label="Quick contact">
+            <aside class="heroSide reveal" aria-label="Quick links">
               <div class="featureCard">
                 <div class="featureInner">
                   <div class="featureKicker">
-                    <div class="kickerLeft">
-                      <div class="kickerTitle">Identity</div>
-                      <div class="kickerSub">Premium Roblox Luau scripting focused on studio-grade quality.</div>
-                    </div>
-                    <div class="arrow" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
+                    <div class="kickerTitle">Quick Links</div>
+                    <div class="kickerSub">Direct contact details for fast coordination and clean handoffs.</div>
                   </div>
 
                   <div class="miniLinks">
                     <a class="miniLink" href="mailto:devklyntic@gmail.com" aria-label="Email devklyntic@gmail.com">
                       <div class="miniLeft">
-                        <div class="miniLabel">Email</div>
-                        <div class="miniValue">devklyntic@gmail.com</div>
+                        <div class="miniIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </div>
+                        <div class="miniText">
+                          <div class="miniLabel">Email</div>
+                          <div class="miniValue">devklyntic@gmail.com</div>
+                        </div>
                       </div>
                       <div class="arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1050,15 +940,46 @@
                         </svg>
                       </div>
                     </a>
-                    <div class="miniLink" role="group" aria-label="Username devklyntic">
+
+                    <div class="miniLink" role="group" aria-label="Discord username devklyntic">
                       <div class="miniLeft">
-                        <div class="miniLabel">Username</div>
-                        <div class="miniValue">devklyntic</div>
+                        <div class="miniIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 19C4.8 19 3 17.2 3 15V9C3 6.8 4.8 5 7 5H17C19.2 5 21 6.8 21 9V15C21 17.2 19.2 19 17 19H12.5L9.8 21.2C9.2 21.7 8.3 21.3 8.3 20.5V19H7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M9 11.5H9.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M15 11.5H15.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M9.5 14.2C10.4 15.1 13.6 15.1 14.5 14.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                        <div class="miniText">
+                          <div class="miniLabel">Discord Username</div>
+                          <div class="miniValue">devklyntic</div>
+                        </div>
                       </div>
                       <div class="arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                           <path d="M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div class="miniLink" role="group" aria-label="Roblox username DevKlyntic">
+                      <div class="miniLeft">
+                        <div class="miniIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 3H16L21 8V16L16 21H8L3 16V8L8 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M10 10H14V14H10V10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                          </svg>
+                        </div>
+                        <div class="miniText">
+                          <div class="miniLabel">Roblox Username</div>
+                          <div class="miniValue">DevKlyntic</div>
+                        </div>
+                      </div>
+                      <div class="arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                       </div>
                     </div>
@@ -1084,35 +1005,35 @@
         <div class="container">
           <div class="sectionHead reveal">
             <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>About</span></div>
-            <h2 class="h2">Senior-quality Luau systems with a clean, scalable foundation</h2>
+            <h2 class="h2">Production-focused engineering for Roblox</h2>
             <p class="lead">Hey there! I’m Klyntic, a professional Roblox Luau scripter with 5+ years of experience engineering high-quality systems.
 
-My work blends creativity, structure, and optimization to deliver smooth, secure, and scalable gameplay.
+My work blends structure, clarity, and optimization to deliver gameplay that feels smooth while staying secure and scalable.
 
-I’ve developed everything from polished mechanics to custom frameworks to complete game architectures; trusted by individual developers and studios.</p>
+I’ve built everything from polished mechanics to custom frameworks to full game architecture—trusted by both independent developers and studios.</p>
           </div>
 
           <div class="split">
             <div class="card reveal">
               <div class="cardInner">
-                <h3 class="cardTitle">What you get</h3>
-                <p class="cardText">A premium build style designed for real production: structured modules, predictable patterns, and the kind of polish that stays maintainable as your game grows.</p>
+                <h3 class="cardTitle">What you can expect</h3>
+                <p class="cardText">Reliable systems built for real production: clean module boundaries, predictable APIs, and polish that stays maintainable as content expands.</p>
                 <div class="tags" aria-label="Focus areas">
-                  <span class="tag">Studio-grade</span>
                   <span class="tag">Maintainable</span>
-                  <span class="tag">Reliable</span>
+                  <span class="tag">Scalable</span>
+                  <span class="tag">Stable</span>
                 </div>
               </div>
             </div>
 
             <div class="card reveal">
               <div class="cardInner">
-                <h3 class="cardTitle">How I work</h3>
-                <p class="cardText">I prioritize clarity, performance, and security. Systems are designed to scale cleanly, stay responsive under load, and remain easy to extend with new features.</p>
+                <h3 class="cardTitle">Engineering priorities</h3>
+                <p class="cardText">Performance and security come first. I build server-authoritative logic, lock down remotes, and keep systems responsive under higher CCU and heavier content.</p>
                 <div class="tags" aria-label="Workflow">
-                  <span class="tag">Structure</span>
-                  <span class="tag">Optimization</span>
-                  <span class="tag">Security</span>
+                  <span class="tag">Server-authoritative</span>
+                  <span class="tag">Optimized</span>
+                  <span class="tag">Secure</span>
                 </div>
               </div>
             </div>
@@ -1124,7 +1045,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         <div class="container">
           <div class="sectionHead reveal">
             <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Skills & Expertise</span></div>
-            <h2 class="h2">Systems that stay fast, safe, and scalable</h2>
+            <h2 class="h2">Security, performance, and scalability by design</h2>
             <p class="lead">I build powerful, reliable, and efficient systems designed to keep games secure, smooth, and ready for any player count.</p>
           </div>
 
@@ -1179,73 +1100,18 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
           <div class="sectionHead reveal">
             <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Work</span></div>
             <h2 class="h2">Selected projects</h2>
-            <p class="lead">A snapshot of past work and experience across different project styles and scopes.</p>
+            <p class="lead">A snapshot of past work across different genres and scopes—from tight mechanics to larger system stacks.</p>
           </div>
 
           <div class="cardGrid">
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">One Punch Troll Tower 👊</h3>
-                <p class="cardText">Polished gameplay systems with smooth feel and clean structure.</p>
-                <div class="tags"><span class="tag">Gameplay</span><span class="tag">Polish</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Mega Minigames 🤡</h3>
-                <p class="cardText">Scalable flow control, round logic, and reliable session handling.</p>
-                <div class="tags"><span class="tag">Loops</span><span class="tag">Scale</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Button Trees 🌳</h3>
-                <p class="cardText">Structured progression, responsive UX, and stable upgrades.</p>
-                <div class="tags"><span class="tag">Progression</span><span class="tag">UI</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Curzy's Incremental 🤑</h3>
-                <p class="cardText">Incremental economy logic with clean data patterns.</p>
-                <div class="tags"><span class="tag">Economy</span><span class="tag">Data</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Collector Quest</h3>
-                <p class="cardText">Collection systems designed for clarity and long-term expansion.</p>
-                <div class="tags"><span class="tag">Systems</span><span class="tag">Expansion</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Mow Ur Snow! ❄️</h3>
-                <p class="cardText">Performance-focused loops and optimized client-server behavior.</p>
-                <div class="tags"><span class="tag">Performance</span><span class="tag">Networking</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Compton Life REMASTERED</h3>
-                <p class="cardText">Robust feature integration with attention to security and stability.</p>
-                <div class="tags"><span class="tag">Security</span><span class="tag">Stability</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Color Bridges 🌈</h3>
-                <p class="cardText">Clean mechanics with responsive UI and consistent user feedback.</p>
-                <div class="tags"><span class="tag">UX</span><span class="tag">Mechanics</span></div>
-              </div>
-            </article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">One Punch Troll Tower 👊</h3><p class="cardText">Polished mechanics with stable progression and clean structure.</p><div class="tags"><span class="tag">Gameplay</span><span class="tag">Polish</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Mega Minigames 🤡</h3><p class="cardText">Round flow, state handling, and scalable session logic.</p><div class="tags"><span class="tag">Loops</span><span class="tag">Scale</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Button Trees 🌳</h3><p class="cardText">Structured upgrades, responsive UI, and consistent player feedback.</p><div class="tags"><span class="tag">Progression</span><span class="tag">UI</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Curzy's Incremental 🤑</h3><p class="cardText">Economy systems built for clarity, extensibility, and stability.</p><div class="tags"><span class="tag">Economy</span><span class="tag">Data</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Collector Quest</h3><p class="cardText">Collection logic designed for long-term content expansion.</p><div class="tags"><span class="tag">Systems</span><span class="tag">Expansion</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Mow Ur Snow! ❄️</h3><p class="cardText">Performance-focused loops and optimized client-server behavior.</p><div class="tags"><span class="tag">Performance</span><span class="tag">Networking</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Compton Life REMASTERED</h3><p class="cardText">Secure feature integration with strong stability under load.</p><div class="tags"><span class="tag">Security</span><span class="tag">Stability</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Color Bridges 🌈</h3><p class="cardText">Clean mechanics paired with smooth UX and clear feedback.</p><div class="tags"><span class="tag">UX</span><span class="tag">Mechanics</span></div></div></article>
           </div>
         </div>
       </section>
@@ -1254,8 +1120,8 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         <div class="container">
           <div class="sectionHead reveal">
             <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Why Choose Me</span></div>
-            <h2 class="h2">Premium delivery with a studio mindset</h2>
-            <p class="lead">Focused on quality, clarity, and systems that scale without the usual headaches.</p>
+            <h2 class="h2">A studio mindset on every deliverable</h2>
+            <p class="lead">Focused on quality, communication, and systems that scale without surprises.</p>
           </div>
 
           <div class="split">
@@ -1278,26 +1144,17 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         <div class="container">
           <div class="sectionHead reveal">
             <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Pricing</span></div>
-            <h2 class="h2">Clear tiers for different scopes</h2>
+            <h2 class="h2">Scope-based tiers</h2>
             <p class="lead">Pricing depends on scope, size, and complexity.</p>
           </div>
 
           <div class="pricingGrid">
             <article class="card reveal">
               <div class="cardInner">
-                <h3 class="cardTitle">Studio-Grade Projects</h3>
-                <p class="price">$1,000+</p>
-                <p class="priceSub">End-to-end architecture and production-level polish.</p>
-                <div class="tags"><span class="tag">Full builds</span><span class="tag">Frameworks</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Large Projects</h3>
-                <p class="price">$500–$1,000</p>
-                <p class="priceSub">Multiple systems with clean integration and scaling.</p>
-                <div class="tags"><span class="tag">Multi-system</span><span class="tag">Scale</span></div>
+                <h3 class="cardTitle">Small Systems</h3>
+                <p class="price">$25–$100</p>
+                <p class="priceSub">Focused features with clean, secure implementation.</p>
+                <div class="tags"><span class="tag">Quick wins</span><span class="tag">Clean</span></div>
               </div>
             </article>
 
@@ -1312,10 +1169,19 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
 
             <article class="card reveal">
               <div class="cardInner">
-                <h3 class="cardTitle">Small Systems</h3>
-                <p class="price">$25–$100</p>
-                <p class="priceSub">Focused features with clean, secure implementation.</p>
-                <div class="tags"><span class="tag">Quick wins</span><span class="tag">Clean</span></div>
+                <h3 class="cardTitle">Large Projects</h3>
+                <p class="price">$500–$1,000</p>
+                <p class="priceSub">Multiple systems with clean integration and scaling.</p>
+                <div class="tags"><span class="tag">Multi-system</span><span class="tag">Scale</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Studio-Grade Projects</h3>
+                <p class="price">$1,000+</p>
+                <p class="priceSub">End-to-end architecture and production-level polish.</p>
+                <div class="tags"><span class="tag">Full builds</span><span class="tag">Frameworks</span></div>
               </div>
             </article>
           </div>
@@ -1346,7 +1212,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
               <div class="cardInner">
                 <h3 class="cardTitle">Percentage deals</h3>
                 <p class="cardText">Only accepted if the game already generates revenue OR paired with fixed payment</p>
-                <div class="tags"><span class="tag">Safety-first</span><span class="tag">Transparent</span></div>
+                <div class="tags"><span class="tag">Safety-first</span><span class="tag">Clear terms</span></div>
               </div>
             </article>
           </div>
@@ -1362,29 +1228,9 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
           </div>
 
           <div class="cardGrid">
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Future Client</h3>
-                <p class="cardText">“Your testimonial here.”</p>
-                <div class="tags"><span class="tag">Placeholder</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Future Client</h3>
-                <p class="cardText">“Your testimonial here.”</p>
-                <div class="tags"><span class="tag">Placeholder</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Future Client</h3>
-                <p class="cardText">“Your testimonial here.”</p>
-                <div class="tags"><span class="tag">Placeholder</span></div>
-              </div>
-            </article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Future Client</h3><p class="cardText">“Your testimonial here.”</p><div class="tags"><span class="tag">Placeholder</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Future Client</h3><p class="cardText">“Your testimonial here.”</p><div class="tags"><span class="tag">Placeholder</span></div></div></article>
+            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Future Client</h3><p class="cardText">“Your testimonial here.”</p><div class="tags"><span class="tag">Placeholder</span></div></div></article>
           </div>
         </div>
       </section>
@@ -1401,7 +1247,8 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
             <div class="calloutInner">
               <div class="kicker" aria-label="Contact details"><span class="kickerLine" aria-hidden="true"></span><span>Contact</span></div>
               <h3 class="cardTitle" style="margin:0">devklyntic@gmail.com</h3>
-              <p class="cardText" style="margin:0">Username: devklyntic</p>
+              <p class="cardText" style="margin:0">Discord Username: devklyntic</p>
+              <p class="cardText" style="margin:0">Roblox Username: DevKlyntic</p>
 
               <div class="contactRow">
                 <a class="btn btnPrimary" href="mailto:devklyntic@gmail.com">
@@ -1455,13 +1302,20 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
               </svg>
               <span>devklyntic@gmail.com</span>
             </a>
-            <div class="footLink" role="group" aria-label="Username devklyntic">
+            <div class="footLink" role="group" aria-label="Discord username devklyntic">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.5C7.3 2.5 3.5 6.3 3.5 11C3.5 14.8 6 18 9.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M12 2.5C16.7 2.5 20.5 6.3 20.5 11C20.5 14.8 18 18 14.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M9.5 19.2C10.2 20.2 11.2 21.5 12 21.5C12.8 21.5 13.8 20.2 14.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 19C4.8 19 3 17.2 3 15V9C3 6.8 4.8 5 7 5H17C19.2 5 21 6.8 21 9V15C21 17.2 19.2 19 17 19H12.5L9.8 21.2C9.2 21.7 8.3 21.3 8.3 20.5V19H7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 11.5H9.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                <path d="M15 11.5H15.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
               </svg>
-              <span>devklyntic</span>
+              <span>Discord: devklyntic</span>
+            </div>
+            <div class="footLink" role="group" aria-label="Roblox username DevKlyntic">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 3H16L21 8V16L16 21H8L3 16V8L8 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M10 10H14V14H10V10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span>Roblox: DevKlyntic</span>
             </div>
           </div>
         </div>
@@ -1480,7 +1334,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
       var CopyEmail = document.getElementById('CopyEmail')
       var CopyStatus = document.getElementById('CopyStatus')
       var Year = document.getElementById('Year')
-      var Rotator = document.getElementById('RotatorWord')
+      var FocusWord = document.getElementById('FocusWord')
 
       Year.textContent = String(new Date().getFullYear())
 
@@ -1491,8 +1345,6 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         window.setTimeout(function(){ Root.classList.remove('themeTransition') }, 520)
 
         var IsLight = Theme === 'light'
-        Header.querySelector('meta')
-
         if(IsLight){
           ThemeIcon.innerHTML = '<path d="M12 18.5A6.5 6.5 0 1 0 12 5.5A6.5 6.5 0 0 0 12 18.5Z" stroke="currentColor" stroke-width="2"/><path d="M12 2.5V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 20V21.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3.5 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 12H20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 5.4L6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 17.5L18.6 18.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 6.5L18.6 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 18.6L6.5 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
         }else{
@@ -1520,11 +1372,8 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
       ThemeToggle.addEventListener('click', ToggleTheme)
 
       function SetScrolled(){
-        if(window.scrollY > 10){
-          Header.classList.add('is-scrolled')
-        }else{
-          Header.classList.remove('is-scrolled')
-        }
+        if(window.scrollY > 10){ Header.classList.add('is-scrolled') }
+        else{ Header.classList.remove('is-scrolled') }
       }
 
       window.addEventListener('scroll', SetScrolled, { passive: true })
@@ -1540,16 +1389,12 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         if(MenuBtn){ MenuBtn.setAttribute('aria-expanded', IsOpen ? 'true' : 'false') }
       }
 
-      if(MenuBtn){
-        MenuBtn.addEventListener('click', ToggleMenu)
-      }
+      if(MenuBtn){ MenuBtn.addEventListener('click', ToggleMenu) }
 
       document.addEventListener('click', function(e){
         if(!Header.classList.contains('nav-open')){ return }
         var Target = e.target
-        if(Target && (Target.closest && (Target.closest('.nav') || Target.closest('#MenuBtn')))){
-          return
-        }
+        if(Target && Target.closest && (Target.closest('.nav') || Target.closest('#MenuBtn'))){ return }
         CloseMenu()
       })
 
@@ -1562,9 +1407,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
       }
 
       document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape'){
-          CloseMenu()
-        }
+        if(e.key === 'Escape'){ CloseMenu() }
       })
 
       document.documentElement.style.scrollBehavior = 'smooth'
@@ -1615,9 +1458,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
             document.execCommand('copy')
             document.body.removeChild(Ta)
             resolve()
-          }catch(e){
-            reject(e)
-          }
+          }catch(e){ reject(e) }
         })
       }
 
@@ -1626,9 +1467,7 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         CopyStatus.textContent = Text
         if(Text){
           window.clearTimeout(SetCopyStatus._t)
-          SetCopyStatus._t = window.setTimeout(function(){
-            CopyStatus.textContent = ''
-          }, 1800)
+          SetCopyStatus._t = window.setTimeout(function(){ CopyStatus.textContent = '' }, 1800)
         }
       }
 
@@ -1640,32 +1479,41 @@ I’ve developed everything from polished mechanics to custom frameworks to comp
         })
       }
 
-      function RotateWords(){
-        if(!Rotator){ return }
-        var Words = Array.prototype.slice.call(Rotator.querySelectorAll('span'))
-        if(Words.length < 2){ return }
+      function RotateFocus(){
+        if(!FocusWord){ return }
+        var Inner = FocusWord.querySelector('span')
+        if(!Inner){ return }
+
+        var Words = [
+          'studio-grade systems',
+          'secure remote architecture',
+          'high-performance game loops',
+          'scalable data frameworks'
+        ]
 
         var Index = 0
-        function Show(i){
-          for(var k = 0; k < Words.length; k++){
-            Words[k].classList.toggle('is-on', k === i)
-          }
+        function Step(){
+          var NextIndex = (Index + 1) % Words.length
+          Inner.classList.add('is-out')
+          window.setTimeout(function(){
+            Inner.classList.remove('is-out')
+            Inner.classList.add('is-in')
+            Inner.textContent = Words[NextIndex]
+            window.setTimeout(function(){
+              Inner.classList.remove('is-in')
+            }, 10)
+            Index = NextIndex
+          }, 180)
         }
 
-        Show(0)
-        window.setInterval(function(){
-          Index = (Index + 1) % Words.length
-          Show(Index)
-        }, 2400)
+        window.setInterval(Step, 2400)
       }
 
       InitTheme()
       Reveal()
-      RotateWords()
+      RotateFocus()
 
-      window.addEventListener('hashchange', function(){
-        CloseMenu()
-      }, { passive: true })
+      window.addEventListener('hashchange', function(){ CloseMenu() }, { passive: true })
     })()
   </script>
 </body>
