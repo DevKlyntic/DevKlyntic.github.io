@@ -1,244 +1,258 @@
-(() => {
-  const Doc = document.documentElement;
-  const Body = document.body;
+(function () {
+  var Root = document.documentElement
+  var ThemeKey = "DevKlynticTheme"
+  var Body = document.body
 
-  const ThemeToggle = document.querySelector(".ThemeToggle");
-  const ThemeMeta = document.querySelector('meta[name="theme-color"]');
-  const ThemeKey = "DevKlynticTheme";
+  function GetPreferredTheme() {
+    try {
+      var Stored = localStorage.getItem(ThemeKey)
+      if (Stored === "light" || Stored === "dark") {
+        return Stored
+      }
+    } catch (e) {}
 
-  const NavToggle = document.querySelector(".NavToggle");
-  const Mobile = document.querySelector(".Mobile");
-  const MobileShade = document.querySelector(".MobileShade");
-  const MobileClose = document.querySelector(".MobileClose");
-
-  const ToTop = document.querySelector(".ToTop");
-  const NavLinks = Array.from(document.querySelectorAll(".NavLink"));
-  const MobileLinks = Array.from(document.querySelectorAll(".MobileLink"));
-
-  const RotateNode = document.querySelector(".SubDynamic");
-
-  const SetTheme = (Theme) => {
-    const Next = Theme === "light" ? "light" : "dark";
-    Doc.setAttribute("data-theme", Next);
-    if (ThemeMeta) ThemeMeta.setAttribute("content", Next === "light" ? "#f7f8fb" : "#0b0d14");
-    if (ThemeToggle) ThemeToggle.setAttribute("aria-pressed", Next === "light" ? "true" : "false");
-    try { localStorage.setItem(ThemeKey, Next); } catch (_) {}
-  };
-
-  const InitTheme = () => {
-    let Saved = null;
-    try { Saved = localStorage.getItem(ThemeKey); } catch (_) {}
-    if (Saved === "light" || Saved === "dark") {
-      SetTheme(Saved);
-      return;
+    if (window.matchMedia) {
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
     }
-    SetTheme("dark");
-  };
 
-  const ToggleTheme = () => {
-    const Current = Doc.getAttribute("data-theme") || "dark";
-    SetTheme(Current === "dark" ? "light" : "dark");
-  };
+    return "dark"
+  }
 
-  const OpenMobile = () => {
-    if (!Mobile) return;
-    Mobile.classList.add("Open");
-    if (NavToggle) NavToggle.setAttribute("aria-expanded", "true");
+  function SetTheme(Theme) {
+    Root.setAttribute("data-theme", Theme)
+    try {
+      localStorage.setItem(ThemeKey, Theme)
+    } catch (e) {}
 
-    const FocusTarget = Mobile.querySelector(".MobileLink") || MobileClose;
-    if (FocusTarget) setTimeout(() => FocusTarget.focus(), 0);
-  };
+    var Toggle = document.getElementById("ThemeToggle")
+    if (Toggle) {
+      Toggle.setAttribute("aria-pressed", Theme === "light" ? "true" : "false")
+      Toggle.querySelector(".ThemeText").textContent = Theme === "light" ? "Light" : "Dark"
+    }
+  }
 
-  const CloseMobile = () => {
-    if (!Mobile) return;
-    Mobile.classList.remove("Open");
-    if (NavToggle) NavToggle.setAttribute("aria-expanded", "false");
-  };
+  function ToggleTheme() {
+    var Current = Root.getAttribute("data-theme") || "dark"
+    var Next = Current === "dark" ? "light" : "dark"
+    SetTheme(Next)
+  }
 
-  const IsMobileOpen = () => Mobile && Mobile.classList.contains("Open");
+  function SmoothScrollToHash(Hash) {
+    var Id = Hash.replace("#", "")
+    var Target = document.getElementById(Id)
+    if (!Target) {
+      return
+    }
 
-  const ScrollToHash = (Hash) => {
-    if (!Hash || Hash.length < 2) return;
-    const Target = document.querySelector(Hash);
-    if (!Target) return;
+    var Header = document.querySelector(".Header")
+    var Offset = Header ? Header.getBoundingClientRect().height : 0
+    var Top = Target.getBoundingClientRect().top + window.scrollY - (Offset + 14)
 
-    const Header = document.querySelector(".Header");
-    const Offset = Header ? Header.getBoundingClientRect().height + 10 : 86;
-    const Y = window.scrollY + Target.getBoundingClientRect().top - Offset;
+    window.scrollTo({
+      top: Top,
+      behavior: "smooth"
+    })
+  }
 
-    window.scrollTo({ top: Math.max(0, Y), behavior: "smooth" });
-  };
+  function SetupSmoothAnchors() {
+    var Links = document.querySelectorAll("a[href^='#']")
+    for (var i = 0; i < Links.length; i++) {
+      Links[i].addEventListener("click", function (e) {
+        var Href = this.getAttribute("href")
+        if (!Href || Href === "#") {
+          return
+        }
+        e.preventDefault()
+        SmoothScrollToHash(Href)
+        history.pushState(null, "", Href)
+        CloseMenu()
+      })
+    }
+  }
 
-  const WireAnchors = () => {
-    const Anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
-    Anchors.forEach((A) => {
-      A.addEventListener("click", (E) => {
-        const Href = A.getAttribute("href") || "";
-        if (Href === "#") return;
+  function RevealOnScroll() {
+    var Items = document.querySelectorAll(".Reveal")
+    if (!Items.length) {
+      return
+    }
 
-        const IsSamePage = Href.startsWith("#");
-        if (!IsSamePage) return;
+    var Observer = new IntersectionObserver(
+      function (Entries) {
+        for (var i = 0; i < Entries.length; i++) {
+          if (Entries[i].isIntersecting) {
+            Entries[i].target.classList.add("On")
+            Observer.unobserve(Entries[i].target)
+          }
+        }
+      },
+      { threshold: 0.12 }
+    )
 
-        const Target = document.querySelector(Href);
-        if (!Target) return;
+    for (var j = 0; j < Items.length; j++) {
+      Observer.observe(Items[j])
+    }
+  }
 
-        E.preventDefault();
-        if (IsMobileOpen()) CloseMobile();
-        history.pushState(null, "", Href);
-        ScrollToHash(Href);
-      }, { passive: false });
-    });
+  function SetupToTop() {
+    var Btn = document.getElementById("ToTop")
+    if (!Btn) {
+      return
+    }
+
+    function Update() {
+      if (window.scrollY > 800) {
+        Btn.classList.add("Show")
+      } else {
+        Btn.classList.remove("Show")
+      }
+    }
+
+    window.addEventListener("scroll", Update, { passive: true })
+    Update()
+
+    Btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    })
+  }
+
+  function MenuOpen() {
+    Body.classList.add("MenuOpen")
+  }
+
+  function CloseMenu() {
+    Body.classList.remove("MenuOpen")
+  }
+
+  function SetupMobileMenu() {
+    var OpenBtn = document.getElementById("NavToggle")
+    var CloseBtn = document.getElementById("MobileClose")
+    var Shade = document.getElementById("MobileShade")
+
+    if (OpenBtn) {
+      OpenBtn.addEventListener("click", function () {
+        if (Body.classList.contains("MenuOpen")) {
+          CloseMenu()
+        } else {
+          MenuOpen()
+        }
+      })
+    }
+
+    if (CloseBtn) {
+      CloseBtn.addEventListener("click", function () {
+        CloseMenu()
+      })
+    }
+
+    if (Shade) {
+      Shade.addEventListener("click", function () {
+        CloseMenu()
+      })
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        CloseMenu()
+      }
+    })
+  }
+
+  function SetupActiveSection() {
+    var Links = document.querySelectorAll(".NavLink")
+    var Sections = document.querySelectorAll("main .Section")
+    if (!Links.length || !Sections.length) {
+      return
+    }
+
+    var Map = {}
+    for (var i = 0; i < Links.length; i++) {
+      var H = Links[i].getAttribute("href")
+      if (H && H.startsWith("#")) {
+        Map[H] = Links[i]
+      }
+    }
+
+    var Obs = new IntersectionObserver(
+      function (Entries) {
+        for (var k = 0; k < Entries.length; k++) {
+          if (!Entries[k].isIntersecting) {
+            continue
+          }
+          var Id = Entries[k].target.getAttribute("id")
+          var Key = "#" + Id
+          for (var j = 0; j < Links.length; j++) {
+            Links[j].classList.remove("Active")
+          }
+          if (Map[Key]) {
+            Map[Key].classList.add("Active")
+          }
+        }
+      },
+      { threshold: 0.35 }
+    )
+
+    for (var s = 0; s < Sections.length; s++) {
+      Obs.observe(Sections[s])
+    }
+  }
+
+  function SetupHeroRoleRotation() {
+    var El = document.getElementById("RoleSwap")
+    if (!El) {
+      return
+    }
+
+    var Roles = [
+      "Premium Roblox Scripting Engineer",
+      "Luau Systems Architect",
+      "Performance-First Gameplay Engineer",
+      "Security-Focused Backend Builder"
+    ]
+
+    var Index = 0
+
+    function Swap() {
+      Index = (Index + 1) % Roles.length
+      El.style.opacity = "0"
+      El.style.transform = "translateY(4px)"
+      setTimeout(function () {
+        El.textContent = Roles[Index]
+        El.style.opacity = "1"
+        El.style.transform = "translateY(0px)"
+      }, 180)
+    }
+
+    El.style.transition = "opacity 220ms ease, transform 220ms ease"
+    setInterval(Swap, 3600)
+  }
+
+  function Init() {
+    SetTheme(GetPreferredTheme())
+
+    var Toggle = document.getElementById("ThemeToggle")
+    if (Toggle) {
+      Toggle.addEventListener("click", function () {
+        ToggleTheme()
+      })
+    }
+
+    SetupSmoothAnchors()
+    RevealOnScroll()
+    SetupToTop()
+    SetupMobileMenu()
+    SetupActiveSection()
+    SetupHeroRoleRotation()
 
     if (location.hash) {
-      const StartHash = location.hash;
-      setTimeout(() => ScrollToHash(StartHash), 30);
+      setTimeout(function () {
+        SmoothScrollToHash(location.hash)
+      }, 50)
     }
-  };
-
-  const InitReveal = () => {
-    const Nodes = Array.from(document.querySelectorAll(".Reveal"));
-    if (!Nodes.length) return;
-
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      Nodes.forEach((N) => N.classList.add("Visible"));
-      return;
-    }
-
-    const Io = new IntersectionObserver((Entries) => {
-      Entries.forEach((Entry) => {
-        if (!Entry.isIntersecting) return;
-        Entry.target.classList.add("Visible");
-        Io.unobserve(Entry.target);
-      });
-    }, { root: null, threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-
-    Nodes.forEach((N) => Io.observe(N));
-  };
-
-  const InitActiveNav = () => {
-    const Sections = [
-      document.querySelector("#About"),
-      document.querySelector("#Skills"),
-      document.querySelector("#Work"),
-      document.querySelector("#Pricing"),
-      document.querySelector("#Contact"),
-    ].filter(Boolean);
-
-    if (!Sections.length || !NavLinks.length) return;
-
-    const Map = new Map();
-    NavLinks.forEach((L) => {
-      const H = L.getAttribute("href");
-      if (H && H.startsWith("#")) Map.set(H.slice(1), L);
-    });
-
-    const Clear = () => NavLinks.forEach((L) => L.classList.remove("Active"));
-
-    const Io = new IntersectionObserver((Entries) => {
-      const Visible = Entries
-        .filter((E) => E.isIntersecting)
-        .sort((A, B) => (B.intersectionRatio || 0) - (A.intersectionRatio || 0));
-
-      if (!Visible.length) return;
-      const Id = Visible[0].target.id;
-      const Link = Map.get(Id);
-      if (!Link) return;
-      Clear();
-      Link.classList.add("Active");
-    }, { threshold: [0.2, 0.35, 0.5], rootMargin: "-20% 0px -60% 0px" });
-
-    Sections.forEach((S) => Io.observe(S));
-  };
-
-  const InitToTop = () => {
-    if (!ToTop) return;
-
-    const Tick = () => {
-      const Show = window.scrollY > 600;
-      ToTop.classList.toggle("Show", Show);
-    };
-
-    window.addEventListener("scroll", Tick, { passive: true });
-    Tick();
-
-    ToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  };
-
-  const InitRotate = () => {
-    if (!RotateNode) return;
-
-    const Raw = RotateNode.getAttribute("data-rotate") || "";
-    const Items = Raw.split(",").map((S) => S.trim()).filter(Boolean);
-    if (Items.length < 2) return;
-
-    let Index = 0;
-    let Busy = false;
-
-    const Fade = (Next) => {
-      if (Busy) return;
-      Busy = true;
-
-      RotateNode.animate(
-        [{ opacity: 1, transform: "translateY(0px)" }, { opacity: 0, transform: "translateY(-6px)" }],
-        { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }
-      ).onfinish = () => {
-        RotateNode.textContent = Next;
-        RotateNode.animate(
-          [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0px)" }],
-          { duration: 260, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" }
-        ).onfinish = () => { Busy = false; };
-      };
-    };
-
-    const Loop = () => {
-      Index = (Index + 1) % Items.length;
-      Fade(Items[Index]);
-    };
-
-    setInterval(Loop, 2600);
-  };
-
-  const WireMobile = () => {
-    if (NavToggle) {
-      NavToggle.addEventListener("click", () => {
-        if (IsMobileOpen()) CloseMobile();
-        else OpenMobile();
-      });
-    }
-
-    if (MobileShade) MobileShade.addEventListener("click", CloseMobile);
-    if (MobileClose) MobileClose.addEventListener("click", CloseMobile);
-
-    MobileLinks.forEach((L) => {
-      L.addEventListener("click", () => {
-        CloseMobile();
-      });
-    });
-
-    window.addEventListener("keydown", (E) => {
-      if (E.key === "Escape" && IsMobileOpen()) CloseMobile();
-    });
-  };
-
-  const Boot = () => {
-    if (!Doc.getAttribute("data-theme")) Doc.setAttribute("data-theme", "dark");
-    InitTheme();
-
-    if (ThemeToggle) ThemeToggle.addEventListener("click", ToggleTheme);
-
-    WireMobile();
-    WireAnchors();
-    InitReveal();
-    InitActiveNav();
-    InitToTop();
-    InitRotate();
-  };
+  }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", Boot);
+    document.addEventListener("DOMContentLoaded", Init)
   } else {
-    Boot();
+    Init()
   }
-})()
+})();
