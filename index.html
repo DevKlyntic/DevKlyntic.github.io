@@ -1,15 +1,686 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name – Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DevKlyntic — Premium Roblox Scripting Engineer. Building next-generation, studio-grade systems for Roblox." />
+  <meta property="og:title" content="DevKlyntic — Premium Roblox Scripting Engineer" />
+  <meta property="og:description" content="Building next-generation, studio-grade systems for Roblox." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0d14" />
+  <title>DevKlyntic — Premium Roblox Scripting Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="Skip" href="#Content">Skip to content</a>
 
-  <h1>Your Portfolio Is Live 🚀</h1>
-  <p>If you see this, GitHub Pages works.</p>
+  <div class="Backdrop" aria-hidden="true">
+    <div class="Glow GlowA"></div>
+    <div class="Glow GlowB"></div>
+    <div class="Grid"></div>
+    <div class="Noise"></div>
+  </div>
 
+  <header class="Header" role="banner">
+    <div class="Container HeaderInner">
+      <a class="Brand" href="#Home" aria-label="Go to top">
+        <span class="BrandMark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 38.5C16.2 26.2 23.8 14 32 14c10.5 0 20 16 20 26.5S44.7 54 34.2 54C23.7 54 20.2 44.7 10 38.5Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 42.5c4.6-6.9 9-12.5 13.2-12.5 5.8 0 11.3 8.3 11.3 14.3 0 6-4.8 9.7-10.8 9.7-6 0-8-2.7-13.7-11.5Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="BrandText">DevKlyntic</span>
+      </a>
+
+      <nav class="Nav" aria-label="Primary">
+        <button class="NavToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="NavPanel">
+          <span class="Bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+
+        <div id="NavPanel" class="NavPanel">
+          <a class="NavLink" href="#About">About</a>
+          <a class="NavLink" href="#Skills">Skills</a>
+          <a class="NavLink" href="#Work">Work</a>
+          <a class="NavLink" href="#Pricing">Pricing</a>
+          <a class="NavLink" href="#Contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="HeaderActions">
+        <button class="ThemeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <span class="ThemeIcon" aria-hidden="true">
+            <svg class="IconSun" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 18.1a6.1 6.1 0 1 0 0-12.2 6.1 6.1 0 0 0 0 12.2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 2.3v2.1M12 19.6v2.1M21.7 12h-2.1M4.4 12H2.3M18.9 5.1l-1.5 1.5M6.6 17.4l-1.5 1.5M18.9 18.9l-1.5-1.5M6.6 6.6 5.1 5.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="IconMoon" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 14.7A7.9 7.9 0 0 1 9.3 3a6.8 6.8 0 1 0 11.7 11.7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="ThemeText">Theme</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="Mobile" aria-hidden="true">
+      <div class="MobileShade"></div>
+      <div class="MobilePanel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="MobileTop">
+          <div class="MobileBrand">DevKlyntic</div>
+          <button class="MobileClose" type="button" aria-label="Close menu">✕</button>
+        </div>
+        <div class="MobileLinks">
+          <a class="MobileLink" href="#About">About</a>
+          <a class="MobileLink" href="#Skills">Skills</a>
+          <a class="MobileLink" href="#Work">Work</a>
+          <a class="MobileLink" href="#Pricing">Pricing</a>
+          <a class="MobileLink" href="#Contact">Contact</a>
+        </div>
+        <div class="MobileFoot">
+          <a class="Btn Primary Full" href="#Contact"><span>Contact</span></a>
+          <a class="Btn Ghost Full" href="#Work"><span>View Work</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="Content" class="Main" role="main">
+    <section id="Home" class="Section Hero">
+      <div class="Container HeroGrid">
+        <div class="HeroLeft">
+          <div class="Pill Reveal">
+            <span class="PillDot" aria-hidden="true"></span>
+            <span class="PillText">5+ Years Experience</span>
+          </div>
+
+          <h1 class="HeroTitle Reveal">
+            <span class="HeroName">DevKlyntic</span>
+            <span class="HeroSpark" aria-hidden="true"></span>
+          </h1>
+
+          <div class="HeroSub Reveal" aria-live="polite">
+            <span class="SubStatic">Premium Roblox Scripting Engineer</span>
+            <span class="SubSep" aria-hidden="true">•</span>
+            <span class="SubDynamic" data-rotate="Studio-grade Systems,Performance & Optimization,Security-first Engineering,Scalable Architectures">Studio-grade Systems</span>
+          </div>
+
+          <p class="HeroDesc Reveal">Building next-generation, studio-grade systems for Roblox.</p>
+
+          <div class="HeroCtas Reveal">
+            <a class="Btn Primary" href="#Contact">
+              <span>Contact</span>
+              <span class="BtnIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+            <a class="Btn Ghost" href="#Work"><span>View Work</span></a>
+          </div>
+
+          <div class="HeroMeta Reveal">
+            <div class="MetaItem">
+              <div class="MetaLabel">Username</div>
+              <div class="MetaValue">devklyntic</div>
+            </div>
+            <div class="MetaItem">
+              <div class="MetaLabel">Email</div>
+              <a class="MetaValue Link" href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
+            </div>
+          </div>
+
+          <a class="ScrollHint" href="#About" aria-label="Scroll to About">
+            <span class="ScrollText">Scroll</span>
+            <span class="ScrollArrow" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="HeroRight Reveal">
+          <div class="HeroCard">
+            <div class="HeroCardTop">
+              <div class="HeroCardTitle">Senior, premium engineering for Roblox</div>
+              <div class="Badge">Studio-grade</div>
+            </div>
+
+            <div class="HeroCardBody">
+              <div class="Signal" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+
+              <div class="ChipGrid">
+                <div class="Chip">Performance</div>
+                <div class="Chip">Security</div>
+                <div class="Chip">Scalability</div>
+                <div class="Chip">Clean Architecture</div>
+              </div>
+
+              <div class="MiniStats">
+                <div class="Mini">
+                  <div class="MiniTop">Focus</div>
+                  <div class="MiniBottom">Reliable, shippable systems</div>
+                </div>
+                <div class="Mini">
+                  <div class="MiniTop">Style</div>
+                  <div class="MiniBottom">Calm, modern polish</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="Orb" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="About" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">About</h2>
+          <p class="SectionKicker">Senior-level expertise in Roblox development</p>
+        </div>
+
+        <div class="AboutGrid">
+          <div class="Card AboutCard Reveal">
+            <p class="AboutText">
+              Hey there! I’m Klyntic, a professional Roblox Luau scripter with 5+ years of experience engineering high-quality systems.
+              <br><br>
+              My work blends creativity, structure, and optimization to deliver smooth, secure, and scalable gameplay.
+              <br><br>
+              I’ve developed everything from polished mechanics to custom frameworks to complete game architectures; trusted by individual developers and studios.
+            </p>
+          </div>
+
+          <div class="AboutSide Reveal">
+            <div class="Card SideCard">
+              <div class="SideTitle">What you get</div>
+              <ul class="Checks">
+                <li>Clean, optimized, maintainable Luau</li>
+                <li>Server-authoritative security where it matters</li>
+                <li>Systems that scale with player count</li>
+                <li>Professional workflow and delivery</li>
+              </ul>
+            </div>
+
+            <div class="Card SideCard">
+              <div class="SideTitle">Signature approach</div>
+              <div class="Tags">
+                <span class="Tag">Structure</span>
+                <span class="Tag">Clarity</span>
+                <span class="Tag">Speed</span>
+                <span class="Tag">Safety</span>
+              </div>
+              <div class="SideNote">Built for long-term growth, not quick hacks.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Skills" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Skills &amp; Expertise</h2>
+          <p class="SectionKicker">Studio-grade capability across the full stack of Roblox systems</p>
+        </div>
+
+        <div class="SkillsGrid">
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" />
+                  <path d="M4 4h4M16 4h4M4 20h4M16 20h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">Core Systems</h3>
+            </div>
+            <p class="CardBody">Frameworks, DataStore2, OOP Architecture, Game Loops</p>
+          </article>
+
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3l8 4v6c0 5-3.4 8.5-8 8.5S4 18 4 13V7l8-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M9.4 12.2 11 13.8l3.7-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">Security</h3>
+            </div>
+            <p class="CardBody">Anti-exploit, Remote protection, Obfuscation</p>
+          </article>
+
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 14l6-6 4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M20 20H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">Performance</h3>
+            </div>
+            <p class="CardBody">Async systems, Optimization, Memory efficiency</p>
+          </article>
+
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6h16M4 12h10M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M16 10l4 2-4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">UI / UX</h3>
+            </div>
+            <p class="CardBody">Interactive GUIs, dynamic menus, tween animation</p>
+          </article>
+
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 7h8M8 12h8M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 5v14M20 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">Networking</h3>
+            </div>
+            <p class="CardBody">RemoteEvents, RemoteFunctions, Client-Server models</p>
+          </article>
+
+          <article class="Card Skill Reveal">
+            <div class="CardTop">
+              <div class="Icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M6 7h12M6 12h12M6 17h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="CardTitle">Monetization</h3>
+            </div>
+            <p class="CardBody">DevProducts, Gamepasses, Analytics Integration</p>
+          </article>
+        </div>
+
+        <div class="Reinforce Reveal">
+          <div class="ReinforceInner">
+            <div class="ReinforceTitle">Engineering that holds up under real traffic</div>
+            <div class="ReinforceText">I build powerful, reliable, and efficient systems designed to keep games secure, smooth, and ready for any player count.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Work" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Projects / Past Work</h2>
+          <p class="SectionKicker">A snapshot of shipped work and hands-on systems</p>
+        </div>
+
+        <div class="ProjectsGrid">
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">One Punch Troll Tower 👊</h3>
+              <span class="ProjectPill">Gameplay</span>
+            </div>
+            <p class="ProjectDesc">Polished mechanics, responsive flow, clean system structure.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Smooth UX</span>
+              <span class="MetaTag">Scalable</span>
+              <span class="MetaTag">Secure</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Mega Minigames 🤡</h3>
+              <span class="ProjectPill">Framework</span>
+            </div>
+            <p class="ProjectDesc">System-heavy experience with clean loops and reliable networking.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Game Loops</span>
+              <span class="MetaTag">Match Flow</span>
+              <span class="MetaTag">Optimization</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Button Trees 🌳</h3>
+              <span class="ProjectPill">Progression</span>
+            </div>
+            <p class="ProjectDesc">Incremental progression with satisfying pacing and stability.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Economy</span>
+              <span class="MetaTag">Data</span>
+              <span class="MetaTag">UI</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Curzy's Incremental 🤑</h3>
+              <span class="ProjectPill">Systems</span>
+            </div>
+            <p class="ProjectDesc">Efficient systems designed to scale and remain maintainable.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Performance</span>
+              <span class="MetaTag">Scalable</span>
+              <span class="MetaTag">Clean Code</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Collector Quest</h3>
+              <span class="ProjectPill">Content</span>
+            </div>
+            <p class="ProjectDesc">Content-forward structure with reliable saving and progression.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Persistence</span>
+              <span class="MetaTag">Rewards</span>
+              <span class="MetaTag">UX</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Mow Ur Snow! ❄️</h3>
+              <span class="ProjectPill">Optimization</span>
+            </div>
+            <p class="ProjectDesc">High-performance scripting and smooth gameplay feel.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Low Latency</span>
+              <span class="MetaTag">Efficient Loops</span>
+              <span class="MetaTag">Stability</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Compton Life REMASTERED</h3>
+              <span class="ProjectPill">Gameplay</span>
+            </div>
+            <p class="ProjectDesc">Studio-style structure with reliable features and clean flow.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">Systems</span>
+              <span class="MetaTag">Networking</span>
+              <span class="MetaTag">Security</span>
+            </div>
+          </article>
+
+          <article class="Card Project Reveal">
+            <div class="ProjectTop">
+              <h3 class="ProjectTitle">Color Bridges 🌈</h3>
+              <span class="ProjectPill">UX</span>
+            </div>
+            <p class="ProjectDesc">Snappy interactions with polished UI and tight responsiveness.</p>
+            <div class="ProjectMeta">
+              <span class="MetaTag">UI Polish</span>
+              <span class="MetaTag">Feedback</span>
+              <span class="MetaTag">Flow</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="Why" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Why Choose Me</h2>
+          <p class="SectionKicker">Built for clients who care about quality, speed, and long-term stability</p>
+        </div>
+
+        <div class="ValueGrid">
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">High-Quality Work</h3>
+            <p class="ValueText">clean, optimized, built to last</p>
+          </div>
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">Strong Communication</h3>
+            <p class="ValueText">clear updates &amp; responsiveness</p>
+          </div>
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">On-Time Delivery</h3>
+            <p class="ValueText">organized workflow &amp; deadlines respected</p>
+          </div>
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">Performance &amp; Security</h3>
+            <p class="ValueText">safe, stable systems</p>
+          </div>
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">Flexible Project Sizes</h3>
+            <p class="ValueText">small systems to full games</p>
+          </div>
+          <div class="Card Value Reveal">
+            <h3 class="ValueTitle">Client-Focused Approach</h3>
+            <p class="ValueText">built to your exact vision</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Pricing" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Pricing</h2>
+          <p class="SectionKicker">Clear ranges, premium delivery</p>
+        </div>
+
+        <div class="PricingGrid">
+          <article class="Card Price Featured Reveal">
+            <div class="PriceTop">
+              <h3 class="PriceTitle">Studio-Grade Projects</h3>
+              <div class="PriceValue">$1,000+</div>
+            </div>
+            <div class="PriceBody">
+              <div class="PriceLine">Full production-ready systems, polished end-to-end.</div>
+              <ul class="PriceList">
+                <li>Architecture + scalability planning</li>
+                <li>Security-first implementation</li>
+                <li>Performance tuning</li>
+                <li>Clean delivery &amp; handoff</li>
+              </ul>
+            </div>
+            <a class="Btn Primary Full" href="#Contact"><span>Start a Project</span></a>
+          </article>
+
+          <article class="Card Price Reveal">
+            <div class="PriceTop">
+              <h3 class="PriceTitle">Large Projects</h3>
+              <div class="PriceValue">$500–$1,000</div>
+            </div>
+            <div class="PriceBody">
+              <div class="PriceLine">Large feature sets, multi-system work, scalable patterns.</div>
+              <ul class="PriceList">
+                <li>Systems integration</li>
+                <li>Reliable saving + state</li>
+                <li>Networking design</li>
+                <li>Polished gameplay flow</li>
+              </ul>
+            </div>
+            <a class="Btn Ghost Full" href="#Contact"><span>Contact</span></a>
+          </article>
+
+          <article class="Card Price Reveal">
+            <div class="PriceTop">
+              <h3 class="PriceTitle">Mid-Scale Systems</h3>
+              <div class="PriceValue">$100–$500</div>
+            </div>
+            <div class="PriceBody">
+              <div class="PriceLine">Single major systems built clean, secure, and efficient.</div>
+              <ul class="PriceList">
+                <li>Data systems</li>
+                <li>UI + interactions</li>
+                <li>Gameplay mechanics</li>
+                <li>Optimization pass</li>
+              </ul>
+            </div>
+            <a class="Btn Ghost Full" href="#Contact"><span>Contact</span></a>
+          </article>
+
+          <article class="Card Price Reveal">
+            <div class="PriceTop">
+              <h3 class="PriceTitle">Small Systems</h3>
+              <div class="PriceValue">$25–$100</div>
+            </div>
+            <div class="PriceBody">
+              <div class="PriceLine">Quick wins, clean implementations, tight delivery.</div>
+              <ul class="PriceList">
+                <li>Bug fixes</li>
+                <li>Small features</li>
+                <li>Polish improvements</li>
+                <li>Refactors</li>
+              </ul>
+            </div>
+            <a class="Btn Ghost Full" href="#Contact"><span>Contact</span></a>
+          </article>
+        </div>
+
+        <div class="Disclaimer Reveal">Pricing depends on scope, size, and complexity.</div>
+      </div>
+    </section>
+
+    <section id="Terms" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Payment &amp; Terms</h2>
+          <p class="SectionKicker">Transparency-first, safe for both sides</p>
+        </div>
+
+        <div class="TermsGrid">
+          <div class="Card Term Reveal">
+            <h3 class="TermTitle">How payments work</h3>
+            <p class="TermText">Task-based payments (pay after completion)</p>
+            <p class="TermText">Transparency &amp; safety emphasized</p>
+          </div>
+
+          <div class="Card Term Reveal">
+            <h3 class="TermTitle">Accepted payment methods</h3>
+            <ul class="TermList">
+              <li>Robux ($1 USD = 150 Robux)</li>
+              <li>PayPal</li>
+              <li>Roblox Gift Cards</li>
+            </ul>
+          </div>
+
+          <div class="Card Term Reveal">
+            <h3 class="TermTitle">Percentage deals</h3>
+            <p class="TermText">Only if game already generates revenue OR paired with fixed payment</p>
+          </div>
+        </div>
+
+        <div class="Strip Reveal">
+          <div class="StripLeft">
+            <div class="StripTitle">Have a project in mind?</div>
+            <div class="StripText">Send details, scope, and any references — I’ll respond with a clear plan and timeline.</div>
+          </div>
+          <div class="StripRight">
+            <a class="Btn Primary" href="#Contact"><span>Reach Out</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Testimonials" class="Section">
+      <div class="Container">
+        <div class="SectionHead Reveal">
+          <h2 class="SectionTitle">Testimonials</h2>
+          <p class="SectionKicker">Ready for future client quotes</p>
+        </div>
+
+        <div class="TestGrid">
+          <article class="Card Test Reveal">
+            <div class="TestTop">
+              <div class="Avatar" aria-hidden="true"></div>
+              <div>
+                <div class="TestName">Client Name</div>
+                <div class="TestRole">Project Type</div>
+              </div>
+            </div>
+            <p class="TestText">Placeholder testimonial card prepared for future quotes.</p>
+          </article>
+
+          <article class="Card Test Reveal">
+            <div class="TestTop">
+              <div class="Avatar" aria-hidden="true"></div>
+              <div>
+                <div class="TestName">Client Name</div>
+                <div class="TestRole">Project Type</div>
+              </div>
+            </div>
+            <p class="TestText">Placeholder testimonial card prepared for future quotes.</p>
+          </article>
+
+          <article class="Card Test Reveal">
+            <div class="TestTop">
+              <div class="Avatar" aria-hidden="true"></div>
+              <div>
+                <div class="TestName">Client Name</div>
+                <div class="TestRole">Project Type</div>
+              </div>
+            </div>
+            <p class="TestText">Placeholder testimonial card prepared for future quotes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="Contact" class="Section Contact">
+      <div class="Container">
+        <div class="ContactCard Card Reveal">
+          <div class="ContactLeft">
+            <h2 class="ContactTitle">Let’s build something clean, fast, and reliable.</h2>
+            <p class="ContactText">Reach out with scope, deadline, and references. I’ll respond with a clear plan and next steps.</p>
+
+            <div class="ContactLinks">
+              <a class="ContactLink" href="mailto:devklyntic@gmail.com">
+                <span class="ContactLabel">Email</span>
+                <span class="ContactValue">devklyntic@gmail.com</span>
+              </a>
+              <div class="ContactLink" role="group" aria-label="Username">
+                <span class="ContactLabel">Username</span>
+                <span class="ContactValue">devklyntic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ContactRight">
+            <div class="ContactStack">
+              <a class="Btn Primary Full" href="mailto:devklyntic@gmail.com?subject=Roblox%20Commission%20Inquiry"><span>Email Me</span></a>
+              <a class="Btn Ghost Full" href="#Work"><span>View Work</span></a>
+            </div>
+            <div class="ContactHint">Fast replies, clear communication, studio-grade output.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="Footer" role="contentinfo">
+    <div class="Container FooterInner">
+      <div class="FooterLeft">
+        <div class="FooterBrand">DevKlyntic</div>
+        <div class="FooterSub">Premium Roblox Scripting Engineer</div>
+      </div>
+      <div class="FooterRight">
+        <a class="FooterLink" href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
+        <span class="Dot" aria-hidden="true">•</span>
+        <span class="FooterLink Muted">devklyntic</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="ToTop" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span></button>
+
+  <script src="script.js"></script>
 </body>
 </html>
