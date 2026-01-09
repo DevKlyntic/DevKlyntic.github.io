@@ -1,1 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>DevKlyntic — Premium Roblox Scripting Engineer</title>
+  <meta name="description" content="DevKlyntic — Premium Roblox Scripting Engineer. Building next-generation, studio-grade systems for Roblox.">
+  <meta property="og:title" content="DevKlyntic — Premium Roblox Scripting Engineer">
+  <meta property="og:description" content="Building next-generation, studio-grade systems for Roblox.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --font-ui: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-display: "Space Grotesk", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
+      --bg: #0b0f17;
+      --bg2: #070a10;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.035);
+      --border: rgba(255,255,255,.10);
+      --border2: rgba(255,255,255,.075);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.54);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+
+      --accent: #7c5cff;
+      --accent2: #25f0c9;
+      --accent3: #ff4fd8;
+      --ring: rgba(124,92,255,.55);
+      --glow: 0 0 0 1px rgba(124,92,255,.28), 0 0 40px rgba(124,92,255,.22);
+
+      --radius: 18px;
+      --radius2: 26px;
+      --container: 1120px;
+      --gutter: 24px;
+
+      --t-fast: 160ms;
+      --t-med: 260ms;
+      --t-slow: 520ms;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    html[data-theme="light"]{
+      --bg: #f7f8fb;
+      --bg2: #eef1f7;
+      --panel: rgba(0,0,0,.045);
+      --panel2: rgba(0,0,0,.028);
+      --border: rgba(0,0,0,.11);
+      --border2: rgba(0,0,0,.075);
+      --text: rgba(10,14,22,.92);
+      --muted: rgba(10,14,22,.70);
+      --muted2: rgba(10,14,22,.55);
+      --shadow: 0 20px 60px rgba(16,24,40,.12);
+      --shadow2: 0 10px 30px rgba(16,24,40,.10);
+      --ring: rgba(124,92,255,.35);
+      --glow: 0 0 0 1px rgba(124,92,255,.18), 0 0 40px rgba(124,92,255,.12);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--font-ui);
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.22), transparent 52%),
+                  radial-gradient(900px 600px at 85% 20%, rgba(37,240,201,.14), transparent 55%),
+                  radial-gradient(1000px 800px at 60% 95%, rgba(255,79,216,.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    button, a{ -webkit-tap-highlight-color: transparent; }
+
+    ::selection{ background: rgba(124,92,255,.32); }
+
+    .skip{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.2);
+      color: var(--text);
+      transform: translateY(-140%);
+      transition: transform var(--t-med) var(--ease);
+      z-index: 9999;
+      backdrop-filter: blur(10px);
+    }
+    html[data-theme="light"] .skip{ background: rgba(255,255,255,.7); }
+    .skip:focus{ transform: translateY(0); outline: none; box-shadow: 0 0 0 4px var(--ring); }
+
+    .noise{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .08;
+      mix-blend-mode: overlay;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0, rgba(255,255,255,.045) 1px, transparent 1px, transparent 4px);
+      transform: translateZ(0);
+    }
+    html[data-theme="light"] .noise{ opacity: .06; mix-blend-mode: multiply; }
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+    }
+
+    .container{
+      width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+      margin: 0 auto;
+    }
+
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color var(--t-med) var(--ease), background var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .header{ background: rgba(255,255,255,.72); }
+
+    .header.is-scrolled{
+      border-color: var(--border2);
+      background: rgba(0,0,0,.32);
+    }
+    html[data-theme="light"] .header.is-scrolled{ background: rgba(255,255,255,.82); }
+
+    .navRow{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    .logo{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
+                  linear-gradient(135deg, rgba(124,92,255,.95), rgba(37,240,201,.86));
+      box-shadow: 0 12px 28px rgba(124,92,255,.24);
+      border: 1px solid rgba(255,255,255,.18);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .logo svg{ width: 20px; height: 20px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.28)); }
+
+    .brandText{ display: flex; flex-direction: column; line-height: 1.05; }
+
+    .brandName{
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      font-size: 14px;
+    }
+
+    .brandSub{
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: 4px;
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      box-shadow: var(--shadow2);
+    }
+    html[data-theme="light"] .nav{ background: rgba(255,255,255,.55); }
+
+    .nav a{
+      position: relative;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: color var(--t-med) var(--ease), background var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+      outline: none;
+    }
+
+    .nav a::after{
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,92,255,.0), rgba(124,92,255,.85), rgba(37,240,201,.85), rgba(124,92,255,.0));
+      transform: scaleX(0);
+      transform-origin: 50% 50%;
+      opacity: .9;
+      transition: transform var(--t-med) var(--ease);
+    }
+
+    .nav a:hover{ color: var(--text); background: rgba(255,255,255,.04); transform: translateY(-1px); }
+    html[data-theme="light"] .nav a:hover{ background: rgba(0,0,0,.04); }
+    .nav a:hover::after{ transform: scaleX(1); }
+    .nav a:focus-visible{ box-shadow: 0 0 0 4px var(--ring); }
+
+    .actions{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      justify-content: flex-end;
+    }
+
+    .iconBtn{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+      outline: none;
+      box-shadow: var(--shadow2);
+    }
+    html[data-theme="light"] .iconBtn{ background: rgba(255,255,255,.72); }
+
+    .iconBtn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(124,92,255,.25); }
+    .iconBtn:active{ transform: translateY(0) scale(.98); }
+    .iconBtn:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
+
+    .iconBtn svg{ width: 18px; height: 18px; }
+
+    .menuBtn{ display: none; }
+
+    main{ scroll-margin-top: 90px; }
+
+    .hero{
+      padding: 64px 0 24px;
+    }
+
+    .heroGrid{
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 30px;
+      align-items: center;
+      padding-top: 26px;
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      color: var(--muted);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    html[data-theme="light"] .pill{ background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.62)); }
+
+    .pillDot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.9), rgba(255,255,255,.2)),
+                  linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.14), 0 0 22px rgba(124,92,255,.22);
+    }
+
+    .heroTitle{
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      margin: 18px 0 12px;
+    }
+
+    .gradText{
+      background: linear-gradient(90deg, rgba(124,92,255,1), rgba(37,240,201,1), rgba(255,79,216,1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 18px 26px rgba(124,92,255,.22));
+    }
+
+    .subtitle{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .subtitle .spark{
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,1));
+      box-shadow: 0 0 0 4px rgba(37,240,201,.10), 0 0 18px rgba(37,240,201,.18);
+    }
+
+    .rotator{
+      display: inline-grid;
+      grid-auto-flow: column;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      box-shadow: var(--shadow2);
+    }
+    html[data-theme="light"] .rotator{ background: rgba(255,255,255,.65); }
+
+    .rotatorWord{
+      font-family: var(--font-display);
+      letter-spacing: -.02em;
+      font-weight: 700;
+      font-size: 13px;
+      min-width: 170px;
+      position: relative;
+      overflow: hidden;
+      height: 18px;
+    }
+
+    .rotatorWord span{
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+      will-change: opacity, transform;
+    }
+
+    .rotatorWord span.is-on{ opacity: 1; transform: translateY(0); }
+
+    .heroDesc{
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 58ch;
+      margin: 0 0 22px;
+    }
+
+    .ctaRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+      box-shadow: var(--shadow2);
+      outline: none;
+    }
+    html[data-theme="light"] .btn{ background: rgba(255,255,255,.75); }
+
+    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(124,92,255,.28); }
+    .btn:active{ transform: translateY(0) scale(.99); }
+    .btn:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
+
+    .btnPrimary{
+      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
+                  linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,.92));
+      border-color: rgba(255,255,255,.14);
+      color: rgba(12,14,18,.96);
+    }
+
+    html[data-theme="light"] .btnPrimary{
+      color: rgba(10,14,22,.92);
+      border-color: rgba(0,0,0,.08);
+    }
+
+    .btnPrimary:hover{ box-shadow: var(--glow), var(--shadow); }
+
+    .btnGhost{
+      background: rgba(255,255,255,.02);
+    }
+    html[data-theme="light"] .btnGhost{ background: rgba(255,255,255,.55); }
+
+    .btnIcon{
+      width: 16px;
+      height: 16px;
+      opacity: .9;
+    }
+
+    .heroSide{
+      display: grid;
+      gap: 14px;
+    }
+
+    .featureCard{
+      border-radius: var(--radius2);
+      border: 1px solid var(--border2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+    }
+    html[data-theme="light"] .featureCard{ background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)); }
+
+    .featureCard::before{
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(700px 260px at 20% 10%, rgba(124,92,255,.22), transparent 55%),
+                  radial-gradient(640px 260px at 85% 30%, rgba(37,240,201,.14), transparent 55%);
+      opacity: .95;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .featureInner{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .featureKicker{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .kickerLeft{
+      display: grid;
+      gap: 6px;
+    }
+
+    .kickerTitle{
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      font-size: 14px;
+    }
+
+    .kickerSub{
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .chip{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), background var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .chip{ background: rgba(255,255,255,.68); }
+
+    .chip:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.26); }
+
+    .miniLinks{
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .miniLink{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .miniLink{ background: rgba(255,255,255,.72); }
+
+    .miniLink:hover{ transform: translateY(-2px); box-shadow: var(--shadow2); border-color: rgba(124,92,255,.22); }
+
+    .miniLeft{ display: grid; gap: 2px; }
+
+    .miniLabel{ font-size: 12px; color: var(--muted2); }
+    .miniValue{ font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+
+    .arrow{
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+    }
+    html[data-theme="light"] .arrow{ background: rgba(255,255,255,.75); }
+
+    .scrollHint{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 0 6px;
+    }
+
+    .scrollPill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      box-shadow: var(--shadow2);
+      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+      outline: none;
+    }
+    html[data-theme="light"] .scrollPill{ background: rgba(255,255,255,.75); }
+
+    .scrollPill:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); }
+    .scrollPill:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
+
+    .bounce{
+      width: 16px;
+      height: 16px;
+      opacity: .9;
+      animation: bounce 1.6s var(--ease) infinite;
+    }
+
+    @keyframes bounce{
+      0%, 100%{ transform: translateY(0); }
+      50%{ transform: translateY(4px); }
+    }
+
+    section{
+      padding: 62px 0;
+    }
+
+    .sectionHead{
+      display: grid;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .kickerLine{
+      height: 1px;
+      width: 42px;
+      background: linear-gradient(90deg, rgba(124,92,255,0), rgba(124,92,255,.65), rgba(37,240,201,.65));
+      border-radius: 999px;
+    }
+
+    .h2{
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.2vw, 36px);
+      letter-spacing: -.03em;
+      margin: 0;
+    }
+
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 70ch;
+      font-size: 15px;
+    }
+
+    .cardGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      border-radius: var(--radius2);
+      border: 1px solid var(--border2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow2);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .card{ background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.64)); }
+
+    .card::before{
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(520px 240px at 10% 10%, rgba(124,92,255,.14), transparent 60%),
+                  radial-gradient(520px 240px at 85% 20%, rgba(37,240,201,.08), transparent 60%);
+      opacity: .85;
+      pointer-events: none;
+      filter: blur(14px);
+      transition: opacity var(--t-med) var(--ease);
+    }
+
+    .card:hover{
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(124,92,255,.22);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before{ opacity: 1; }
+
+    .cardInner{ position: relative; z-index: 1; display: grid; gap: 10px; }
+
+    .cardTitle{
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .cardText{ margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
+
+    .tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+    .tag{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .tag{ background: rgba(255,255,255,.65); }
+
+    .tag:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.24); }
+
+    .split{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .li{
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+    }
+    html[data-theme="light"] .li{ background: rgba(255,255,255,.68); }
+
+    .li:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow2); }
+
+    .check{
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
+                  linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,.92));
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(124,92,255,.10);
+    }
+
+    .check svg{ width: 12px; height: 12px; }
+
+    .pricingGrid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .price{
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: -.02em;
+      margin: 2px 0 0;
+    }
+
+    .priceSub{ margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .callout{
+      border-radius: var(--radius2);
+      border: 1px solid var(--border2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+    html[data-theme="light"] .callout{ background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.66)); }
+
+    .callout::before{
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(760px 340px at 12% 15%, rgba(124,92,255,.18), transparent 60%),
+                  radial-gradient(760px 340px at 88% 25%, rgba(37,240,201,.12), transparent 60%);
+      opacity: .9;
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .calloutInner{ position: relative; z-index: 1; display: grid; gap: 12px; }
+
+    .contactRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .copyBtn{
+      padding: 12px 14px;
+    }
+
+    .footer{
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--border2);
+      background: rgba(0,0,0,.10);
+    }
+    html[data-theme="light"] .footer{ background: rgba(255,255,255,.55); }
+
+    .footerGrid{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .footTitle{
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .footText{ margin: 10px 0 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .footLinks{ display: grid; gap: 10px; justify-items: end; }
+
+    .footLink{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+      max-width: 100%;
+    }
+    html[data-theme="light"] .footLink{ background: rgba(255,255,255,.68); }
+
+    .footLink:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow2); color: var(--text); }
+
+    .footLink svg{ width: 16px; height: 16px; opacity: .9; }
+
+    .mutedSmall{ font-size: 12px; color: var(--muted2); margin-top: 8px; }
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px) scale(.985);
+      filter: blur(2px);
+      transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease), filter var(--t-slow) var(--ease);
+      will-change: transform, opacity;
+    }
+
+    .reveal.is-visible{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .themeTransition *{
+      transition: background-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+    }
+
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .actions{ min-width: unset; }
+      .cardGrid{ grid-template-columns: repeat(2, 1fr); }
+      .pricingGrid{ grid-template-columns: repeat(2, 1fr); }
+      .split{ grid-template-columns: 1fr; }
+      .footerGrid{ grid-template-columns: 1fr; }
+      .footLinks{ justify-items: start; }
+    }
+
+    @media (max-width: 720px){
+      .nav{
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        top: 74px;
+        width: min(520px, calc(100% - 24px));
+        padding: 12px;
+        border-radius: 22px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        z-index: 60;
+      }
+
+      .header.nav-open .nav{
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .menuBtn{ display: grid; }
+      .navRow{ padding: 12px 0; }
+      .hero{ padding-top: 48px; }
+      .cardGrid{ grid-template-columns: 1fr; }
+      .pricingGrid{ grid-template-columns: 1fr; }
+      .heroSide{ order: -1; }
+      .rotatorWord{ min-width: 150px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .bounce{ animation: none; }
+      .reveal{ opacity: 1; transform: none; filter: none; transition: none; }
+      .btn, .card, .li, .iconBtn, .nav a, .tag, .chip, .miniLink, .footLink{ transition: none; }
+      .rotatorWord span{ transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="header" id="top">
+      <div class="container">
+        <div class="navRow">
+          <a class="brand" href="#top" aria-label="Home">
+            <div class="logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.2 16.8L16.8 7.2" stroke="rgba(12,14,18,.9)" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M8.4 7.2H16.8V15.6" stroke="rgba(12,14,18,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="brandText">
+              <div class="brandName">DevKlyntic</div>
+              <div class="brandSub">Premium Roblox Scripting Engineer</div>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="Primary navigation">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#work">Work</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#terms">Terms</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="actions">
+            <button class="iconBtn menuBtn" type="button" id="MenuBtn" aria-label="Open menu" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 7H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5 17H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <button class="iconBtn" type="button" id="ThemeToggle" aria-label="Toggle theme">
+              <svg id="ThemeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 13.1A8.1 8.1 0 0 1 10.9 3a6.9 6.9 0 1 0 10.1 10.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero" aria-label="Hero">
+        <div class="container">
+          <div class="heroGrid">
+            <div class="reveal">
+              <div class="pill" role="note">
+                <span class="pillDot" aria-hidden="true"></span>
+                <span>5+ Years Experience</span>
+              </div>
+
+              <h1 class="heroTitle">
+                <span class="gradText">DevKlyntic</span>
+              </h1>
+
+              <div class="subtitle">
+                <span class="spark" aria-hidden="true"></span>
+                <span class="rotator" aria-label="Title">
+                  <span>Premium Roblox Scripting Engineer</span>
+                  <span aria-hidden="true">•</span>
+                  <span class="rotatorWord" id="RotatorWord">
+                    <span class="is-on">Studio-grade systems</span>
+                    <span>Performance-first</span>
+                    <span>Secure architecture</span>
+                    <span>Scalable frameworks</span>
+                  </span>
+                </span>
+              </div>
+
+              <p class="heroDesc">Building next-generation, studio-grade systems for Roblox.</p>
+
+              <div class="ctaRow">
+                <a class="btn btnPrimary" href="#contact">
+                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Contact
+                </a>
+                <a class="btn btnGhost" href="#work">
+                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 6H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 14H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 3H17C18.6569 3 20 4.34315 20 6V18C20 19.6569 18.6569 21 17 21H7C5.34315 21 4 19.6569 4 18V6C4 4.34315 5.34315 3 7 3Z" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  View Work
+                </a>
+              </div>
+
+              <div class="chips" aria-label="Highlights">
+                <span class="chip">Performance</span>
+                <span class="chip">Security</span>
+                <span class="chip">Scalability</span>
+              </div>
+            </div>
+
+            <aside class="heroSide reveal" aria-label="Quick contact">
+              <div class="featureCard">
+                <div class="featureInner">
+                  <div class="featureKicker">
+                    <div class="kickerLeft">
+                      <div class="kickerTitle">Identity</div>
+                      <div class="kickerSub">Premium Roblox Luau scripting focused on studio-grade quality.</div>
+                    </div>
+                    <div class="arrow" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="miniLinks">
+                    <a class="miniLink" href="mailto:devklyntic@gmail.com" aria-label="Email devklyntic@gmail.com">
+                      <div class="miniLeft">
+                        <div class="miniLabel">Email</div>
+                        <div class="miniValue">devklyntic@gmail.com</div>
+                      </div>
+                      <div class="arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </a>
+                    <div class="miniLink" role="group" aria-label="Username devklyntic">
+                      <div class="miniLeft">
+                        <div class="miniLabel">Username</div>
+                        <div class="miniValue">devklyntic</div>
+                      </div>
+                      <div class="arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="scrollHint reveal">
+            <a class="scrollPill" href="#about" aria-label="Scroll to About">
+              <span>Scroll</span>
+              <svg class="bounce" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 14L12 19L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" aria-label="About">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>About</span></div>
+            <h2 class="h2">Senior-quality Luau systems with a clean, scalable foundation</h2>
+            <p class="lead">Hey there! I’m Klyntic, a professional Roblox Luau scripter with 5+ years of experience engineering high-quality systems.
+
+My work blends creativity, structure, and optimization to deliver smooth, secure, and scalable gameplay.
+
+I’ve developed everything from polished mechanics to custom frameworks to complete game architectures; trusted by individual developers and studios.</p>
+          </div>
+
+          <div class="split">
+            <div class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">What you get</h3>
+                <p class="cardText">A premium build style designed for real production: structured modules, predictable patterns, and the kind of polish that stays maintainable as your game grows.</p>
+                <div class="tags" aria-label="Focus areas">
+                  <span class="tag">Studio-grade</span>
+                  <span class="tag">Maintainable</span>
+                  <span class="tag">Reliable</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">How I work</h3>
+                <p class="cardText">I prioritize clarity, performance, and security. Systems are designed to scale cleanly, stay responsive under load, and remain easy to extend with new features.</p>
+                <div class="tags" aria-label="Workflow">
+                  <span class="tag">Structure</span>
+                  <span class="tag">Optimization</span>
+                  <span class="tag">Security</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" aria-label="Skills & expertise">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Skills & Expertise</span></div>
+            <h2 class="h2">Systems that stay fast, safe, and scalable</h2>
+            <p class="lead">I build powerful, reliable, and efficient systems designed to keep games secure, smooth, and ready for any player count.</p>
+          </div>
+
+          <div class="cardGrid">
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Core Systems</h3>
+                <p class="cardText">Frameworks, DataStore2, OOP Architecture, Game Loops</p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Security</h3>
+                <p class="cardText">Anti-exploit, Remote protection, Obfuscation</p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Performance</h3>
+                <p class="cardText">Async systems, Optimization, Memory efficiency</p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">UI / UX</h3>
+                <p class="cardText">Interactive GUIs, dynamic menus, tween animation</p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Networking</h3>
+                <p class="cardText">RemoteEvents, RemoteFunctions, Client-Server models</p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Monetization</h3>
+                <p class="cardText">DevProducts, Gamepasses, Analytics Integration</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" aria-label="Projects and past work">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Work</span></div>
+            <h2 class="h2">Selected projects</h2>
+            <p class="lead">A snapshot of past work and experience across different project styles and scopes.</p>
+          </div>
+
+          <div class="cardGrid">
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">One Punch Troll Tower 👊</h3>
+                <p class="cardText">Polished gameplay systems with smooth feel and clean structure.</p>
+                <div class="tags"><span class="tag">Gameplay</span><span class="tag">Polish</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Mega Minigames 🤡</h3>
+                <p class="cardText">Scalable flow control, round logic, and reliable session handling.</p>
+                <div class="tags"><span class="tag">Loops</span><span class="tag">Scale</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Button Trees 🌳</h3>
+                <p class="cardText">Structured progression, responsive UX, and stable upgrades.</p>
+                <div class="tags"><span class="tag">Progression</span><span class="tag">UI</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Curzy's Incremental 🤑</h3>
+                <p class="cardText">Incremental economy logic with clean data patterns.</p>
+                <div class="tags"><span class="tag">Economy</span><span class="tag">Data</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Collector Quest</h3>
+                <p class="cardText">Collection systems designed for clarity and long-term expansion.</p>
+                <div class="tags"><span class="tag">Systems</span><span class="tag">Expansion</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Mow Ur Snow! ❄️</h3>
+                <p class="cardText">Performance-focused loops and optimized client-server behavior.</p>
+                <div class="tags"><span class="tag">Performance</span><span class="tag">Networking</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Compton Life REMASTERED</h3>
+                <p class="cardText">Robust feature integration with attention to security and stability.</p>
+                <div class="tags"><span class="tag">Security</span><span class="tag">Stability</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Color Bridges 🌈</h3>
+                <p class="cardText">Clean mechanics with responsive UI and consistent user feedback.</p>
+                <div class="tags"><span class="tag">UX</span><span class="tag">Mechanics</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" aria-label="Why choose me">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Why Choose Me</span></div>
+            <h2 class="h2">Premium delivery with a studio mindset</h2>
+            <p class="lead">Focused on quality, clarity, and systems that scale without the usual headaches.</p>
+          </div>
+
+          <div class="split">
+            <ul class="list reveal">
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>High-Quality Work — clean, optimized, built to last</span></li>
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Strong Communication — clear updates & responsiveness</span></li>
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>On-Time Delivery — organized workflow & deadlines respected</span></li>
+            </ul>
+
+            <ul class="list reveal">
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Performance & Security — safe, stable systems</span></li>
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Flexible Project Sizes — small systems to full games</span></li>
+              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Client-Focused Approach — built to your exact vision</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" aria-label="Pricing">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Pricing</span></div>
+            <h2 class="h2">Clear tiers for different scopes</h2>
+            <p class="lead">Pricing depends on scope, size, and complexity.</p>
+          </div>
+
+          <div class="pricingGrid">
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Studio-Grade Projects</h3>
+                <p class="price">$1,000+</p>
+                <p class="priceSub">End-to-end architecture and production-level polish.</p>
+                <div class="tags"><span class="tag">Full builds</span><span class="tag">Frameworks</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Large Projects</h3>
+                <p class="price">$500–$1,000</p>
+                <p class="priceSub">Multiple systems with clean integration and scaling.</p>
+                <div class="tags"><span class="tag">Multi-system</span><span class="tag">Scale</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Mid-Scale Systems</h3>
+                <p class="price">$100–$500</p>
+                <p class="priceSub">Core mechanics and optimized backend modules.</p>
+                <div class="tags"><span class="tag">Systems</span><span class="tag">Optimization</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Small Systems</h3>
+                <p class="price">$25–$100</p>
+                <p class="priceSub">Focused features with clean, secure implementation.</p>
+                <div class="tags"><span class="tag">Quick wins</span><span class="tag">Clean</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="terms" aria-label="Payment and terms">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Payment & Terms</span></div>
+            <h2 class="h2">Simple, safe, and transparent</h2>
+            <p class="lead">Task-based payments (pay after completion) with transparency and safety emphasized.</p>
+          </div>
+
+          <div class="split">
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Accepted payments</h3>
+                <ul class="list" aria-label="Accepted payment methods">
+                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Robux ($1 USD = 150 Robux)</span></li>
+                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>PayPal</span></li>
+                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Roblox Gift Cards</span></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Percentage deals</h3>
+                <p class="cardText">Only accepted if the game already generates revenue OR paired with fixed payment</p>
+                <div class="tags"><span class="tag">Safety-first</span><span class="tag">Transparent</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" aria-label="Testimonials">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Testimonials</span></div>
+            <h2 class="h2">Client quotes</h2>
+            <p class="lead">Clean testimonial placeholders designed for future client feedback.</p>
+          </div>
+
+          <div class="cardGrid">
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Future Client</h3>
+                <p class="cardText">“Your testimonial here.”</p>
+                <div class="tags"><span class="tag">Placeholder</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Future Client</h3>
+                <p class="cardText">“Your testimonial here.”</p>
+                <div class="tags"><span class="tag">Placeholder</span></div>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="cardInner">
+                <h3 class="cardTitle">Future Client</h3>
+                <p class="cardText">“Your testimonial here.”</p>
+                <div class="tags"><span class="tag">Placeholder</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-label="Contact">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Get in Touch</span></div>
+            <h2 class="h2">Let’s build something polished</h2>
+            <p class="lead">Reach out and I’ll respond with clear next steps based on your scope.</p>
+          </div>
+
+          <div class="callout reveal">
+            <div class="calloutInner">
+              <div class="kicker" aria-label="Contact details"><span class="kickerLine" aria-hidden="true"></span><span>Contact</span></div>
+              <h3 class="cardTitle" style="margin:0">devklyntic@gmail.com</h3>
+              <p class="cardText" style="margin:0">Username: devklyntic</p>
+
+              <div class="contactRow">
+                <a class="btn btnPrimary" href="mailto:devklyntic@gmail.com">
+                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Email Me
+                </a>
+
+                <button class="btn btnGhost copyBtn" type="button" id="CopyEmail">
+                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 8V6C8 4.34315 9.34315 3 11 3H18C19.6569 3 21 4.34315 21 6V13C21 14.6569 19.6569 16 18 16H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 21H13C14.6569 21 16 19.6569 16 18V11C16 9.34315 14.6569 8 13 8H6C4.34315 8 3 9.34315 3 11V18C3 19.6569 4.34315 21 6 21Z" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  Copy Email
+                </button>
+
+                <a class="btn btnGhost" href="#top" aria-label="Back to top">
+                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Top
+                </a>
+              </div>
+
+              <div class="mutedSmall" id="CopyStatus" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="Footer">
+      <div class="container">
+        <div class="footerGrid">
+          <div class="reveal">
+            <p class="footTitle">DevKlyntic</p>
+            <p class="footText">Premium Roblox Luau scripting focused on studio-grade systems, performance, security, and scalability.</p>
+            <div class="mutedSmall">© <span id="Year"></span> DevKlyntic</div>
+          </div>
+
+          <div class="footLinks reveal" aria-label="Footer links">
+            <a class="footLink" href="mailto:devklyntic@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>devklyntic@gmail.com</span>
+            </a>
+            <div class="footLink" role="group" aria-label="Username devklyntic">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.5C7.3 2.5 3.5 6.3 3.5 11C3.5 14.8 6 18 9.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 2.5C16.7 2.5 20.5 6.3 20.5 11C20.5 14.8 18 18 14.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9.5 19.2C10.2 20.2 11.2 21.5 12 21.5C12.8 21.5 13.8 20.2 14.5 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>devklyntic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      var Root = document.documentElement
+      var ThemeToggle = document.getElementById('ThemeToggle')
+      var ThemeIcon = document.getElementById('ThemeIcon')
+      var Header = document.querySelector('.header')
+      var MenuBtn = document.getElementById('MenuBtn')
+      var Nav = document.querySelector('.nav')
+      var CopyEmail = document.getElementById('CopyEmail')
+      var CopyStatus = document.getElementById('CopyStatus')
+      var Year = document.getElementById('Year')
+      var Rotator = document.getElementById('RotatorWord')
+
+      Year.textContent = String(new Date().getFullYear())
+
+      function SetTheme(Theme){
+        Root.classList.add('themeTransition')
+        Root.setAttribute('data-theme', Theme)
+        try{ localStorage.setItem('theme', Theme) }catch(e){}
+        window.setTimeout(function(){ Root.classList.remove('themeTransition') }, 520)
+
+        var IsLight = Theme === 'light'
+        Header.querySelector('meta')
+
+        if(IsLight){
+          ThemeIcon.innerHTML = '<path d="M12 18.5A6.5 6.5 0 1 0 12 5.5A6.5 6.5 0 0 0 12 18.5Z" stroke="currentColor" stroke-width="2"/><path d="M12 2.5V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 20V21.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3.5 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 12H20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 5.4L6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 17.5L18.6 18.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 6.5L18.6 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 18.6L6.5 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+        }else{
+          ThemeIcon.innerHTML = '<path d="M21 13.1A8.1 8.1 0 0 1 10.9 3a6.9 6.9 0 1 0 10.1 10.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'
+        }
+      }
+
+      function InitTheme(){
+        var Saved = null
+        try{ Saved = localStorage.getItem('theme') }catch(e){}
+        if(Saved === 'light' || Saved === 'dark'){
+          SetTheme(Saved)
+          return
+        }
+        var PreferLight = false
+        try{ PreferLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches }catch(e){}
+        SetTheme(PreferLight ? 'light' : 'dark')
+      }
+
+      function ToggleTheme(){
+        var Next = Root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
+        SetTheme(Next)
+      }
+
+      ThemeToggle.addEventListener('click', ToggleTheme)
+
+      function SetScrolled(){
+        if(window.scrollY > 10){
+          Header.classList.add('is-scrolled')
+        }else{
+          Header.classList.remove('is-scrolled')
+        }
+      }
+
+      window.addEventListener('scroll', SetScrolled, { passive: true })
+      SetScrolled()
+
+      function CloseMenu(){
+        Header.classList.remove('nav-open')
+        if(MenuBtn){ MenuBtn.setAttribute('aria-expanded', 'false') }
+      }
+
+      function ToggleMenu(){
+        var IsOpen = Header.classList.toggle('nav-open')
+        if(MenuBtn){ MenuBtn.setAttribute('aria-expanded', IsOpen ? 'true' : 'false') }
+      }
+
+      if(MenuBtn){
+        MenuBtn.addEventListener('click', ToggleMenu)
+      }
+
+      document.addEventListener('click', function(e){
+        if(!Header.classList.contains('nav-open')){ return }
+        var Target = e.target
+        if(Target && (Target.closest && (Target.closest('.nav') || Target.closest('#MenuBtn')))){
+          return
+        }
+        CloseMenu()
+      })
+
+      if(Nav){
+        Nav.addEventListener('click', function(e){
+          var A = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null
+          if(!A){ return }
+          CloseMenu()
+        })
+      }
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          CloseMenu()
+        }
+      })
+
+      document.documentElement.style.scrollBehavior = 'smooth'
+
+      function Reveal(){
+        var Els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
+        if(!Els.length){ return }
+
+        var Reduced = false
+        try{ Reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches }catch(e){}
+        if(Reduced){
+          for(var i = 0; i < Els.length; i++){
+            Els[i].classList.add('is-visible')
+          }
+          return
+        }
+
+        var Obs = new IntersectionObserver(function(entries){
+          for(var i = 0; i < entries.length; i++){
+            var entry = entries[i]
+            if(entry.isIntersecting){
+              entry.target.classList.add('is-visible')
+              Obs.unobserve(entry.target)
+            }
+          }
+        }, { root: null, threshold: 0.12, rootMargin: '0px 0px -12% 0px' })
+
+        for(var j = 0; j < Els.length; j++){
+          Obs.observe(Els[j])
+        }
+      }
+
+      function Copy(Text){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          return navigator.clipboard.writeText(Text)
+        }
+
+        return new Promise(function(resolve, reject){
+          try{
+            var Ta = document.createElement('textarea')
+            Ta.value = Text
+            Ta.setAttribute('readonly', '')
+            Ta.style.position = 'fixed'
+            Ta.style.opacity = '0'
+            Ta.style.pointerEvents = 'none'
+            document.body.appendChild(Ta)
+            Ta.select()
+            document.execCommand('copy')
+            document.body.removeChild(Ta)
+            resolve()
+          }catch(e){
+            reject(e)
+          }
+        })
+      }
+
+      function SetCopyStatus(Text){
+        if(!CopyStatus){ return }
+        CopyStatus.textContent = Text
+        if(Text){
+          window.clearTimeout(SetCopyStatus._t)
+          SetCopyStatus._t = window.setTimeout(function(){
+            CopyStatus.textContent = ''
+          }, 1800)
+        }
+      }
+
+      if(CopyEmail){
+        CopyEmail.addEventListener('click', function(){
+          Copy('devklyntic@gmail.com')
+            .then(function(){ SetCopyStatus('Copied to clipboard.') })
+            .catch(function(){ SetCopyStatus('Copy failed.') })
+        })
+      }
+
+      function RotateWords(){
+        if(!Rotator){ return }
+        var Words = Array.prototype.slice.call(Rotator.querySelectorAll('span'))
+        if(Words.length < 2){ return }
+
+        var Index = 0
+        function Show(i){
+          for(var k = 0; k < Words.length; k++){
+            Words[k].classList.toggle('is-on', k === i)
+          }
+        }
+
+        Show(0)
+        window.setInterval(function(){
+          Index = (Index + 1) % Words.length
+          Show(Index)
+        }, 2400)
+      }
+
+      InitTheme()
+      Reveal()
+      RotateWords()
+
+      window.addEventListener('hashchange', function(){
+        CloseMenu()
+      }, { passive: true })
+    })()
+  </script>
+</body>
+</html>
