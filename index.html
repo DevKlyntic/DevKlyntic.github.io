@@ -1882,6 +1882,241 @@
         min-width: unset;
       }
     }
+
+    /* Final Polish Pass */
+    .header-wrap {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    .header-actions {
+      min-width: 0;
+      justify-content: flex-end;
+    }
+
+    .nav-scroll {
+      width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      margin: 0;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    section:not(.hero) {
+      padding: 52px 0;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .hero-build > span {
+      display: inline-flex;
+      align-items: center;
+      min-width: 250px;
+      justify-content: center;
+    }
+
+    .hero-build > span > span {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .26s cubic-bezier(.2, .8, .2, 1), transform .26s cubic-bezier(.2, .8, .2, 1);
+      will-change: opacity, transform;
+    }
+
+    .hero-build > span > span.is-out {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    .hero-build > span > span.is-in {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .hero-keywords span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .26s cubic-bezier(.2, .8, .2, 1), border-color .26s cubic-bezier(.2, .8, .2, 1), box-shadow .26s cubic-bezier(.2, .8, .2, 1), background .26s cubic-bezier(.2, .8, .2, 1);
+      cursor: default;
+    }
+
+    .hero-keywords span svg {
+      width: 14px;
+      height: 14px;
+      opacity: .9;
+      flex: 0 0 auto;
+    }
+
+    .hero-keywords span:hover {
+      transform: translateY(-2px);
+      border-color: rgba(124, 92, 255, .28);
+      box-shadow: var(--shadow2);
+      background: rgba(255, 255, 255, .09);
+      color: var(--text);
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card.featured-game {
+      border-color: rgba(255, 194, 79, .55);
+      background: linear-gradient(180deg, rgba(255, 195, 89, .18), rgba(255, 255, 255, .03));
+      box-shadow: 0 0 0 1px rgba(255, 194, 79, .24), 0 16px 34px rgba(0, 0, 0, .35);
+    }
+
+    .project-card.featured-game h3 {
+      color: #ffd872;
+      text-shadow: 0 0 18px rgba(255, 194, 79, .2);
+    }
+
+    .project-card.featured-game:hover {
+      border-color: rgba(255, 206, 108, .78);
+      box-shadow: 0 0 0 1px rgba(255, 206, 108, .35), 0 20px 40px rgba(0, 0, 0, .45);
+    }
+
+    .two-col {
+      align-items: start;
+    }
+
+    .note-card {
+      align-self: start;
+    }
+
+    .rate-card {
+      position: relative;
+      padding-top: 1.1rem;
+    }
+
+    .rate-card .price {
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+
+    .popular-card {
+      border-color: rgba(255, 152, 66, .55);
+      box-shadow: 0 0 0 1px rgba(255, 152, 66, .2), var(--shadow2);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 152, 66, .65);
+      color: #ffb06d;
+      background: rgba(255, 152, 66, .12);
+    }
+
+    .terms-card {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .terms-item {
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .02);
+      padding: 12px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    html[data-theme="light"] .terms-item {
+      background: rgba(255, 255, 255, .68);
+    }
+
+    .terms-item h3 {
+      margin: 0;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .payment-pills.payment-grid span {
+      width: 100%;
+      border-radius: 12px;
+      text-align: center;
+      padding: 10px 10px;
+      font-size: 12px;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    @media (max-width: 1200px) {
+      .project-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px) {
+      .project-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .terms-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-wrap {
+        grid-template-columns: auto auto;
+        grid-template-areas:
+          "brand actions"
+          "nav nav";
+      }
+
+      .brand {
+        grid-area: brand;
+      }
+
+      .header-actions {
+        grid-area: actions;
+      }
+
+      .nav-scroll {
+        grid-area: nav;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-build > span {
+        min-width: 210px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1926,10 +2161,9 @@
     <div class="container">
       <section class="hero" id="home">
         <article class="panel hero-main reveal">
-          <span class="eyebrow">Roblox Luau Engineer &middot; 5+ Years</span>
           <h1>DevKlyntic</h1>
           <p class="hero-role">Premium Roblox Scripting Engineer</p>
-          <p class="hero-build">Building <span>studio-grade systems</span></p>
+          <p class="hero-build">Building <span id="focusWord"><span>studio-grade systems</span></span></p>
           <p class="lead">
             Advanced Roblox Luau scripter focused on production-ready codebases, secure networking,
             and performance that stays stable under real player load. From core frameworks to complete game systems,
@@ -1940,9 +2174,29 @@
             <a class="btn secondary" href="#work">See Past Work</a>
           </div>
           <div class="hero-keywords" aria-label="Core strengths">
-            <span>Performance</span>
-            <span>Security</span>
-            <span>Scalability</span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 14L11 8L14 11L20 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 5H20V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Performance
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L5 6V11C5 16 8.2 20.5 12 21C15.8 20.5 19 16 19 11V6L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9.3 11.7L11.2 13.6L14.9 9.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Security
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 9L12 4L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 15L12 20L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Scalability
+            </span>
           </div>
         </article>
 
@@ -2020,12 +2274,12 @@
           <p>A selection of projects I&apos;ve worked on across different genres.</p>
         </div>
         <div class="project-grid">
-          <a class="project-card" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noopener noreferrer">
+          <a class="project-card featured-game" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noopener noreferrer">
             <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! icon" loading="lazy" />
             <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
             <h3>Mow Ur Snow! &#10052;&#65039;</h3>
           </a>
-          <a class="project-card" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noopener noreferrer">
+          <a class="project-card featured-game" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noopener noreferrer">
             <img src="Images/Avoid Trains For Eggs.webp" alt="Avoid Trains For Eggs! icon" loading="lazy" />
             <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
             <h3>Avoid Trains For Eggs!</h3>
@@ -2078,7 +2332,7 @@
           <article class="note-card">
             <h3>Professional Delivery, Not Patchwork</h3>
             <p>
-              You get clean, readable systems designed for iteration. I build with future updates in mind, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish.
+              You get clean, readable systems designed for iteration. I build with future updates in mind, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish. I also structure each handoff so future features can be added without rewriting half the game.
             </p>
           </article>
           <article class="note-card">
@@ -2138,7 +2392,8 @@
             <p class="price">$100 - $500</p>
             <p>Core systems and multi-feature scripting for active development projects.</p>
           </article>
-          <article class="rate-card">
+          <article class="rate-card popular-card">
+            <span class="popular-badge">Popular</span>
             <h3>Large Projects</h3>
             <p class="price">$500 - $1,000</p>
             <p>Advanced frameworks and full game-scale implementation.</p>
@@ -2151,19 +2406,19 @@
         </div>
 
         <article class="terms-card">
-          <div>
+          <div class="terms-item">
             <h3>Payment Terms</h3>
             <p>
               Work is handled per approved task. Each milestone is reviewed before payment, keeping the process transparent and safe for both sides.
             </p>
           </div>
-          <div>
+          <div class="terms-item">
             <h3>Percentage Deals</h3>
             <p>Accepted only if the game is already generating revenue, or when paired with a fixed payment.</p>
           </div>
-          <div>
+          <div class="terms-item">
             <h3>Accepted Methods</h3>
-            <div class="payment-pills">
+            <div class="payment-pills payment-grid">
               <span>Robux ($1 USD = 150 Robux)</span>
               <span>PayPal</span>
               <span>Roblox Gift Card(s)</span>
@@ -2261,6 +2516,7 @@
       var root = document.documentElement;
       var themeToggle = document.getElementById("themeToggle");
       var themeIcon = document.getElementById("themeIcon");
+      var focusWord = document.getElementById("focusWord");
       var themeStorageKey = "devklyntic_theme";
       var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       var savedTheme = localStorage.getItem(themeStorageKey);
@@ -2386,6 +2642,40 @@
           }
         });
       });
+
+      function rotateFocusWord() {
+        if (!focusWord) {
+          return;
+        }
+        var inner = focusWord.querySelector("span");
+        if (!inner) {
+          return;
+        }
+        var words = [
+          "studio-grade systems",
+          "anti-exploit systems",
+          "performance optimized systems",
+          "modular and maintainable frameworks",
+          "clean production codebases",
+          "front-page ready games"
+        ];
+        var index = 0;
+        window.setInterval(function () {
+          var nextIndex = (index + 1) % words.length;
+          inner.classList.add("is-out");
+          window.setTimeout(function () {
+            inner.classList.remove("is-out");
+            inner.classList.add("is-in");
+            inner.textContent = words[nextIndex];
+            window.setTimeout(function () {
+              inner.classList.remove("is-in");
+            }, 10);
+            index = nextIndex;
+          }, 180);
+        }, 2000);
+      }
+
+      rotateFocusWord();
     })();
   </script>
 </body>
