@@ -1,1520 +1,1337 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark light">
-  <title>DevKlyntic | Premium Roblox Scripting Engineer</title>
-  <meta name="description" content="DevKlyntic — Premium Roblox Scripting Engineer. Studio-grade Luau systems focused on performance, security, and scalability.">
-  <meta property="og:title" content="DevKlyntic — Premium Roblox Scripting Engineer">
-  <meta property="og:description" content="Studio-grade Luau systems focused on performance, security, and scalability.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="DevKlyntic is an advanced Roblox Luau scripter with 5+ years of experience building secure, scalable, studio-grade game systems."
+  />
+  <title>DevKlyntic | Roblox Scripting Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    :root{
-      --font-ui: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --font-display: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-      --bg: #0b0f17;
-      --bg2: #070a10;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.035);
-      --border: rgba(255,255,255,.10);
-      --border2: rgba(255,255,255,.075);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.54);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-
-      --accent: #7c5cff;
-      --accent2: #25f0c9;
-      --accent3: #ff4fd8;
-      --ring: rgba(124,92,255,.55);
-      --glow: 0 0 0 1px rgba(124,92,255,.28), 0 0 40px rgba(124,92,255,.22);
-
-      --radius: 18px;
-      --radius2: 26px;
-      --container: 1120px;
-      --gutter: 24px;
-
-      --t-fast: 160ms;
-      --t-med: 260ms;
-      --t-slow: 520ms;
-      --ease: cubic-bezier(.2,.8,.2,1);
+    :root {
+      color-scheme: light;
+      --bg: #f2f8ff;
+      --bg-soft: #e8f1ff;
+      --text: #10203b;
+      --muted: #4e6283;
+      --panel: rgba(255, 255, 255, 0.78);
+      --card: rgba(255, 255, 255, 0.9);
+      --accent: #2f7ef8;
+      --accent-2: #17b89b;
+      --border: rgba(18, 40, 76, 0.13);
+      --shadow: 0 18px 45px rgba(31, 67, 122, 0.14);
+      --header-bg: rgba(242, 248, 255, 0.78);
+      --icon-bg: rgba(47, 126, 248, 0.11);
+      --ring: rgba(47, 126, 248, 0.25);
     }
 
-    html[data-theme="light"]{
-      --bg: #f7f8fb;
-      --bg2: #eef1f7;
-      --panel: rgba(0,0,0,.045);
-      --panel2: rgba(0,0,0,.028);
-      --border: rgba(0,0,0,.11);
-      --border2: rgba(0,0,0,.075);
-      --text: rgba(10,14,22,.92);
-      --muted: rgba(10,14,22,.70);
-      --muted2: rgba(10,14,22,.55);
-      --shadow: 0 20px 60px rgba(16,24,40,.12);
-      --shadow2: 0 10px 30px rgba(16,24,40,.10);
-      --ring: rgba(124,92,255,.35);
-      --glow: 0 0 0 1px rgba(124,92,255,.18), 0 0 40px rgba(124,92,255,.12);
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0b1322;
+      --bg-soft: #151f35;
+      --text: #e8f1ff;
+      --muted: #adc2e8;
+      --panel: rgba(14, 24, 41, 0.72);
+      --card: rgba(18, 30, 51, 0.85);
+      --accent: #5b9cff;
+      --accent-2: #2fd0b2;
+      --border: rgba(200, 219, 255, 0.17);
+      --shadow: 0 18px 45px rgba(1, 8, 22, 0.45);
+      --header-bg: rgba(11, 19, 34, 0.76);
+      --icon-bg: rgba(91, 156, 255, 0.18);
+      --ring: rgba(91, 156, 255, 0.34);
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       margin: 0;
-      font-family: var(--font-ui);
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.22), transparent 52%),
-                  radial-gradient(900px 600px at 85% 20%, rgba(37,240,201,.14), transparent 55%),
-                  radial-gradient(1000px 800px at 60% 95%, rgba(255,79,216,.12), transparent 55%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(circle at 2% 5%, rgba(47, 126, 248, 0.14), transparent 38%),
+        radial-gradient(circle at 90% 2%, rgba(23, 184, 155, 0.11), transparent 34%),
+        linear-gradient(165deg, var(--bg), var(--bg-soft));
+      line-height: 1.6;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    a{ color: inherit; text-decoration: none; }
-    button, a{ -webkit-tap-highlight-color: transparent; }
-    ::selection{ background: rgba(124,92,255,.32); }
-
-    .skip{
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.2);
-      color: var(--text);
-      transform: translateY(-140%);
-      transition: transform var(--t-med) var(--ease);
-      z-index: 9999;
-      backdrop-filter: blur(10px);
-    }
-    html[data-theme="light"] .skip{ background: rgba(255,255,255,.7); }
-    .skip:focus{ transform: translateY(0); outline: none; box-shadow: 0 0 0 4px var(--ring); }
-
-    .noise{
+    body::before,
+    body::after {
+      content: "";
       position: fixed;
-      inset: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      z-index: -1;
       pointer-events: none;
-      z-index: 0;
-      opacity: .08;
-      mix-blend-mode: overlay;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 1px, transparent 1px, transparent 3px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0, rgba(255,255,255,.045) 1px, transparent 1px, transparent 4px);
-      transform: translateZ(0);
+      filter: blur(1px);
+      animation: float 16s ease-in-out infinite;
+      opacity: 0.45;
     }
-    html[data-theme="light"] .noise{ opacity: .06; mix-blend-mode: multiply; }
 
-    .wrap{ position: relative; z-index: 1; }
+    body::before {
+      left: -70px;
+      top: 34vh;
+      background: radial-gradient(circle at 30% 30%, rgba(47, 126, 248, 0.45), transparent 70%);
+    }
 
-    .container{
-      width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+    body::after {
+      right: -80px;
+      top: 62vh;
+      animation-delay: 3s;
+      background: radial-gradient(circle at 30% 30%, rgba(23, 184, 155, 0.36), transparent 70%);
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+      50% {
+        transform: translateY(-18px) scale(1.05);
+      }
+    }
+
+    .container {
+      width: min(1120px, 92vw);
       margin: 0 auto;
     }
 
-    .header{
+    .top-progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 4px;
+      z-index: 1200;
+      pointer-events: none;
+    }
+
+    .top-progress > span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(92deg, var(--accent), var(--accent-2));
+    }
+
+    .site-header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      border-bottom: 1px solid transparent;
-      background: rgba(0,0,0,.22);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: border-color var(--t-med) var(--ease), background var(--t-med) var(--ease);
+      z-index: 1100;
+      backdrop-filter: blur(14px);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
     }
-    html[data-theme="light"] .header{ background: rgba(255,255,255,.72); }
 
-    .header.is-scrolled{
-      border-color: var(--border2);
-      background: rgba(0,0,0,.32);
-    }
-    html[data-theme="light"] .header.is-scrolled{ background: rgba(255,255,255,.82); }
-
-    .navRow{
+    .header-wrap {
       display: flex;
       align-items: center;
+      gap: 0.9rem;
       justify-content: space-between;
-      padding: 14px 0;
-      gap: 18px;
+      padding: 0.82rem 0;
     }
 
-    .brand{
-      display: flex;
+    .brand {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      min-width: 220px;
+      gap: 0.68rem;
+      text-decoration: none;
+      color: var(--text);
+      flex-shrink: 0;
     }
 
-    .logo{
+    .brand-mark {
       width: 38px;
       height: 38px;
-      border-radius: 14px;
-      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
-                  linear-gradient(135deg, rgba(124,92,255,.95), rgba(37,240,201,.86));
-      box-shadow: 0 12px 28px rgba(124,92,255,.24);
-      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      flex: 0 0 auto;
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: linear-gradient(145deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: var(--shadow);
     }
 
-    .logo svg{ width: 20px; height: 20px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.28)); }
-
-    .brandText{ display: flex; flex-direction: column; line-height: 1.05; }
-
-    .brandName{
-      font-family: var(--font-display);
-      font-weight: 800;
-      letter-spacing: -.02em;
-      font-size: 14px;
+    .brand-text {
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
-    .brandSub{
-      font-size: 12px;
-      color: var(--muted2);
-      margin-top: 4px;
-    }
-
-    .nav{
+    .nav-scroll {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 10px 12px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      border-radius: 999px;
-      box-shadow: var(--shadow2);
+      gap: 0.46rem;
+      overflow-x: auto;
+      padding-bottom: 1px;
+      scrollbar-width: none;
     }
-    html[data-theme="light"] .nav{ background: rgba(255,255,255,.55); }
 
-    .nav a{
-      position: relative;
-      font-size: 13px;
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      border: 1px solid transparent;
       color: var(--muted);
-      padding: 8px 10px;
+      background: transparent;
       border-radius: 999px;
-      transition: color var(--t-med) var(--ease), background var(--t-med) var(--ease), transform var(--t-med) var(--ease);
-      outline: none;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.52rem 0.82rem;
+      transition: all 0.22s ease;
+      white-space: nowrap;
     }
 
-    .nav a::after{
-      content: "";
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 6px;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(124,92,255,.0), rgba(124,92,255,.85), rgba(37,240,201,.85), rgba(124,92,255,.0));
-      transform: scaleX(0);
-      transform-origin: 50% 50%;
-      opacity: .9;
-      transition: transform var(--t-med) var(--ease);
+    .nav-link:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--card);
+      transform: translateY(-1px);
     }
 
-    .nav a:hover{ color: var(--text); background: rgba(255,255,255,.04); transform: translateY(-1px); }
-    html[data-theme="light"] .nav a:hover{ background: rgba(0,0,0,.04); }
-    .nav a:hover::after{ transform: scaleX(1); }
-    .nav a:focus-visible{ box-shadow: 0 0 0 4px var(--ring); }
+    .nav-link.active {
+      color: var(--text);
+      border-color: var(--ring);
+      background: linear-gradient(145deg, rgba(47, 126, 248, 0.12), rgba(23, 184, 155, 0.09));
+    }
 
-    .actions{
-      display: flex;
+    .header-actions {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      min-width: 220px;
-      justify-content: flex-end;
+      gap: 0.55rem;
+      flex-shrink: 0;
     }
 
-    .iconBtn{
+    .theme-toggle {
       width: 42px;
       height: 42px;
-      border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: var(--card);
       color: var(--text);
-      display: grid;
-      place-items: center;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-      outline: none;
-      box-shadow: var(--shadow2);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
     }
-    html[data-theme="light"] .iconBtn{ background: rgba(255,255,255,.72); }
 
-    .iconBtn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(124,92,255,.25); }
-    .iconBtn:active{ transform: translateY(0) scale(.98); }
-    .iconBtn:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
+    .theme-toggle:hover {
+      transform: translateY(-2px) rotate(8deg);
+      border-color: var(--ring);
+    }
 
-    .iconBtn svg{ width: 18px; height: 18px; }
-    .menuBtn{ display: none; }
+    .theme-toggle:focus-visible,
+    .btn:focus-visible,
+    .copy-btn:focus-visible,
+    .project-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
 
-    main{ scroll-margin-top: 90px; }
+    main {
+      padding: 2.1rem 0 3.9rem;
+    }
 
-    .hero{ padding: 64px 0 24px; }
-
-    .heroGrid{
+    .hero {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 30px;
-      align-items: center;
-      padding-top: 26px;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 1rem;
+      align-items: stretch;
     }
 
-    .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      color: var(--muted);
-      box-shadow: var(--shadow2);
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    html[data-theme="light"] .pill{ background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.62)); }
-
-    .pillDot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.9), rgba(255,255,255,.2)),
-                  linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(124,92,255,.14), 0 0 22px rgba(124,92,255,.22);
     }
 
-    .heroTitle{
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5.2vw, 66px);
-      line-height: 1.01;
-      letter-spacing: -.03em;
-      font-weight: 900;
-      margin: 18px 0 10px;
+    .hero-main {
+      padding: 2rem;
     }
 
-    .gradText{
-      background: linear-gradient(90deg, rgba(124,92,255,1), rgba(37,240,201,1), rgba(255,79,216,1));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 18px 26px rgba(124,92,255,.22));
-    }
-
-    .subtitle{
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.45rem;
+      border-radius: 999px;
+      padding: 0.34rem 0.72rem;
+      background: linear-gradient(120deg, rgba(47, 126, 248, 0.16), rgba(23, 184, 155, 0.15));
+      border: 1px solid var(--border);
       font-weight: 700;
-      color: var(--text);
-      font-size: 15px;
-      margin-top: 6px;
-    }
-
-    .subtitle .spark{
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,1));
-      box-shadow: 0 0 0 4px rgba(37,240,201,.10), 0 0 18px rgba(37,240,201,.18);
-    }
-
-    .titleBadge{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow2);
       color: var(--muted);
-      font-weight: 700;
-      letter-spacing: -.01em;
+      font-size: 0.83rem;
     }
-    html[data-theme="light"] .titleBadge{ background: rgba(255,255,255,.70); }
 
-    .focusRow{
+    h1 {
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 4.8vw, 3.7rem);
+      line-height: 1.04;
+      margin: 0.86rem 0 0.9rem;
+      letter-spacing: 0.01em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+      color: var(--muted);
+      max-width: 61ch;
+    }
+
+    .hero-cta {
+      margin-top: 1.35rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
+      gap: 0.68rem;
     }
 
-    .focusWord{
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow2);
-      color: var(--text);
-      font-weight: 800;
-      letter-spacing: -.01em;
-      overflow: hidden;
-    }
-    html[data-theme="light"] .focusWord{ background: rgba(255,255,255,.70); }
-
-    .focusWord span{
-      display: inline-flex;
-      align-items: center;
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
-      will-change: opacity, transform;
-    }
-
-    .focusWord span.is-out{ opacity: 0; transform: translateY(-8px); }
-    .focusWord span.is-in{ opacity: 0; transform: translateY(8px); }
-
-    .heroDesc{
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 62ch;
-      margin: 14px 0 22px;
-    }
-
-    .ctaRow{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn{
-      position: relative;
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 14px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 0.72rem 1.04rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
       cursor: pointer;
-      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-      box-shadow: var(--shadow2);
-      outline: none;
-    }
-    html[data-theme="light"] .btn{ background: rgba(255,255,255,.75); }
-
-    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(124,92,255,.28); }
-    .btn:active{ transform: translateY(0) scale(.99); }
-    .btn:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
-
-    .btnPrimary{
-      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
-                  linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,.92));
-      border-color: rgba(255,255,255,.14);
-      color: rgba(12,14,18,.96);
     }
 
-    html[data-theme="light"] .btnPrimary{
-      color: rgba(10,14,22,.92);
-      border-color: rgba(0,0,0,.08);
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(130deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 26px rgba(20, 74, 155, 0.25);
     }
 
-    .btnPrimary:hover{ box-shadow: var(--glow), var(--shadow); }
-
-    .btnGhost{ background: rgba(255,255,255,.02); }
-    html[data-theme="light"] .btnGhost{ background: rgba(255,255,255,.55); }
-
-    .btnIcon{ width: 16px; height: 16px; opacity: .92; }
-
-    .heroSide{ display: grid; gap: 14px; }
-
-    .featureCard{
-      border-radius: var(--radius2);
-      border: 1px solid var(--border2);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(0);
-    }
-    html[data-theme="light"] .featureCard{ background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)); }
-
-    .featureCard::before{
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: radial-gradient(700px 260px at 20% 10%, rgba(124,92,255,.22), transparent 55%),
-                  radial-gradient(640px 260px at 85% 30%, rgba(37,240,201,.14), transparent 55%);
-      opacity: .95;
-      filter: blur(10px);
-      pointer-events: none;
+    .btn.secondary {
+      color: var(--text);
+      background: var(--card);
+      border-color: var(--border);
     }
 
-    .featureInner{ position: relative; z-index: 1; display: grid; gap: 12px; }
-
-    .featureKicker{ display: grid; gap: 6px; }
-
-    .kickerTitle{
-      font-family: var(--font-display);
-      font-weight: 900;
-      letter-spacing: -.02em;
-      font-size: 14px;
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--ring);
+    }
+    .quick-links {
+      padding: 1.45rem;
+      display: flex;
+      flex-direction: column;
     }
 
-    .kickerSub{ font-size: 13px; color: var(--muted); line-height: 1.35; }
+    .quick-links h2 {
+      margin: 0;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.34rem;
+      line-height: 1.1;
+    }
 
-    .chips{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-
-    .chip{
-      font-size: 12px;
+    .quick-links p {
+      margin: 0.35rem 0 0.9rem;
       color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), background var(--t-med) var(--ease);
+      font-size: 0.92rem;
     }
-    html[data-theme="light"] .chip{ background: rgba(255,255,255,.68); }
-    .chip:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.26); }
 
-    .miniLinks{ display: grid; gap: 10px; margin-top: 10px; }
+    .quick-links ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.7rem;
+    }
 
-    .miniLink{
+    .link-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-    }
-    html[data-theme="light"] .miniLink{ background: rgba(255,255,255,.72); }
-
-    .miniLink:hover{ transform: translateY(-2px); box-shadow: var(--shadow2); border-color: rgba(124,92,255,.22); }
-
-    .miniLeft{ display: flex; align-items: center; gap: 10px; min-width: 0; }
-
-    .miniIcon{
-      width: 34px;
-      height: 34px;
+      gap: 0.6rem;
+      padding: 0.68rem 0.76rem;
       border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      box-shadow: 0 0 0 4px rgba(124,92,255,.08);
+      border: 1px solid var(--border);
+      background: var(--card);
     }
-    html[data-theme="light"] .miniIcon{ background: rgba(255,255,255,.75); }
-    .miniIcon svg{ width: 18px; height: 18px; }
 
-    .miniText{ display: grid; gap: 2px; min-width: 0; }
-    .miniLabel{ font-size: 12px; color: var(--muted2); }
-    .miniValue{ font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .arrow{
-      width: 34px;
-      height: 34px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      flex: 0 0 auto;
-    }
-    html[data-theme="light"] .arrow{ background: rgba(255,255,255,.75); }
-
-    .scrollHint{ display: flex; align-items: center; justify-content: center; padding: 18px 0 6px; }
-
-    .scrollPill{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.03);
-      padding: 10px 14px;
+    .link-row small {
+      display: block;
       color: var(--muted);
-      font-size: 13px;
-      box-shadow: var(--shadow2);
-      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-      outline: none;
+      font-size: 0.76rem;
+      margin-bottom: 0.05rem;
     }
-    html[data-theme="light"] .scrollPill{ background: rgba(255,255,255,.75); }
 
-    .scrollPill:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); }
-    .scrollPill:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow2); }
+    .link-row a,
+    .link-row span {
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
 
-    .bounce{ width: 16px; height: 16px; opacity: .9; animation: bounce 1.6s var(--ease) infinite; }
-
-    @keyframes bounce{ 0%, 100%{ transform: translateY(0); } 50%{ transform: translateY(4px); } }
-
-    section{ padding: 62px 0; }
-
-    .sectionHead{ display: grid; gap: 10px; margin-bottom: 22px; }
-
-    .kicker{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .copy-btn {
+      flex-shrink: 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
       color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      padding: 0.34rem 0.56rem;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .kickerLine{
-      height: 1px;
-      width: 42px;
-      background: linear-gradient(90deg, rgba(124,92,255,0), rgba(124,92,255,.65), rgba(37,240,201,.65));
-      border-radius: 999px;
+    .copy-btn:hover {
+      color: var(--text);
+      border-color: var(--ring);
+      transform: translateY(-1px);
     }
 
-    .h2{
-      font-family: var(--font-display);
-      font-size: clamp(26px, 3.2vw, 36px);
-      letter-spacing: -.03em;
+    section {
+      margin-top: 2.15rem;
+      scroll-margin-top: 88px;
+    }
+
+    .section-head {
+      margin-bottom: 0.95rem;
+    }
+
+    .section-head h2 {
       margin: 0;
-      font-weight: 900;
+      font-family: "Fredoka", sans-serif;
+      font-size: clamp(1.45rem, 3.3vw, 2.35rem);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
     }
 
-    .lead{ margin: 0; color: var(--muted); line-height: 1.75; max-width: 74ch; font-size: 15px; }
-
-    .cardGrid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-
-    .card{
-      border-radius: var(--radius2);
-      border: 1px solid var(--border2);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow2);
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(0);
-      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-    }
-    html[data-theme="light"] .card{ background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.64)); }
-
-    .card::before{
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: radial-gradient(520px 240px at 10% 10%, rgba(124,92,255,.14), transparent 60%),
-                  radial-gradient(520px 240px at 85% 20%, rgba(37,240,201,.08), transparent 60%);
-      opacity: .85;
-      pointer-events: none;
-      filter: blur(14px);
-      transition: opacity var(--t-med) var(--ease);
-    }
-
-    .card:hover{ transform: translateY(-6px) scale(1.01); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow); }
-    .card:hover::before{ opacity: 1; }
-
-    .cardInner{ position: relative; z-index: 1; display: grid; gap: 10px; }
-
-    .cardTitle{ font-family: var(--font-display); font-weight: 900; letter-spacing: -.02em; margin: 0; font-size: 16px; }
-    .cardText{ margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
-
-    .tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-
-    .tag{
-      font-size: 12px;
+    .section-head p {
+      margin: 0.45rem 0 0;
       color: var(--muted);
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.02);
-      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+      max-width: 70ch;
     }
-    html[data-theme="light"] .tag{ background: rgba(255,255,255,.65); }
-    .tag:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.24); }
 
-    .split{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .list{ margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-
-    .li{
+    .skill-grid {
       display: grid;
-      grid-template-columns: 18px 1fr;
-      gap: 10px;
-      align-items: start;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.02);
-      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
     }
-    html[data-theme="light"] .li{ background: rgba(255,255,255,.68); }
 
-    .li:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow2); }
+    .skill-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 1.02rem;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    }
 
-    .check{
-      width: 18px;
-      height: 18px;
-      border-radius: 8px;
-      background: radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,.18), transparent 55%),
-                  linear-gradient(135deg, rgba(124,92,255,1), rgba(37,240,201,.92));
+    .skill-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--ring);
+      box-shadow: 0 14px 30px rgba(15, 30, 58, 0.12);
+    }
+
+    .skill-icon {
+      width: 2rem;
+      height: 2rem;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--icon-bg);
+      font-size: 1.17rem;
+      line-height: 1;
+    }
+
+    .skill-card h3 {
+      margin: 0.56rem 0 0.34rem;
+      font-size: 1.02rem;
+      line-height: 1.3;
+    }
+
+    .skill-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 0.78rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      min-height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--ring);
+      box-shadow: 0 15px 34px rgba(17, 39, 75, 0.16);
+    }
+
+    .project-card img,
+    .project-fallback {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+    }
+
+    .project-card img {
+      object-fit: cover;
+      background:
+        linear-gradient(145deg, rgba(47, 126, 248, 0.2), rgba(23, 184, 155, 0.2));
+    }
+
+    .project-fallback {
+      display: none;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(47, 126, 248, 0.14), rgba(23, 184, 155, 0.13));
+    }
+
+    .project-card h3 {
+      margin: 0;
+      text-align: center;
+      font-size: 0.92rem;
+      line-height: 1.28;
+      min-height: 2.5em;
       display: grid;
       place-items: center;
-      flex: 0 0 auto;
-      box-shadow: 0 0 0 4px rgba(124,92,255,.10);
+      font-weight: 800;
     }
 
-    .check svg{ width: 12px; height: 12px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 0.9rem;
+    }
 
-    .pricingGrid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
+    .note-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      padding: 1.18rem;
+      box-shadow: 0 10px 28px rgba(15, 31, 60, 0.1);
+    }
 
-    .price{ font-family: var(--font-display); font-size: 22px; letter-spacing: -.02em; margin: 2px 0 0; font-weight: 900; }
-    .priceSub{ margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .note-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+    }
 
-    .callout{
-      border-radius: var(--radius2);
-      border: 1px solid var(--border2);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    .note-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .checklist li {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(47, 126, 248, 0.06), rgba(23, 184, 155, 0.06));
+      border-radius: 12px;
+      padding: 0.58rem 0.72rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .step-card {
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: var(--card);
+      padding: 0.9rem;
+      transition: transform 0.24s ease, border-color 0.24s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--ring);
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.84rem;
+      background: var(--icon-bg);
+      color: var(--text);
+    }
+
+    .step-card h3 {
+      margin: 0.55rem 0 0.32rem;
+      font-size: 0.95rem;
+    }
+
+    .step-card p {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .rates-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.78rem;
+    }
+
+    .rate-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 1rem;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .rate-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ring);
+      box-shadow: 0 12px 28px rgba(20, 42, 84, 0.13);
+    }
+
+    .rate-card h3 {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .rate-card .price {
+      margin: 0.28rem 0 0.42rem;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .rate-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .terms-card {
+      margin-top: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      padding: 1.05rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .terms-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .terms-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .payment-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.48rem;
+    }
+
+    .payment-pills span {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.36rem 0.65rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, rgba(47, 126, 248, 0.08), rgba(23, 184, 155, 0.08));
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.82rem;
+    }
+
+    .quote-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 1rem;
+      box-shadow: 0 10px 24px rgba(15, 29, 58, 0.09);
+    }
+
+    .quote-card blockquote {
+      margin: 0;
+      font-size: 0.93rem;
+      color: var(--text);
+    }
+
+    .quote-card cite {
+      display: block;
+      margin-top: 0.68rem;
+      font-size: 0.86rem;
+      font-style: normal;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0.86rem;
+      padding: 1.25rem;
+    }
+
+    .contact-panel h2 {
+      margin: 0;
+      font-family: "Fredoka", sans-serif;
+      font-size: clamp(1.34rem, 3vw, 2rem);
+      line-height: 1.12;
+    }
+
+    .contact-panel p {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+      max-width: 48ch;
+    }
+
+    .quick-meta {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 0.84rem;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.87rem;
+    }
+
+    .quick-meta strong {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .quick-meta span,
+    .quick-meta a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 2.2rem 0 0.8rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1300;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--card);
+      color: var(--text);
+      padding: 0.55rem 0.72rem;
+      font-size: 0.84rem;
+      font-weight: 700;
       box-shadow: var(--shadow);
-      padding: 22px;
-      overflow: hidden;
-      position: relative;
-    }
-    html[data-theme="light"] .callout{ background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.66)); }
-
-    .callout::before{
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: radial-gradient(760px 340px at 12% 15%, rgba(124,92,255,.18), transparent 60%),
-                  radial-gradient(760px 340px at 88% 25%, rgba(37,240,201,.12), transparent 60%);
-      opacity: .9;
-      filter: blur(12px);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
       pointer-events: none;
     }
 
-    .calloutInner{ position: relative; z-index: 1; display: grid; gap: 12px; }
-
-    .contactRow{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .copyBtn{ padding: 12px 14px; }
-
-    .footer{
-      padding: 34px 0 44px;
-      border-top: 1px solid var(--border2);
-      background: rgba(0,0,0,.10);
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-    html[data-theme="light"] .footer{ background: rgba(255,255,255,.55); }
 
-    .footerGrid{ display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; align-items: start; }
-
-    .footTitle{ font-family: var(--font-display); font-weight: 900; letter-spacing: -.02em; margin: 0; font-size: 16px; }
-    .footText{ margin: 10px 0 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
-
-    .footLinks{ display: grid; gap: 10px; justify-items: end; }
-
-    .footLink{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.02);
-      transition: transform var(--t-med) var(--ease), border-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
-      max-width: 100%;
-    }
-    html[data-theme="light"] .footLink{ background: rgba(255,255,255,.68); }
-
-    .footLink:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.22); box-shadow: var(--shadow2); color: var(--text); }
-    .footLink svg{ width: 16px; height: 16px; opacity: .92; }
-
-    .mutedSmall{ font-size: 12px; color: var(--muted2); margin-top: 8px; }
-
-    .reveal{
+    .reveal {
       opacity: 0;
-      transform: translateY(14px) scale(.985);
-      filter: blur(2px);
-      transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease), filter var(--t-slow) var(--ease);
-      will-change: transform, opacity;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
-    .reveal.is-visible{ opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-
-    .themeTransition *{ transition: background-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease); }
-
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-      .actions{ min-width: unset; }
-      .cardGrid{ grid-template-columns: repeat(2, 1fr); }
-      .pricingGrid{ grid-template-columns: repeat(2, 1fr); }
-      .split{ grid-template-columns: 1fr; }
-      .footerGrid{ grid-template-columns: 1fr; }
-      .footLinks{ justify-items: start; }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @media (max-width: 720px){
-      .nav{
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-        top: 74px;
-        width: min(520px, calc(100% - 24px));
-        padding: 12px;
-        border-radius: 22px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-        z-index: 60;
+    @media (max-width: 1020px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
 
-      .header.nav-open .nav{ opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+      .skill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-      .menuBtn{ display: grid; }
-      .navRow{ padding: 12px 0; }
-      .hero{ padding-top: 48px; }
-      .cardGrid{ grid-template-columns: 1fr; }
-      .pricingGrid{ grid-template-columns: 1fr; }
-      .heroSide{ order: -1; }
+      .workflow-grid,
+      .rates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
     }
 
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior: auto; }
-      .bounce{ animation: none; }
-      .reveal{ opacity: 1; transform: none; filter: none; transition: none; }
-      .btn, .card, .li, .iconBtn, .nav a, .tag, .chip, .miniLink, .footLink{ transition: none; }
-      .focusWord span{ transition: none; }
+    @media (max-width: 760px) {
+      .header-wrap {
+        flex-wrap: wrap;
+      }
+
+      .nav-scroll {
+        order: 3;
+        width: 100%;
+        padding-top: 0.18rem;
+      }
+
+      .hero-main,
+      .quick-links {
+        padding: 1.2rem;
+      }
+
+      .skill-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .workflow-grid,
+      .rates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+      }
+
+      .project-card h3 {
+        min-height: 3em;
+      }
     }
   </style>
 </head>
 <body>
-  <a class="skip" href="#content">Skip to content</a>
-  <div class="noise" aria-hidden="true"></div>
+  <div class="top-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
-  <div class="wrap">
-    <header class="header" id="top">
-      <div class="container">
-        <div class="navRow">
-          <a class="brand" href="#top" aria-label="Home">
-            <div class="logo" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.2 16.8L16.8 7.2" stroke="rgba(12,14,18,.9)" stroke-width="2.4" stroke-linecap="round"/>
-                <path d="M8.4 7.2H16.8V15.6" stroke="rgba(12,14,18,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="brandText">
-              <div class="brandName">DevKlyntic</div>
-              <div class="brandSub">Premium Roblox Scripting Engineer</div>
-            </div>
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <span class="brand-mark">DK</span>
+        <span class="brand-text">DevKlyntic</span>
+      </a>
+
+      <nav class="nav-scroll" aria-label="Section navigation">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#expertise">Expertise</a>
+        <a class="nav-link" href="#work">Past Work</a>
+        <a class="nav-link" href="#approach">Why Me</a>
+        <a class="nav-link" href="#workflow">Workflow</a>
+        <a class="nav-link" href="#rates">Rates</a>
+        <a class="nav-link" href="#testimonials">Reviews</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+          <span id="themeIcon" aria-hidden="true">&#9728;</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero" id="home">
+        <article class="panel hero-main reveal">
+          <span class="eyebrow">Roblox Luau Engineer &middot; 5+ Years</span>
+          <h1>Studio-grade Roblox systems, built to ship.</h1>
+          <p class="lead">
+            I'm DevKlyntic. I build production-ready Roblox codebases with clean architecture, secure networking,
+            and performance that stays stable under real player load. From core frameworks to complete game systems,
+            I deliver work you can scale and maintain.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary" href="mailto:devklyntic@gmail.com?subject=Roblox%20Scripting%20Inquiry">Contact DevKlyntic</a>
+            <a class="btn secondary" href="#work">See Past Work</a>
+          </div>
+        </article>
+
+        <aside class="panel quick-links reveal" aria-label="Quick links">
+          <h2>Quick Links</h2>
+          <p>Direct contact details for fast project discussions.</p>
+          <ul>
+            <li class="link-row">
+              <div>
+                <small>Email</small>
+                <a href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
+              </div>
+              <button class="copy-btn" type="button" data-copy="devklyntic@gmail.com">Copy</button>
+            </li>
+            <li class="link-row">
+              <div>
+                <small>Discord Username</small>
+                <span>devklyntic</span>
+              </div>
+              <button class="copy-btn" type="button" data-copy="devklyntic">Copy</button>
+            </li>
+            <li class="link-row">
+              <div>
+                <small>Roblox Username</small>
+                <a href="https://www.roblox.com/search/users?keyword=DevKlyntic" target="_blank" rel="noopener noreferrer">DevKlyntic</a>
+              </div>
+              <button class="copy-btn" type="button" data-copy="DevKlyntic">Copy</button>
+            </li>
+          </ul>
+        </aside>
+      </section>
+      <section id="expertise" class="reveal">
+        <div class="section-head">
+          <h2>Skills & Expertise</h2>
+          <p>
+            Systems are engineered for long-term development, live updates, and predictable gameplay behavior at scale.
+          </p>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#9881;</span>
+            <h3>Core Architecture</h3>
+            <p>Modular frameworks, DataStore2 workflows, OOP patterns, and game-loop design for maintainable systems.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#128274;</span>
+            <h3>Security Engineering</h3>
+            <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#128640;</span>
+            <h3>Performance</h3>
+            <p>Async execution, memory discipline, and optimization passes that keep gameplay smooth under load.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#128172;</span>
+            <h3>UI / UX Systems</h3>
+            <p>Interactive GUI architecture, dynamic menus, and polished tween behavior that feels responsive.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#127760;</span>
+            <h3>Networking</h3>
+            <p>Reliable RemoteEvent and RemoteFunction pipelines with clear client/server responsibility.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">&#128176;</span>
+            <h3>Monetization</h3>
+            <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design.</p>
+          </article>
+        </div>
+      </section>
+      <section id="work" class="reveal">
+        <div class="section-head">
+          <h2>Past Work</h2>
+          <p>Selected projects. Click any game card to open it on Roblox in a new tab.</p>
+        </div>
+        <div class="project-grid">
+          <a class="project-card" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noopener noreferrer">
+            <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Mow Ur Snow! &#10052;&#65039;</h3>
           </a>
-
-          <nav class="nav" aria-label="Primary navigation">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#work">Work</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#terms">Terms</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <div class="actions">
-            <button class="iconBtn menuBtn" type="button" id="MenuBtn" aria-label="Open menu" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 7H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M5 17H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-
-            <button class="iconBtn" type="button" id="ThemeToggle" aria-label="Toggle theme">
-              <svg id="ThemeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 13.1A8.1 8.1 0 0 1 10.9 3a6.9 6.9 0 1 0 10.1 10.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main id="content">
-      <section class="hero" aria-label="Hero">
-        <div class="container">
-          <div class="heroGrid">
-            <div class="reveal">
-              <div class="pill" role="note">
-                <span class="pillDot" aria-hidden="true"></span>
-                <span>5+ Years Experience</span>
-              </div>
-
-              <h1 class="heroTitle"><span class="gradText">DevKlyntic</span></h1>
-
-              <div class="subtitle">
-                <span class="spark" aria-hidden="true"></span>
-                <span class="titleBadge">Premium Roblox Scripting Engineer</span>
-              </div>
-
-              <div class="focusRow" aria-label="Focus">
-                <span>Building</span>
-                <span class="focusWord" id="FocusWord"><span>studio-grade systems</span></span>
-                <span></span>
-              </div>
-
-              <p class="heroDesc">I design and engineer Luau systems with server-authoritative logic, predictable APIs, and performance that holds up under real player counts. Built for long-term scaling and production, I treat every project like a studio release.</p>
-
-              <div class="ctaRow">
-                <a class="btn btnPrimary" href="#contact">
-                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Contact
-                </a>
-                <a class="btn btnGhost" href="#work">
-                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 6H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M8 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M8 14H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 3H17C18.6569 3 20 4.34315 20 6V18C20 19.6569 18.6569 21 17 21H7C5.34315 21 4 19.6569 4 18V6C4 4.34315 5.34315 3 7 3Z" stroke="currentColor" stroke-width="2"/>
-                  </svg>
-                  View Work
-                </a>
-              </div>
-
-              <div class="chips" aria-label="Highlights">
-                <span class="chip">Performance</span>
-                <span class="chip">Security</span>
-                <span class="chip">Scalability</span>
-              </div>
-            </div>
-
-            <aside class="heroSide reveal" aria-label="Quick links">
-              <div class="featureCard">
-                <div class="featureInner">
-                  <div class="featureKicker">
-                    <div class="kickerTitle">Quick Links</div>
-                    <div class="kickerSub">Direct contact details to get in touch with me.</div>
-                  </div>
-
-                  <div class="miniLinks">
-                    <a class="miniLink" href="mailto:devklyntic@gmail.com" aria-label="Email devklyntic@gmail.com">
-                      <div class="miniLeft">
-                        <div class="miniIcon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                        <div class="miniText">
-                          <div class="miniLabel">Email</div>
-                          <div class="miniValue">devklyntic@gmail.com</div>
-                        </div>
-                      </div>
-                      <div class="arrow" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                          <path d="M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                    </a>
-
-                    <div class="miniLink" role="group" aria-label="Discord username devklyntic">
-                      <div class="miniLeft">
-                        <div class="miniIcon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 19C4.8 19 3 17.2 3 15V9C3 6.8 4.8 5 7 5H17C19.2 5 21 6.8 21 9V15C21 17.2 19.2 19 17 19H12.5L9.8 21.2C9.2 21.7 8.3 21.3 8.3 20.5V19H7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M9 11.5H9.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M15 11.5H15.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M9.5 14.2C10.4 15.1 13.6 15.1 14.5 14.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                          </svg>
-                        </div>
-                        <div class="miniText">
-                          <div class="miniLabel">Discord Username</div>
-                          <div class="miniValue">devklyntic</div>
-                        </div>
-                      </div>
-                      <div class="arrow" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                          <path d="M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div class="miniLink" role="group" aria-label="Roblox username DevKlyntic">
-                      <div class="miniLeft">
-                        <div class="miniIcon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 3H16L21 8V16L16 21H8L3 16V8L8 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M10 10H14V14H10V10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                        <div class="miniText">
-                          <div class="miniLabel">Roblox Username</div>
-                          <div class="miniValue">DevKlyntic</div>
-                        </div>
-                      </div>
-                      <div class="arrow" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-
-          <div class="scrollHint reveal">
-            <a class="scrollPill" href="#about" aria-label="Scroll to About">
-              <span>Scroll</span>
-              <svg class="bounce" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M7 14L12 19L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
+          <a class="project-card" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Avoid Trains For Eggs.webp" alt="Avoid Trains For Eggs! icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Avoid Trains For Eggs!</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noopener noreferrer">
+            <img src="Images/One Punch Troll Tower.webp" alt="One Punch Troll Tower icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>One Punch Troll Tower &#128074;</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/111982085751100/Mega-Minigames" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Mega Minigames.webp" alt="Mega Minigames icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>&#129313; Mega Minigames!</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Button Trees.webp" alt="Button Trees icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Button Trees! &#127795;</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Curzys Incremental.webp" alt="Curzy's Incremental icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Curzy's Incremental! &#129297;</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/108831917805007/Collector-Quest" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Collector Quest.png" alt="Collector Quest icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Collector Quest</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Color Bridges.png" alt="Color Bridges icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Color Bridges &#127752;</h3>
+          </a>
+          <a class="project-card" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED#!/game-instances" target="_blank" rel="noopener noreferrer">
+            <img src="Images/Compton Life Remastered.webp" alt="Compton Life REMASTERED icon" loading="lazy" />
+            <div class="project-fallback" aria-hidden="true">Icon unavailable</div>
+            <h3>Compton Life REMASTERED</h3>
+          </a>
         </div>
       </section>
-
-      <section id="about" aria-label="About">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>About</span></div>
-            <h2 class="h2">Production-focused engineering for Roblox</h2>
-            <p class="lead">Hey! I’m Klyntic, a professional Roblox Luau scripter with 5+ years of experience engineering high-quality systems.
-
-I design every system to survive heavy load and exploit attempts while remaining stable and maintainable. My scripts deliver gameplay that feels smooth while staying secure and scalable.
-
-I’ve shipped everything from tight gameplay mechanics to full game architectures, working with both independent developers and studios.</p>
-          </div>
-
-          <div class="split">
-            <div class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">What you can expect</h3>
-                <p class="cardText">Reliable systems built for real production: clean module boundaries, predictable APIs, and polish that stays maintainable as content expands.</p>
-                <div class="tags" aria-label="Focus areas">
-                  <span class="tag">Maintainable</span>
-                  <span class="tag">Scalable</span>
-                  <span class="tag">Stable</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Engineering priorities</h3>
-                <p class="cardText">Performance and security come first. I build server-authoritative logic, lock down remotes, and keep systems responsive under higher CCU and heavier content.</p>
-                <div class="tags" aria-label="Workflow">
-                  <span class="tag">Server-authoritative</span>
-                  <span class="tag">Optimized</span>
-                  <span class="tag">Secure</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section id="approach" class="reveal">
+        <div class="section-head">
+          <h2>Why Teams Choose Me</h2>
+          <p>
+            I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt slowing the team down.
+          </p>
         </div>
-      </section>
-
-      <section id="skills" aria-label="Skills & expertise">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Skills & Expertise</span></div>
-            <h2 class="h2">Security, performance, and scalability by design</h2>
-            <p class="lead">I build powerful, reliable, and efficient systems designed to keep games secure, smooth, and ready for any player count.</p>
-          </div>
-
-          <div class="cardGrid">
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Core Systems</h3>
-                <p class="cardText">Frameworks, DataStore2, OOP Architecture, Game Loops</p>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Security</h3>
-                <p class="cardText">Anti-exploit, Input validation, Remote protection, Obfuscation</p>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Performance</h3>
-                <p class="cardText">Async systems, Optimization, Memory efficiency</p>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">UI / UX</h3>
-                <p class="cardText">Interactive GUIs, dynamic menus, tween animation</p>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Networking</h3>
-                <p class="cardText">RemoteEvents, RemoteFunctions, Client-Server models</p>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Monetization</h3>
-                <p class="cardText">DevProducts, Gamepasses, Analytics Integration</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" aria-label="Projects and past work">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Work</span></div>
-            <h2 class="h2">Selected projects</h2>
-            <p class="lead">A snapshot of past work across different genres and scopes—from tight mechanics to larger system stacks.</p>
-          </div>
-
-          <div class="cardGrid">
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">One Punch Troll Tower 👊</h3><p class="cardText">Polished mechanics with stable progression and clean structure.</p><div class="tags"><span class="tag">Gameplay</span><span class="tag">Polish</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Mega Minigames 🤡</h3><p class="cardText">Round flow, state handling, and scalable session logic.</p><div class="tags"><span class="tag">Loops</span><span class="tag">Scale</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Button Trees 🌳</h3><p class="cardText">Structured upgrades, responsive UI, and consistent player feedback.</p><div class="tags"><span class="tag">Progression</span><span class="tag">UI</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Curzy's Incremental 🤑</h3><p class="cardText">Economy systems built for clarity, extensibility, and stability.</p><div class="tags"><span class="tag">Economy</span><span class="tag">Data</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Collector Quest</h3><p class="cardText">Collection logic designed for long-term content expansion.</p><div class="tags"><span class="tag">Systems</span><span class="tag">Expansion</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Mow Ur Snow! ❄️</h3><p class="cardText">Performance-focused loops and optimized client-server behavior.</p><div class="tags"><span class="tag">Performance</span><span class="tag">Networking</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Compton Life REMASTERED</h3><p class="cardText">Secure feature integration with strong stability under load.</p><div class="tags"><span class="tag">Security</span><span class="tag">Stability</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Color Bridges 🌈</h3><p class="cardText">Clean mechanics paired with smooth UX and clear feedback.</p><div class="tags"><span class="tag">UX</span><span class="tag">Mechanics</span></div></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section id="why" aria-label="Why choose me">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Why Choose Me</span></div>
-            <h2 class="h2">A studio mindset on every deliverable</h2>
-            <p class="lead">Focused on quality, communication, and systems that scale without surprises.</p>
-          </div>
-
-          <div class="split">
-            <ul class="list reveal">
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>High-Quality Work — clean, optimized, built to last</span></li>
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Strong Communication — clear updates & responsiveness</span></li>
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>On-Time Delivery — organized workflow & deadlines respected</span></li>
+        <div class="two-col">
+          <article class="note-card">
+            <h3>Professional Delivery, Not Patchwork</h3>
+            <p>
+              You get clean, readable systems designed for iteration. I build with future updates in mind, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish.
+            </p>
+          </article>
+          <article class="note-card">
+            <ul class="checklist">
+              <li>High-quality systems built to last</li>
+              <li>Fast responses and transparent updates</li>
+              <li>On-time milestone delivery</li>
+              <li>Security and performance as baseline standards</li>
+              <li>Comfortable with both single features and full game scope</li>
+              <li>Implementation aligned to your exact game vision</li>
             </ul>
-
-            <ul class="list reveal">
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Performance & Security — safe, stable systems</span></li>
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Flexible Project Sizes — small systems to full games</span></li>
-              <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Client-Focused Approach — built to your exact vision</span></li>
-            </ul>
-          </div>
+          </article>
         </div>
       </section>
 
-      <section id="pricing" aria-label="Pricing">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Pricing</span></div>
-            <h2 class="h2">Scope-based tiers</h2>
-            <p class="lead">Pricing depends on scope, size, and complexity.</p>
-          </div>
-
-          <div class="pricingGrid">
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Small Systems</h3>
-                <p class="price">$25–$100</p>
-                <p class="priceSub">Focused features with clean, secure implementation.</p>
-                <div class="tags"><span class="tag">Quick wins</span><span class="tag">Clean</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Mid-Scale Systems</h3>
-                <p class="price">$100–$500</p>
-                <p class="priceSub">Core mechanics and optimized backend modules.</p>
-                <div class="tags"><span class="tag">Systems</span><span class="tag">Optimization</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Large Projects</h3>
-                <p class="price">$500–$1,000</p>
-                <p class="priceSub">Multiple systems with clean integration and scaling.</p>
-                <div class="tags"><span class="tag">Multi-system</span><span class="tag">Scale</span></div>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Studio-Grade Projects</h3>
-                <p class="price">$1,000+</p>
-                <p class="priceSub">End-to-end architecture and production-level polish.</p>
-                <div class="tags"><span class="tag">Full builds</span><span class="tag">Frameworks</span></div>
-              </div>
-            </article>
-          </div>
+      <section id="workflow" class="reveal">
+        <div class="section-head">
+          <h2>How I Work</h2>
+          <p>A straightforward process that keeps build quality high while maintaining development momentum.</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Scope Review</h3>
+            <p>Requirements, constraints, and technical risks are mapped before production starts.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>System Build</h3>
+            <p>Features are implemented with clean architecture and secure networking from day one.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Validation</h3>
+            <p>Edge cases, performance behavior, and reliability checks are handled before handoff.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">04</span>
+            <h3>Delivery</h3>
+            <p>Milestone handoff with clear notes so your team can iterate quickly and safely.</p>
+          </article>
         </div>
       </section>
-
-      <section id="terms" aria-label="Payment and terms">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Payment & Terms</span></div>
-            <h2 class="h2">Simple, safe, and transparent</h2>
-            <p class="lead">Task-based payments (pay after completion) with transparency and safety emphasized.</p>
-          </div>
-
-          <div class="split">
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Accepted payments</h3>
-                <ul class="list" aria-label="Accepted payment methods">
-                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Robux ($1 USD = 150 Robux)</span></li>
-                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>PayPal</span></li>
-                  <li class="li"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 12.5L10.2 15.7L17 8.9" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Roblox Gift Cards</span></li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="card reveal">
-              <div class="cardInner">
-                <h3 class="cardTitle">Percentage deals</h3>
-                <p class="cardText">Only accepted if the game already generates revenue OR paired with fixed payment</p>
-                <div class="tags"><span class="tag">Safety-first</span><span class="tag">Clear terms</span></div>
-              </div>
-            </article>
-          </div>
+      <section id="rates" class="reveal">
+        <div class="section-head">
+          <h2>Payment & Rates</h2>
+          <p>Transparent pricing by project complexity, with per-task milestones for safety and clarity.</p>
         </div>
-      </section>
-
-      <section id="testimonials" aria-label="Testimonials">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Testimonials</span></div>
-            <h2 class="h2">Client quotes</h2>
-            <p class="lead">Verified feedback from clients and studios I’ve worked with.</p>
-          </div>
-
-          <div class="cardGrid">
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Lana</h3><p class="cardText">“Best scripter ever! He made me a Cafe roleplay game and it was perfect!”</p><div class="tags"><span class="tag">☆ 5/5</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Warlord</h3><p class="cardText">“very good scripter. made me a good fighting game in just 3 hours”</p><div class="tags"><span class="tag">☆ 5/5</span></div></div></article>
-            <article class="card reveal"><div class="cardInner"><h3 class="cardTitle">Reedz</h3><p class="cardText">“scripts came out clean and exactly how I wanted, and dude is very reliable”</p><div class="tags"><span class="tag">☆ 5/5</span></div></div></article>
-          </div>
+        <div class="rates-grid">
+          <article class="rate-card">
+            <h3>Small Systems</h3>
+            <p class="price">$25 - $100</p>
+            <p>Simple mechanics, focused features, and compact UI systems.</p>
+          </article>
+          <article class="rate-card">
+            <h3>Mid-Scale Systems</h3>
+            <p class="price">$100 - $500</p>
+            <p>Core systems and multi-feature scripting for active development projects.</p>
+          </article>
+          <article class="rate-card">
+            <h3>Large Projects</h3>
+            <p class="price">$500 - $1,000</p>
+            <p>Advanced frameworks and full game-scale implementation.</p>
+          </article>
+          <article class="rate-card">
+            <h3>Studio-Grade</h3>
+            <p class="price">$1,000+</p>
+            <p>Production-level builds, heavily complex architectures, front-page level scope.</p>
+          </article>
         </div>
-      </section>
 
-      <section id="contact" aria-label="Contact">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <div class="kicker"><span class="kickerLine" aria-hidden="true"></span><span>Get in Touch</span></div>
-            <h2 class="h2">Let’s build something polished</h2>
-            <p class="lead">Reach out and I’ll respond with clear next steps based on your scope.</p>
+        <article class="terms-card">
+          <div>
+            <h3>Payment Terms</h3>
+            <p>
+              Work is handled per approved task. Each milestone is reviewed before payment, keeping the process transparent and safe for both sides.
+            </p>
           </div>
-
-          <div class="callout reveal">
-            <div class="calloutInner">
-              <div class="kicker" aria-label="Contact details"><span class="kickerLine" aria-hidden="true"></span><span>Contact</span></div>
-              <h3 class="cardTitle" style="margin:0">devklyntic@gmail.com</h3>
-              <p class="cardText" style="margin:0">Discord Username: devklyntic</p>
-              <p class="cardText" style="margin:0">Roblox Username: DevKlyntic</p>
-
-              <div class="contactRow">
-                <a class="btn btnPrimary" href="mailto:devklyntic@gmail.com">
-                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="rgba(12,14,18,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Email Me
-                </a>
-
-                <button class="btn btnGhost copyBtn" type="button" id="CopyEmail">
-                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 8V6C8 4.34315 9.34315 3 11 3H18C19.6569 3 21 4.34315 21 6V13C21 14.6569 19.6569 16 18 16H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M6 21H13C14.6569 21 16 19.6569 16 18V11C16 9.34315 14.6569 8 13 8H6C4.34315 8 3 9.34315 3 11V18C3 19.6569 4.34315 21 6 21Z" stroke="currentColor" stroke-width="2"/>
-                  </svg>
-                  Copy Email
-                </button>
-
-                <a class="btn btnGhost" href="#top" aria-label="Back to top">
-                  <svg class="btnIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Top
-                </a>
-              </div>
-
-              <div class="mutedSmall" id="CopyStatus" aria-live="polite"></div>
+          <div>
+            <h3>Percentage Deals</h3>
+            <p>Accepted only if the game is already generating revenue, or when paired with a fixed payment.</p>
+          </div>
+          <div>
+            <h3>Accepted Methods</h3>
+            <div class="payment-pills">
+              <span>Robux ($1 USD = 150 Robux)</span>
+              <span>PayPal</span>
+              <span>Roblox Gift Card(s)</span>
             </div>
           </div>
+        </article>
+      </section>
+
+      <section id="testimonials" class="reveal">
+        <div class="section-head">
+          <h2>Client Testimonials</h2>
+          <p>Feedback from previous clients and collaborators.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="quote-card">
+            <blockquote>
+              "Worked with Klyntic as another scripter on a project. He is one of the strongest technical developers I know, and he can build practically anything. Very professional and easy to collaborate with."
+            </blockquote>
+            <cite>Cruzy &middot; 5/5</cite>
+          </article>
+          <article class="quote-card">
+            <blockquote>
+              "DevKlyntic built my full cafe roleplay game and nailed the exact gameplay feel I wanted. Everything ran smoothly with no code issues, and the final result felt front-page ready."
+            </blockquote>
+            <cite>Lana &middot; 5/5</cite>
+          </article>
+          <article class="quote-card">
+            <blockquote>
+              "I hired him for an army fighting game and the turnaround was incredibly fast without sacrificing quality. The full game worked exactly as expected."
+            </blockquote>
+            <cite>Warlord &middot; 5/5</cite>
+          </article>
+          <article class="quote-card">
+            <blockquote>
+              "Reliable and consistent. The scripts were clean, scalable, and exactly what I asked for."
+            </blockquote>
+            <cite>Reedz &middot; 5/5</cite>
+          </article>
         </div>
       </section>
-    </main>
 
-    <footer class="footer" aria-label="Footer">
-      <div class="container">
-        <div class="footerGrid">
-          <div class="reveal">
-            <p class="footTitle">DevKlyntic</p>
-            <p class="footText">Premium Roblox Luau scripting focused on studio-grade systems, performance, security, and scalability.</p>
-            <div class="mutedSmall">© <span id="Year"></span> DevKlyntic</div>
-          </div>
-
-          <div class="footLinks reveal" aria-label="Footer links">
-            <a class="footLink" href="mailto:devklyntic@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 8.5V16.5C21 18.1569 19.6569 19.5 18 19.5H6C4.34315 19.5 3 18.1569 3 16.5V8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M21 7.5C21 5.84315 19.6569 4.5 18 4.5H6C4.34315 4.5 3 5.84315 3 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M20.2 8.2L13.5 12.7C12.6 13.3 11.4 13.3 10.5 12.7L3.8 8.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>devklyntic@gmail.com</span>
-            </a>
-            <div class="footLink" role="group" aria-label="Discord username devklyntic">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 19C4.8 19 3 17.2 3 15V9C3 6.8 4.8 5 7 5H17C19.2 5 21 6.8 21 9V15C21 17.2 19.2 19 17 19H12.5L9.8 21.2C9.2 21.7 8.3 21.3 8.3 20.5V19H7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M9 11.5H9.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <path d="M15 11.5H15.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-              <span>Discord: devklyntic</span>
-            </div>
-            <div class="footLink" role="group" aria-label="Roblox username DevKlyntic">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 3H16L21 8V16L16 21H8L3 16V8L8 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M10 10H14V14H10V10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-              <span>Roblox: DevKlyntic</span>
+      <section id="contact" class="reveal">
+        <article class="panel contact-panel">
+          <div>
+            <h2>Ready to build your next Roblox project?</h2>
+            <p>
+              Send over your scope, timeline, and target release window. I can step in for focused systems or full project scripting and keep delivery structured from day one.
+            </p>
+            <div class="hero-cta" style="margin-top: 1rem;">
+              <a class="btn primary" href="mailto:devklyntic@gmail.com?subject=Project%20Inquiry%20for%20DevKlyntic">Start a Project</a>
+              <a class="btn secondary" href="https://www.roblox.com/search/users?keyword=DevKlyntic" target="_blank" rel="noopener noreferrer">View Roblox Profile</a>
             </div>
           </div>
-        </div>
-      </div>
-    </footer>
-  </div>
+          <div class="quick-meta" aria-label="Contact details">
+            <strong>Email</strong>
+            <a href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
+            <strong>Discord</strong>
+            <span>devklyntic</span>
+            <strong>Roblox</strong>
+            <span>DevKlyntic</span>
+          </div>
+        </article>
+      </section>
+      <p class="footer">DevKlyntic &middot; Roblox Luau Scripting Engineer</p>
+    </div>
+  </main>
+
+  <div class="toast" id="copyToast" role="status" aria-live="polite"></div>
 
   <script>
-    (function(){
-      var Root = document.documentElement
-      var ThemeToggle = document.getElementById('ThemeToggle')
-      var ThemeIcon = document.getElementById('ThemeIcon')
-      var Header = document.querySelector('.header')
-      var MenuBtn = document.getElementById('MenuBtn')
-      var Nav = document.querySelector('.nav')
-      var CopyEmail = document.getElementById('CopyEmail')
-      var CopyStatus = document.getElementById('CopyStatus')
-      var Year = document.getElementById('Year')
-      var FocusWord = document.getElementById('FocusWord')
+    (function () {
+      var root = document.documentElement;
+      var themeToggle = document.getElementById("themeToggle");
+      var themeIcon = document.getElementById("themeIcon");
+      var themeStorageKey = "devklyntic_theme";
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var savedTheme = localStorage.getItem(themeStorageKey);
 
-      Year.textContent = String(new Date().getFullYear())
-
-      function SetTheme(Theme){
-        Root.classList.add('themeTransition')
-        Root.setAttribute('data-theme', Theme)
-        try{ localStorage.setItem('theme', Theme) }catch(e){}
-        window.setTimeout(function(){ Root.classList.remove('themeTransition') }, 520)
-
-        var IsLight = Theme === 'light'
-        if(IsLight){
-          ThemeIcon.innerHTML = '<path d="M12 18.5A6.5 6.5 0 1 0 12 5.5A6.5 6.5 0 0 0 12 18.5Z" stroke="currentColor" stroke-width="2"/><path d="M12 2.5V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 20V21.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3.5 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 12H20.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 5.4L6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 17.5L18.6 18.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17.5 6.5L18.6 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.4 18.6L6.5 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
-        }else{
-          ThemeIcon.innerHTML = '<path d="M21 13.1A8.1 8.1 0 0 1 10.9 3a6.9 6.9 0 1 0 10.1 10.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'
-        }
+      function setTheme(theme) {
+        root.setAttribute("data-theme", theme);
+        themeIcon.textContent = theme === "dark" ? "\u2600" : "\u263E";
+        themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
       }
 
-      function InitTheme(){
-        var Saved = null
-        try{ Saved = localStorage.getItem('theme') }catch(e){}
-        if(Saved === 'light' || Saved === 'dark'){
-          SetTheme(Saved)
-          return
-        }
-        var PreferLight = false
-        try{ PreferLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches }catch(e){}
-        SetTheme(PreferLight ? 'light' : 'dark')
+      setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+      themeToggle.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        setTheme(next);
+        localStorage.setItem(themeStorageKey, next);
+      });
+
+      var progress = document.getElementById("scrollProgress");
+      function updateScrollProgress() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - doc.clientHeight;
+        var ratio = max > 0 ? doc.scrollTop / max : 0;
+        progress.style.transform = "scaleX(" + Math.min(1, Math.max(0, ratio)) + ")";
+      }
+      updateScrollProgress();
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
+      var sectionNodes = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
+      function setActiveNav(sectionId) {
+        navLinks.forEach(function (link) {
+          var isActive = link.getAttribute("href") === "#" + sectionId;
+          link.classList.toggle("active", isActive);
+        });
       }
 
-      function ToggleTheme(){
-        var Next = Root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
-        SetTheme(Next)
+      if ("IntersectionObserver" in window) {
+        var navObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                setActiveNav(entry.target.id);
+              }
+            });
+          },
+          { rootMargin: "-46% 0px -46% 0px", threshold: 0 }
+        );
+        sectionNodes.forEach(function (section) {
+          navObserver.observe(section);
+        });
+      } else if (sectionNodes.length > 0) {
+        setActiveNav(sectionNodes[0].id);
       }
 
-      ThemeToggle.addEventListener('click', ToggleTheme)
-
-      function SetScrolled(){
-        if(window.scrollY > 10){ Header.classList.add('is-scrolled') }
-        else{ Header.classList.remove('is-scrolled') }
+      var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+      if ("IntersectionObserver" in window) {
+        var revealObserver = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 }
+        );
+        revealItems.forEach(function (item) {
+          revealObserver.observe(item);
+        });
+      } else {
+        revealItems.forEach(function (item) {
+          item.classList.add("visible");
+        });
+      }
+      var toast = document.getElementById("copyToast");
+      var toastTimer = null;
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 1300);
       }
 
-      window.addEventListener('scroll', SetScrolled, { passive: true })
-      SetScrolled()
-
-      function CloseMenu(){
-        Header.classList.remove('nav-open')
-        if(MenuBtn){ MenuBtn.setAttribute('aria-expanded', 'false') }
-      }
-
-      function ToggleMenu(){
-        var IsOpen = Header.classList.toggle('nav-open')
-        if(MenuBtn){ MenuBtn.setAttribute('aria-expanded', IsOpen ? 'true' : 'false') }
-      }
-
-      if(MenuBtn){ MenuBtn.addEventListener('click', ToggleMenu) }
-
-      document.addEventListener('click', function(e){
-        if(!Header.classList.contains('nav-open')){ return }
-        var Target = e.target
-        if(Target && Target.closest && (Target.closest('.nav') || Target.closest('#MenuBtn'))){ return }
-        CloseMenu()
-      })
-
-      if(Nav){
-        Nav.addEventListener('click', function(e){
-          var A = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null
-          if(!A){ return }
-          CloseMenu()
-        })
-      }
-
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape'){ CloseMenu() }
-      })
-
-      document.documentElement.style.scrollBehavior = 'smooth'
-
-      function Reveal(){
-        var Els = Array.prototype.slice.call(document.querySelectorAll('.reveal'))
-        if(!Els.length){ return }
-
-        var Reduced = false
-        try{ Reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches }catch(e){}
-        if(Reduced){
-          for(var i = 0; i < Els.length; i++){
-            Els[i].classList.add('is-visible')
+      var copyButtons = Array.prototype.slice.call(document.querySelectorAll("[data-copy]"));
+      copyButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var value = button.getAttribute("data-copy") || "";
+          if (!value) {
+            return;
           }
-          return
-        }
-
-        var Obs = new IntersectionObserver(function(entries){
-          for(var i = 0; i < entries.length; i++){
-            var entry = entries[i]
-            if(entry.isIntersecting){
-              entry.target.classList.add('is-visible')
-              Obs.unobserve(entry.target)
-            }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(value).then(
+              function () {
+                showToast("Copied: " + value);
+              },
+              function () {
+                showToast(value);
+              }
+            );
+          } else {
+            showToast(value);
           }
-        }, { root: null, threshold: 0.12, rootMargin: '0px 0px -12% 0px' })
+        });
+      });
 
-        for(var j = 0; j < Els.length; j++){
-          Obs.observe(Els[j])
-        }
-      }
-
-      function Copy(Text){
-        if(navigator.clipboard && navigator.clipboard.writeText){
-          return navigator.clipboard.writeText(Text)
-        }
-
-        return new Promise(function(resolve, reject){
-          try{
-            var Ta = document.createElement('textarea')
-            Ta.value = Text
-            Ta.setAttribute('readonly', '')
-            Ta.style.position = 'fixed'
-            Ta.style.opacity = '0'
-            Ta.style.pointerEvents = 'none'
-            document.body.appendChild(Ta)
-            Ta.select()
-            document.execCommand('copy')
-            document.body.removeChild(Ta)
-            resolve()
-          }catch(e){ reject(e) }
-        })
-      }
-
-      function SetCopyStatus(Text){
-        if(!CopyStatus){ return }
-        CopyStatus.textContent = Text
-        if(Text){
-          window.clearTimeout(SetCopyStatus._t)
-          SetCopyStatus._t = window.setTimeout(function(){ CopyStatus.textContent = '' }, 1800)
-        }
-      }
-
-      if(CopyEmail){
-        CopyEmail.addEventListener('click', function(){
-          Copy('devklyntic@gmail.com')
-            .then(function(){ SetCopyStatus('Copied to clipboard.') })
-            .catch(function(){ SetCopyStatus('Copy failed.') })
-        })
-      }
-
-      function RotateFocus(){
-        if(!FocusWord){ return }
-        var Inner = FocusWord.querySelector('span')
-        if(!Inner){ return }
-
-        var Words = [
-          'studio-grade systems',
-          'secure remote architecture',
-          'high-performance game loops',
-          'scalable data frameworks'
-        ]
-
-        var Index = 0
-        function Step(){
-          var NextIndex = (Index + 1) % Words.length
-          Inner.classList.add('is-out')
-          window.setTimeout(function(){
-            Inner.classList.remove('is-out')
-            Inner.classList.add('is-in')
-            Inner.textContent = Words[NextIndex]
-            window.setTimeout(function(){
-              Inner.classList.remove('is-in')
-            }, 10)
-            Index = NextIndex
-          }, 180)
-        }
-
-        window.setInterval(Step, 2400)
-      }
-
-      InitTheme()
-      Reveal()
-      RotateFocus()
-
-      window.addEventListener('hashchange', function(){ CloseMenu() }, { passive: true })
-    })()
+      var projectImages = Array.prototype.slice.call(document.querySelectorAll(".project-card img"));
+      projectImages.forEach(function (img) {
+        img.addEventListener("error", function () {
+          img.style.display = "none";
+          var fallback = img.parentElement.querySelector(".project-fallback");
+          if (fallback) {
+            fallback.style.display = "grid";
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
