@@ -1922,12 +1922,15 @@
     .hero-build > span {
       display: inline-flex;
       align-items: center;
+      width: fit-content;
+      max-width: 100%;
       min-width: 0;
       justify-content: flex-start;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      box-shadow: none;
+      padding: 8px 12px;
+      border: 1px solid var(--border2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .03);
+      box-shadow: var(--shadow2);
     }
 
     .hero-build > span > span {
@@ -1945,10 +1948,8 @@
       will-change: opacity, transform;
     }
 
-    html[data-theme="light"] .hero-build > span,
-    html[data-theme="light"] .hero-build > span > span {
-      background: transparent;
-      box-shadow: none;
+    html[data-theme="light"] .hero-build > span {
+      background: rgba(255, 255, 255, .7);
     }
 
     .hero-build > span > span.is-out {
