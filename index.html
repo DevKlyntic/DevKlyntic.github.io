@@ -11,44 +11,46 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <style>
     :root {
       color-scheme: light;
-      --bg: #eef2f9;
-      --bg-soft: #e6edf8;
-      --text: #0f172a;
-      --muted: #4b5f80;
-      --panel: rgba(255, 255, 255, 0.82);
+      --bg: #edf1fb;
+      --bg-soft: #e6ecfb;
+      --text: #101828;
+      --muted: #4f5f7b;
+      --panel: rgba(255, 255, 255, 0.84);
       --card: rgba(255, 255, 255, 0.95);
-      --accent: #2563eb;
-      --accent-2: #06b6d4;
-      --border: rgba(15, 23, 42, 0.13);
-      --shadow: 0 20px 52px rgba(15, 23, 42, 0.12);
-      --header-bg: rgba(238, 242, 249, 0.84);
-      --icon-bg: rgba(37, 99, 235, 0.09);
-      --ring: rgba(6, 182, 212, 0.38);
+      --accent: #5e72ff;
+      --accent-2: #20d5ca;
+      --accent-3: #d56fff;
+      --border: rgba(15, 23, 42, 0.12);
+      --shadow: 0 22px 60px rgba(15, 23, 42, 0.14);
+      --header-bg: rgba(237, 241, 251, 0.84);
+      --icon-bg: rgba(94, 114, 255, 0.1);
+      --ring: rgba(110, 126, 255, 0.45);
       --grid: rgba(15, 23, 42, 0.06);
     }
 
     html[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #050915;
-      --bg-soft: #0b1223;
-      --text: #e8eef9;
-      --muted: #9fb1cd;
-      --panel: rgba(8, 16, 32, 0.78);
-      --card: rgba(10, 19, 36, 0.93);
-      --accent: #3b82f6;
-      --accent-2: #22d3ee;
-      --border: rgba(148, 163, 184, 0.22);
-      --shadow: 0 24px 60px rgba(2, 6, 16, 0.58);
-      --header-bg: rgba(5, 9, 21, 0.85);
-      --icon-bg: rgba(59, 130, 246, 0.16);
-      --ring: rgba(34, 211, 238, 0.36);
-      --grid: rgba(148, 163, 184, 0.12);
+      --bg: #04050f;
+      --bg-soft: #070d1b;
+      --text: #edf2ff;
+      --muted: #a7b2ca;
+      --panel: rgba(11, 17, 34, 0.79);
+      --card: rgba(12, 19, 37, 0.92);
+      --accent: #7280ff;
+      --accent-2: #35dfc9;
+      --accent-3: #d47cff;
+      --border: rgba(142, 160, 196, 0.2);
+      --shadow: 0 28px 70px rgba(1, 3, 10, 0.62);
+      --header-bg: rgba(4, 5, 15, 0.84);
+      --icon-bg: rgba(114, 128, 255, 0.18);
+      --ring: rgba(114, 128, 255, 0.45);
+      --grid: rgba(133, 149, 184, 0.11);
     }
 
     * {
@@ -62,11 +64,12 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Manrope", sans-serif;
+      font-family: "Plus Jakarta Sans", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% -2%, rgba(37, 99, 235, 0.22), transparent 32%),
-        radial-gradient(circle at 88% -8%, rgba(6, 182, 212, 0.18), transparent 34%),
+        radial-gradient(circle at 16% 6%, rgba(114, 128, 255, 0.3), transparent 34%),
+        radial-gradient(circle at 90% 16%, rgba(53, 223, 201, 0.24), transparent 30%),
+        radial-gradient(circle at 64% 86%, rgba(212, 124, 255, 0.16), transparent 30%),
         linear-gradient(160deg, var(--bg), var(--bg-soft));
       line-height: 1.6;
       overflow-x: hidden;
@@ -86,11 +89,13 @@
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
       background-size: 28px 28px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.36), transparent 78%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.28), transparent 86%);
     }
 
     body::after {
-      background: radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.16), transparent 42%);
+      background:
+        radial-gradient(circle at 14% 72%, rgba(114, 128, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 78% 82%, rgba(212, 124, 255, 0.13), transparent 42%);
     }
 
     .container {
@@ -119,7 +124,7 @@
       position: sticky;
       top: 0;
       z-index: 1100;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
       background: var(--header-bg);
       border-bottom: 1px solid var(--border);
     }
@@ -127,48 +132,67 @@
     .header-wrap {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 1rem;
       justify-content: space-between;
-      padding: 0.82rem 0;
+      padding: 0.76rem 0;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.68rem;
+      gap: 0.72rem;
       text-decoration: none;
       color: var(--text);
       flex-shrink: 0;
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.86rem;
+      font-family: "Sora", sans-serif;
+      font-size: 1rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
-      border: 1px solid var(--ring);
-      background: var(--card);
-      color: var(--accent-2);
+      letter-spacing: 0;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: linear-gradient(140deg, rgba(114, 128, 255, 0.9), rgba(53, 223, 201, 0.82));
+      color: #041118;
+      box-shadow: 0 10px 24px rgba(20, 30, 60, 0.36);
+    }
+
+    .brand-label {
+      display: grid;
+      gap: 0.08rem;
+      align-content: center;
     }
 
     .brand-text {
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.15rem;
+      font-family: "Sora", sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
       letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.2;
     }
 
     .nav-scroll {
       display: flex;
       align-items: center;
       gap: 0.46rem;
+      margin: 0 auto;
       overflow-x: auto;
-      padding-bottom: 1px;
+      padding: 0.34rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.09), rgba(53, 223, 201, 0.03));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       scrollbar-width: none;
     }
 
@@ -183,8 +207,8 @@
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.88rem;
-      padding: 0.52rem 0.82rem;
+      font-size: 0.84rem;
+      padding: 0.5rem 0.8rem;
       transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
       white-space: nowrap;
     }
@@ -199,7 +223,7 @@
     .nav-link.active {
       color: var(--text);
       border-color: var(--ring);
-      background: linear-gradient(145deg, rgba(59, 130, 246, 0.16), rgba(34, 211, 238, 0.13));
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.26), rgba(53, 223, 201, 0.14));
     }
 
     .header-actions {
@@ -212,9 +236,9 @@
     .theme-toggle {
       width: 42px;
       height: 42px;
-      border-radius: 11px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      background: var(--card);
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.12), rgba(53, 223, 201, 0.06));
       color: var(--text);
       font-size: 1.1rem;
       cursor: pointer;
@@ -240,9 +264,10 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.35fr 0.95fr;
-      gap: 1rem;
-      align-items: stretch;
+      grid-template-columns: 1.32fr 0.94fr;
+      gap: 1.05rem;
+      align-items: center;
+      min-height: 74vh;
     }
 
     .panel {
@@ -253,10 +278,41 @@
       backdrop-filter: blur(18px);
     }
 
+    .hero-main,
+    .quick-links,
+    .contact-panel,
+    .skill-card,
+    .project-card,
+    .note-card,
+    .step-card,
+    .rate-card,
+    .terms-card,
+    .quote-card,
+    .quick-meta,
+    .footer {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .hero-main:hover,
+    .quick-links:hover,
+    .contact-panel:hover,
+    .note-card:hover,
+    .terms-card:hover,
+    .quote-card:hover,
+    .quick-meta:hover,
+    .footer:hover {
+      transform: translateY(-3px);
+      border-color: var(--ring);
+      box-shadow: 0 20px 42px rgba(2, 6, 16, 0.46);
+    }
+
     .hero-main {
       position: relative;
-      padding: 2.15rem;
+      padding: 2.2rem;
       overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 6%, rgba(114, 128, 255, 0.22), transparent 42%),
+        linear-gradient(150deg, rgba(114, 128, 255, 0.08), rgba(12, 19, 37, 0.02));
     }
 
     .hero-main::before {
@@ -266,18 +322,30 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
-      opacity: 0.7;
+      background: linear-gradient(90deg, transparent, var(--accent-2), var(--accent-3), transparent);
+      opacity: 0.85;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -110px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(53, 223, 201, 0.19), transparent 70%);
+      pointer-events: none;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.52rem;
       border-radius: 999px;
-      padding: 0.34rem 0.76rem;
-      background: linear-gradient(120deg, rgba(59, 130, 246, 0.12), rgba(34, 211, 238, 0.09));
-      border: 1px solid var(--ring);
+      padding: 0.35rem 0.78rem;
+      background: linear-gradient(120deg, rgba(114, 128, 255, 0.18), rgba(53, 223, 201, 0.09));
+      border: 1px solid rgba(120, 135, 255, 0.45);
       font-weight: 600;
       color: var(--muted);
       font-size: 0.79rem;
@@ -285,20 +353,74 @@
       text-transform: uppercase;
     }
 
+    .eyebrow::before {
+      content: "";
+      width: 0.52rem;
+      height: 0.52rem;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 4px rgba(114, 128, 255, 0.15);
+    }
+
     h1 {
-      font-family: "Montserrat", sans-serif;
+      font-family: "Sora", sans-serif;
       font-weight: 800;
-      font-size: clamp(2.6rem, 5.4vw, 4.25rem);
-      line-height: 0.98;
-      margin: 0.95rem 0 1rem;
+      font-size: clamp(2.9rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin: 1rem 0 1rem;
       letter-spacing: 0.015em;
+      background: linear-gradient(96deg, var(--accent) 8%, var(--accent-2) 46%, var(--accent-3) 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 14px 40px rgba(20, 30, 65, 0.42);
+    }
+
+    .hero-role {
+      margin: 0 0 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(12, 19, 37, 0.38);
+      padding: 0.4rem 0.72rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hero-role::before {
+      content: "";
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: linear-gradient(130deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 5px rgba(114, 128, 255, 0.18);
+    }
+
+    .hero-build {
+      margin: 0 0 0.7rem;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .hero-build span {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.18rem 0.62rem;
+      margin-left: 0.35rem;
+      color: var(--text);
+      font-weight: 700;
+      background: rgba(12, 19, 37, 0.36);
     }
 
     .lead {
       margin: 0;
-      font-size: clamp(0.99rem, 2.1vw, 1.1rem);
+      font-size: clamp(1rem, 2vw, 1.12rem);
       color: var(--muted);
-      max-width: 62ch;
+      max-width: 58ch;
     }
 
     .hero-cta {
@@ -325,7 +447,7 @@
     .btn.primary {
       color: #fff;
       background: linear-gradient(130deg, var(--accent), var(--accent-2));
-      box-shadow: 0 10px 28px rgba(6, 14, 33, 0.34);
+      box-shadow: 0 12px 30px rgba(10, 16, 35, 0.42);
     }
 
     .btn.secondary {
@@ -338,16 +460,37 @@
       transform: translateY(-2px) scale(1.01);
       border-color: var(--ring);
     }
+
+    .hero-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .hero-keywords span {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(11, 18, 35, 0.34);
+      padding: 0.34rem 0.62rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
     .quick-links {
-      padding: 1.4rem;
+      padding: 1.45rem;
       display: flex;
       flex-direction: column;
+      background:
+        radial-gradient(circle at 88% 2%, rgba(53, 223, 201, 0.17), transparent 46%),
+        linear-gradient(155deg, rgba(114, 128, 255, 0.12), rgba(12, 19, 37, 0.03));
     }
 
     .quick-links h2 {
       margin: 0;
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.26rem;
+      font-family: "Sora", sans-serif;
+      font-size: 1.22rem;
       line-height: 1.1;
     }
 
@@ -362,7 +505,7 @@
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 0.7rem;
+      gap: 0.72rem;
     }
 
     .link-row {
@@ -370,17 +513,18 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.6rem;
-      padding: 0.7rem 0.78rem;
-      border-radius: 11px;
+      padding: 0.72rem 0.82rem;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(59, 130, 246, 0.05), rgba(34, 211, 238, 0.03));
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.1), rgba(53, 223, 201, 0.04));
+      transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease, box-shadow 0.24s ease;
     }
 
     .link-row:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       border-color: var(--ring);
-      background: linear-gradient(145deg, rgba(59, 130, 246, 0.11), rgba(34, 211, 238, 0.06));
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.18), rgba(53, 223, 201, 0.08));
+      box-shadow: 0 10px 22px rgba(4, 8, 20, 0.35);
     }
 
     .link-row small {
@@ -401,21 +545,25 @@
 
     .copy-btn {
       flex-shrink: 0;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      padding: 0.34rem 0.56rem;
-      font-size: 0.74rem;
-      font-weight: 800;
+      width: 2.15rem;
+      height: 2.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      background: rgba(12, 19, 37, 0.4);
+      color: var(--text);
+      padding: 0;
+      font-size: 1.1rem;
+      line-height: 1;
+      font-weight: 600;
       cursor: pointer;
-      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      transition: color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, background 0.22s ease;
     }
 
     .copy-btn:hover {
-      color: var(--text);
+      color: #fff;
       border-color: var(--ring);
-      transform: translateY(-1px);
+      background: linear-gradient(120deg, rgba(114, 128, 255, 0.45), rgba(53, 223, 201, 0.24));
+      transform: translateY(-1px) scale(1.03);
     }
 
     section {
@@ -429,7 +577,7 @@
 
     .section-head h2 {
       margin: 0;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: clamp(1.45rem, 3.1vw, 2.22rem);
       line-height: 1.1;
       letter-spacing: 0.012em;
@@ -462,19 +610,20 @@
     }
 
     .skill-icon {
-      min-width: 2.35rem;
-      height: 2rem;
+      width: 2.2rem;
+      height: 2.2rem;
       display: inline-grid;
       place-items: center;
-      padding: 0 0.45rem;
-      border-radius: 8px;
-      background: var(--icon-bg);
-      border: 1px solid var(--ring);
-      font-size: 0.64rem;
-      font-family: Consolas, "Courier New", monospace;
+      padding: 0;
+      border-radius: 999px;
+      background: linear-gradient(145deg, rgba(114, 128, 255, 0.24), rgba(53, 223, 201, 0.12));
+      border: 1px solid rgba(114, 128, 255, 0.55);
+      font-size: 0.78rem;
+      font-family: "Sora", sans-serif;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.02em;
       line-height: 1;
+      color: #ffffff;
     }
 
     .skill-card h3 {
@@ -685,7 +834,7 @@
 
     .rate-card .price {
       margin: 0.28rem 0 0.42rem;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: 1.2rem;
       color: var(--text);
       line-height: 1.2;
@@ -772,7 +921,7 @@
 
     .contact-panel h2 {
       margin: 0;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: clamp(1.34rem, 3vw, 2rem);
       line-height: 1.12;
     }
@@ -825,7 +974,7 @@
 
     .footer-brand h3 {
       margin: 0;
-      font-family: "Montserrat", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: 1.14rem;
       letter-spacing: 0.02em;
     }
@@ -924,6 +1073,7 @@
     @media (max-width: 1020px) {
       .hero {
         grid-template-columns: 1fr;
+        min-height: auto;
       }
 
       .skill-grid {
@@ -956,12 +1106,17 @@
       .nav-scroll {
         order: 3;
         width: 100%;
-        padding-top: 0.18rem;
+        margin: 0;
+        justify-content: flex-start;
       }
 
       .hero-main,
       .quick-links {
         padding: 1.2rem;
+      }
+
+      .brand-sub {
+        display: none;
       }
 
       .skill-grid,
@@ -988,6 +1143,19 @@
         width: 100%;
       }
 
+      .hero-role {
+        font-size: 0.86rem;
+      }
+
+      .hero-build {
+        font-size: 0.92rem;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+      }
+
       .project-card h3 {
         min-height: 3em;
       }
@@ -1000,8 +1168,11 @@
   <header class="site-header">
     <div class="container header-wrap">
       <a class="brand" href="#home" aria-label="Go to top">
-        <span class="brand-mark">DK</span>
-        <span class="brand-text">DevKlyntic</span>
+        <span class="brand-mark" aria-hidden="true">&#8599;</span>
+        <span class="brand-label">
+          <span class="brand-text">DevKlyntic</span>
+          <span class="brand-sub">Premium Roblox Scripting Engineer</span>
+        </span>
       </a>
 
       <nav class="nav-scroll" aria-label="Section navigation">
@@ -1029,6 +1200,8 @@
         <article class="panel hero-main reveal">
           <span class="eyebrow">Roblox Luau Engineer &middot; 5+ Years</span>
           <h1>DevKlyntic</h1>
+          <p class="hero-role">Premium Roblox Scripting Engineer</p>
+          <p class="hero-build">Building <span>studio-grade systems</span></p>
           <p class="lead">
             Advanced Roblox Luau scripter focused on production-ready codebases, secure networking,
             and performance that stays stable under real player load. From core frameworks to complete game systems,
@@ -1037,6 +1210,11 @@
           <div class="hero-cta">
             <a class="btn primary" href="mailto:devklyntic@gmail.com?subject=Roblox%20Scripting%20Inquiry">Contact Me</a>
             <a class="btn secondary" href="#work">See Past Work</a>
+          </div>
+          <div class="hero-keywords" aria-label="Core strengths">
+            <span>Performance</span>
+            <span>Security</span>
+            <span>Scalability</span>
           </div>
         </article>
 
@@ -1049,21 +1227,21 @@
                 <small>Email</small>
                 <a href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
               </div>
-              <button class="copy-btn" type="button" data-copy="devklyntic@gmail.com">Copy</button>
+              <button class="copy-btn" type="button" data-copy="devklyntic@gmail.com" aria-label="Copy email">&#8599;</button>
             </li>
             <li class="link-row">
               <div>
                 <small>Discord Username</small>
                 <span>devklyntic</span>
               </div>
-              <button class="copy-btn" type="button" data-copy="devklyntic">Copy</button>
+              <button class="copy-btn" type="button" data-copy="devklyntic" aria-label="Copy Discord username">+</button>
             </li>
             <li class="link-row">
               <div>
                 <small>Roblox Username</small>
                 <a href="https://www.roblox.com/search/users?keyword=DevKlyntic" target="_blank" rel="noopener noreferrer">DevKlyntic</a>
               </div>
-              <button class="copy-btn" type="button" data-copy="DevKlyntic">Copy</button>
+              <button class="copy-btn" type="button" data-copy="DevKlyntic" aria-label="Copy Roblox username">&#8250;</button>
             </li>
           </ul>
         </aside>
@@ -1077,32 +1255,32 @@
         </div>
         <div class="skill-grid">
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">SYS</span>
+            <span class="skill-icon" aria-hidden="true">01</span>
             <h3>Core Architecture</h3>
             <p>Modular frameworks, DataStore2 workflows, OOP patterns, and game-loop design for maintainable systems.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">SEC</span>
+            <span class="skill-icon" aria-hidden="true">02</span>
             <h3>Security Engineering</h3>
             <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">OPT</span>
+            <span class="skill-icon" aria-hidden="true">03</span>
             <h3>Performance</h3>
             <p>Async execution, memory discipline, and optimization passes that keep gameplay smooth under load.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">UI</span>
+            <span class="skill-icon" aria-hidden="true">04</span>
             <h3>UI / UX Systems</h3>
             <p>Interactive GUI architecture, dynamic menus, and polished tween behavior that feels responsive.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">NET</span>
+            <span class="skill-icon" aria-hidden="true">05</span>
             <h3>Networking</h3>
             <p>Reliable RemoteEvent and RemoteFunction pipelines with clear client/server responsibility.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">MON</span>
+            <span class="skill-icon" aria-hidden="true">06</span>
             <h3>Monetization</h3>
             <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design.</p>
           </article>
