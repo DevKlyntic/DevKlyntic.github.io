@@ -11,42 +11,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <style>
     :root {
       color-scheme: light;
-      --bg: #f2f8ff;
-      --bg-soft: #e8f1ff;
-      --text: #10203b;
-      --muted: #4e6283;
-      --panel: rgba(255, 255, 255, 0.78);
-      --card: rgba(255, 255, 255, 0.9);
-      --accent: #2f7ef8;
-      --accent-2: #17b89b;
-      --border: rgba(18, 40, 76, 0.13);
-      --shadow: 0 18px 45px rgba(31, 67, 122, 0.14);
-      --header-bg: rgba(242, 248, 255, 0.78);
-      --icon-bg: rgba(47, 126, 248, 0.11);
-      --ring: rgba(47, 126, 248, 0.25);
+      --bg: #eef2f9;
+      --bg-soft: #e6edf8;
+      --text: #0f172a;
+      --muted: #4b5f80;
+      --panel: rgba(255, 255, 255, 0.82);
+      --card: rgba(255, 255, 255, 0.95);
+      --accent: #2563eb;
+      --accent-2: #06b6d4;
+      --border: rgba(15, 23, 42, 0.13);
+      --shadow: 0 20px 52px rgba(15, 23, 42, 0.12);
+      --header-bg: rgba(238, 242, 249, 0.84);
+      --icon-bg: rgba(37, 99, 235, 0.09);
+      --ring: rgba(6, 182, 212, 0.38);
+      --grid: rgba(15, 23, 42, 0.06);
     }
 
     html[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #0b1322;
-      --bg-soft: #151f35;
-      --text: #e8f1ff;
-      --muted: #adc2e8;
-      --panel: rgba(14, 24, 41, 0.72);
-      --card: rgba(18, 30, 51, 0.85);
-      --accent: #5b9cff;
-      --accent-2: #2fd0b2;
-      --border: rgba(200, 219, 255, 0.17);
-      --shadow: 0 18px 45px rgba(1, 8, 22, 0.45);
-      --header-bg: rgba(11, 19, 34, 0.76);
-      --icon-bg: rgba(91, 156, 255, 0.18);
-      --ring: rgba(91, 156, 255, 0.34);
+      --bg: #050915;
+      --bg-soft: #0b1223;
+      --text: #e8eef9;
+      --muted: #9fb1cd;
+      --panel: rgba(8, 16, 32, 0.78);
+      --card: rgba(10, 19, 36, 0.93);
+      --accent: #3b82f6;
+      --accent-2: #22d3ee;
+      --border: rgba(148, 163, 184, 0.22);
+      --shadow: 0 24px 60px rgba(2, 6, 16, 0.58);
+      --header-bg: rgba(5, 9, 21, 0.85);
+      --icon-bg: rgba(59, 130, 246, 0.16);
+      --ring: rgba(34, 211, 238, 0.36);
+      --grid: rgba(148, 163, 184, 0.12);
     }
 
     * {
@@ -63,9 +65,9 @@
       font-family: "Manrope", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 2% 5%, rgba(47, 126, 248, 0.14), transparent 38%),
-        radial-gradient(circle at 90% 2%, rgba(23, 184, 155, 0.11), transparent 34%),
-        linear-gradient(165deg, var(--bg), var(--bg-soft));
+        radial-gradient(circle at 12% -2%, rgba(37, 99, 235, 0.22), transparent 32%),
+        radial-gradient(circle at 88% -8%, rgba(6, 182, 212, 0.18), transparent 34%),
+        linear-gradient(160deg, var(--bg), var(--bg-soft));
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -74,37 +76,21 @@
     body::after {
       content: "";
       position: fixed;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
+      inset: 0;
       z-index: -1;
       pointer-events: none;
-      filter: blur(1px);
-      animation: float 16s ease-in-out infinite;
-      opacity: 0.45;
     }
 
     body::before {
-      left: -70px;
-      top: 34vh;
-      background: radial-gradient(circle at 30% 30%, rgba(47, 126, 248, 0.45), transparent 70%);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.36), transparent 78%);
     }
 
     body::after {
-      right: -80px;
-      top: 62vh;
-      animation-delay: 3s;
-      background: radial-gradient(circle at 30% 30%, rgba(23, 184, 155, 0.36), transparent 70%);
-    }
-
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0px) scale(1);
-      }
-      50% {
-        transform: translateY(-18px) scale(1.05);
-      }
+      background: radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.16), transparent 42%);
     }
 
     .container {
@@ -126,14 +112,14 @@
       height: 100%;
       transform: scaleX(0);
       transform-origin: left;
-      background: linear-gradient(92deg, var(--accent), var(--accent-2));
+      background: linear-gradient(94deg, var(--accent), var(--accent-2));
     }
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1100;
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
       background: var(--header-bg);
       border-bottom: 1px solid var(--border);
     }
@@ -158,21 +144,22 @@
     .brand-mark {
       width: 38px;
       height: 38px;
-      border-radius: 12px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      font-family: "Fredoka", sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      background: linear-gradient(145deg, var(--accent), var(--accent-2));
-      color: white;
-      box-shadow: var(--shadow);
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--ring);
+      background: var(--card);
+      color: var(--accent-2);
     }
 
     .brand-text {
-      font-family: "Fredoka", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 1.15rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.01em;
     }
 
@@ -195,10 +182,10 @@
       background: transparent;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 0.88rem;
       padding: 0.52rem 0.82rem;
-      transition: all 0.22s ease;
+      transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
       white-space: nowrap;
     }
 
@@ -212,7 +199,7 @@
     .nav-link.active {
       color: var(--text);
       border-color: var(--ring);
-      background: linear-gradient(145deg, rgba(47, 126, 248, 0.12), rgba(23, 184, 155, 0.09));
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.16), rgba(34, 211, 238, 0.13));
     }
 
     .header-actions {
@@ -225,7 +212,7 @@
     .theme-toggle {
       width: 42px;
       height: 42px;
-      border-radius: 13px;
+      border-radius: 11px;
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--text);
@@ -235,7 +222,7 @@
     }
 
     .theme-toggle:hover {
-      transform: translateY(-2px) rotate(8deg);
+      transform: scale(1.06);
       border-color: var(--ring);
     }
 
@@ -262,12 +249,25 @@
       background: var(--panel);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      border-radius: 24px;
-      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      backdrop-filter: blur(18px);
     }
 
     .hero-main {
-      padding: 2rem;
+      position: relative;
+      padding: 2.15rem;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+      opacity: 0.7;
     }
 
     .eyebrow {
@@ -275,28 +275,30 @@
       align-items: center;
       gap: 0.45rem;
       border-radius: 999px;
-      padding: 0.34rem 0.72rem;
-      background: linear-gradient(120deg, rgba(47, 126, 248, 0.16), rgba(23, 184, 155, 0.15));
-      border: 1px solid var(--border);
-      font-weight: 700;
+      padding: 0.34rem 0.76rem;
+      background: linear-gradient(120deg, rgba(59, 130, 246, 0.12), rgba(34, 211, 238, 0.09));
+      border: 1px solid var(--ring);
+      font-weight: 600;
       color: var(--muted);
-      font-size: 0.83rem;
+      font-size: 0.79rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-family: "Fredoka", sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.2rem, 4.8vw, 3.7rem);
-      line-height: 1.04;
-      margin: 0.86rem 0 0.9rem;
-      letter-spacing: 0.01em;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5.4vw, 4.25rem);
+      line-height: 0.98;
+      margin: 0.95rem 0 1rem;
+      letter-spacing: 0.015em;
     }
 
     .lead {
       margin: 0;
-      font-size: clamp(1rem, 2.2vw, 1.18rem);
+      font-size: clamp(0.99rem, 2.1vw, 1.1rem);
       color: var(--muted);
-      max-width: 61ch;
+      max-width: 62ch;
     }
 
     .hero-cta {
@@ -311,10 +313,11 @@
       align-items: center;
       justify-content: center;
       border: 1px solid transparent;
-      border-radius: 13px;
-      font-weight: 800;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       text-decoration: none;
-      padding: 0.72rem 1.04rem;
+      padding: 0.72rem 1.08rem;
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
       cursor: pointer;
     }
@@ -322,7 +325,7 @@
     .btn.primary {
       color: #fff;
       background: linear-gradient(130deg, var(--accent), var(--accent-2));
-      box-shadow: 0 10px 26px rgba(20, 74, 155, 0.25);
+      box-shadow: 0 10px 28px rgba(6, 14, 33, 0.34);
     }
 
     .btn.secondary {
@@ -332,19 +335,19 @@
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.01);
       border-color: var(--ring);
     }
     .quick-links {
-      padding: 1.45rem;
+      padding: 1.4rem;
       display: flex;
       flex-direction: column;
     }
 
     .quick-links h2 {
       margin: 0;
-      font-family: "Fredoka", sans-serif;
-      font-size: 1.34rem;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.26rem;
       line-height: 1.1;
     }
 
@@ -367,10 +370,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.6rem;
-      padding: 0.68rem 0.76rem;
-      border-radius: 14px;
+      padding: 0.7rem 0.78rem;
+      border-radius: 11px;
       border: 1px solid var(--border);
-      background: var(--card);
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.05), rgba(34, 211, 238, 0.03));
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .link-row:hover {
+      transform: translateY(-1px);
+      border-color: var(--ring);
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.11), rgba(34, 211, 238, 0.06));
     }
 
     .link-row small {
@@ -391,7 +401,7 @@
 
     .copy-btn {
       flex-shrink: 0;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid var(--border);
       background: transparent;
       color: var(--muted);
@@ -419,10 +429,10 @@
 
     .section-head h2 {
       margin: 0;
-      font-family: "Fredoka", sans-serif;
-      font-size: clamp(1.45rem, 3.3vw, 2.35rem);
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.45rem, 3.1vw, 2.22rem);
       line-height: 1.1;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.012em;
     }
 
     .section-head p {
@@ -439,9 +449,9 @@
 
     .skill-card {
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--card);
-      padding: 1.02rem;
+      border-radius: 14px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
+      padding: 1.04rem;
       transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
     }
 
@@ -452,13 +462,18 @@
     }
 
     .skill-icon {
-      width: 2rem;
+      min-width: 2.35rem;
       height: 2rem;
       display: inline-grid;
       place-items: center;
-      border-radius: 10px;
+      padding: 0 0.45rem;
+      border-radius: 8px;
       background: var(--icon-bg);
-      font-size: 1.17rem;
+      border: 1px solid var(--ring);
+      font-size: 0.64rem;
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       line-height: 1;
     }
 
@@ -486,18 +501,18 @@
       gap: 0.75rem;
       text-decoration: none;
       color: var(--text);
-      border-radius: 20px;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      background: var(--card);
+      background: linear-gradient(155deg, rgba(59, 130, 246, 0.07), rgba(10, 19, 36, 0.02));
       padding: 0.78rem;
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       min-height: 100%;
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.01);
       border-color: var(--ring);
-      box-shadow: 0 15px 34px rgba(17, 39, 75, 0.16);
+      box-shadow: 0 15px 34px rgba(6, 11, 26, 0.34);
     }
 
     .project-card img,
@@ -510,7 +525,7 @@
     .project-card img {
       object-fit: cover;
       background:
-        linear-gradient(145deg, rgba(47, 126, 248, 0.2), rgba(23, 184, 155, 0.2));
+        linear-gradient(145deg, rgba(59, 130, 246, 0.26), rgba(34, 211, 238, 0.21));
     }
 
     .project-fallback {
@@ -542,10 +557,10 @@
 
     .note-card {
       border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--card);
+      border-radius: 14px;
+      background: linear-gradient(155deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.02));
       padding: 1.18rem;
-      box-shadow: 0 10px 28px rgba(15, 31, 60, 0.1);
+      box-shadow: 0 14px 32px rgba(7, 14, 30, 0.26);
     }
 
     .note-card h3 {
@@ -569,11 +584,37 @@
 
     .checklist li {
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(47, 126, 248, 0.06), rgba(23, 184, 155, 0.06));
-      border-radius: 12px;
-      padding: 0.58rem 0.72rem;
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.08), rgba(34, 211, 238, 0.05));
+      border-radius: 10px;
+      padding: 0.6rem 0.72rem 0.6rem 2.15rem;
       font-size: 0.92rem;
       font-weight: 700;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .checklist li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0.74rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 1px solid var(--ring);
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-2);
+      display: grid;
+      place-items: center;
+      font-size: 0.67rem;
+      font-weight: 800;
+    }
+
+    .checklist li:hover {
+      transform: translateX(4px);
+      border-color: var(--ring);
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.14), rgba(34, 211, 238, 0.1));
     }
     .workflow-grid {
       display: grid;
@@ -583,8 +624,8 @@
 
     .step-card {
       border: 1px solid var(--border);
-      border-radius: 17px;
-      background: var(--card);
+      border-radius: 13px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
       padding: 0.9rem;
       transition: transform 0.24s ease, border-color 0.24s ease;
     }
@@ -599,7 +640,7 @@
       place-items: center;
       width: 1.9rem;
       height: 1.9rem;
-      border-radius: 10px;
+      border-radius: 8px;
       font-weight: 800;
       font-size: 0.84rem;
       background: var(--icon-bg);
@@ -625,8 +666,8 @@
 
     .rate-card {
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--card);
+      border-radius: 13px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
       padding: 1rem;
       transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
     }
@@ -634,7 +675,7 @@
     .rate-card:hover {
       transform: translateY(-2px);
       border-color: var(--ring);
-      box-shadow: 0 12px 28px rgba(20, 42, 84, 0.13);
+      box-shadow: 0 12px 28px rgba(4, 9, 20, 0.34);
     }
 
     .rate-card h3 {
@@ -644,7 +685,7 @@
 
     .rate-card .price {
       margin: 0.28rem 0 0.42rem;
-      font-family: "Fredoka", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 1.2rem;
       color: var(--text);
       line-height: 1.2;
@@ -659,8 +700,8 @@
     .terms-card {
       margin-top: 0.8rem;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--card);
+      border-radius: 14px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
       padding: 1.05rem;
       display: grid;
       gap: 0.75rem;
@@ -689,7 +730,7 @@
       padding: 0.36rem 0.65rem;
       font-size: 0.8rem;
       font-weight: 800;
-      background: linear-gradient(145deg, rgba(47, 126, 248, 0.08), rgba(23, 184, 155, 0.08));
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.12), rgba(34, 211, 238, 0.08));
     }
 
     .testimonial-grid {
@@ -700,15 +741,16 @@
 
     .quote-card {
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--card);
+      border-radius: 13px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
       padding: 1rem;
-      box-shadow: 0 10px 24px rgba(15, 29, 58, 0.09);
+      box-shadow: 0 12px 24px rgba(5, 11, 26, 0.3);
     }
 
     .quote-card blockquote {
       margin: 0;
-      font-size: 0.93rem;
+      font-size: 0.91rem;
+      line-height: 1.65;
       color: var(--text);
     }
 
@@ -725,12 +767,12 @@
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 0.86rem;
-      padding: 1.25rem;
+      padding: 1.3rem;
     }
 
     .contact-panel h2 {
       margin: 0;
-      font-family: "Fredoka", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: clamp(1.34rem, 3vw, 2rem);
       line-height: 1.12;
     }
@@ -743,8 +785,8 @@
 
     .quick-meta {
       border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 16px;
+      background: linear-gradient(155deg, rgba(59, 130, 246, 0.08), rgba(10, 19, 36, 0.03));
+      border-radius: 13px;
       padding: 0.84rem;
       display: grid;
       gap: 0.45rem;
@@ -767,10 +809,81 @@
     }
 
     .footer {
-      padding: 2.2rem 0 0.8rem;
-      text-align: center;
+      margin-top: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(59, 130, 246, 0.09), rgba(10, 19, 36, 0.04));
+      padding: 1.25rem;
+      box-shadow: 0 16px 38px rgba(4, 9, 22, 0.35);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr 0.9fr;
+      gap: 1rem;
+    }
+
+    .footer-brand h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.14rem;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-brand p {
+      margin: 0.42rem 0 0;
       color: var(--muted);
-      font-size: 0.84rem;
+      font-size: 0.88rem;
+      max-width: 38ch;
+    }
+
+    .footer-col {
+      display: grid;
+      gap: 0.3rem;
+      align-content: start;
+      font-size: 0.86rem;
+    }
+
+    .footer-col strong {
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-col a,
+    .footer-col span {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent-2);
+    }
+
+    .footer-bottom {
+      margin-top: 0.95rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--accent-2);
     }
 
     .toast {
@@ -829,6 +942,10 @@
       .two-col {
         grid-template-columns: 1fr;
       }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -849,6 +966,10 @@
 
       .skill-grid,
       .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -887,7 +1008,7 @@
         <a class="nav-link" href="#home">Home</a>
         <a class="nav-link" href="#expertise">Expertise</a>
         <a class="nav-link" href="#work">Past Work</a>
-        <a class="nav-link" href="#approach">Why Me</a>
+        <a class="nav-link" href="#approach">Why Choose Me</a>
         <a class="nav-link" href="#workflow">Workflow</a>
         <a class="nav-link" href="#rates">Rates</a>
         <a class="nav-link" href="#testimonials">Reviews</a>
@@ -907,21 +1028,21 @@
       <section class="hero" id="home">
         <article class="panel hero-main reveal">
           <span class="eyebrow">Roblox Luau Engineer &middot; 5+ Years</span>
-          <h1>Studio-grade Roblox systems, built to ship.</h1>
+          <h1>DevKlyntic</h1>
           <p class="lead">
-            I'm DevKlyntic. I build production-ready Roblox codebases with clean architecture, secure networking,
+            Advanced Roblox Luau scripter focused on production-ready codebases, secure networking,
             and performance that stays stable under real player load. From core frameworks to complete game systems,
             I deliver work you can scale and maintain.
           </p>
           <div class="hero-cta">
-            <a class="btn primary" href="mailto:devklyntic@gmail.com?subject=Roblox%20Scripting%20Inquiry">Contact DevKlyntic</a>
+            <a class="btn primary" href="mailto:devklyntic@gmail.com?subject=Roblox%20Scripting%20Inquiry">Contact Me</a>
             <a class="btn secondary" href="#work">See Past Work</a>
           </div>
         </article>
 
         <aside class="panel quick-links reveal" aria-label="Quick links">
-          <h2>Quick Links</h2>
-          <p>Direct contact details for fast project discussions.</p>
+          <h2>Contact Me</h2>
+          <p>Direct contact details to get in touch with me.</p>
           <ul>
             <li class="link-row">
               <div>
@@ -956,32 +1077,32 @@
         </div>
         <div class="skill-grid">
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#9881;</span>
+            <span class="skill-icon" aria-hidden="true">SYS</span>
             <h3>Core Architecture</h3>
             <p>Modular frameworks, DataStore2 workflows, OOP patterns, and game-loop design for maintainable systems.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#128274;</span>
+            <span class="skill-icon" aria-hidden="true">SEC</span>
             <h3>Security Engineering</h3>
             <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#128640;</span>
+            <span class="skill-icon" aria-hidden="true">OPT</span>
             <h3>Performance</h3>
             <p>Async execution, memory discipline, and optimization passes that keep gameplay smooth under load.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#128172;</span>
+            <span class="skill-icon" aria-hidden="true">UI</span>
             <h3>UI / UX Systems</h3>
             <p>Interactive GUI architecture, dynamic menus, and polished tween behavior that feels responsive.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#127760;</span>
+            <span class="skill-icon" aria-hidden="true">NET</span>
             <h3>Networking</h3>
             <p>Reliable RemoteEvent and RemoteFunction pipelines with clear client/server responsibility.</p>
           </article>
           <article class="skill-card">
-            <span class="skill-icon" aria-hidden="true">&#128176;</span>
+            <span class="skill-icon" aria-hidden="true">MON</span>
             <h3>Monetization</h3>
             <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design.</p>
           </article>
@@ -990,7 +1111,7 @@
       <section id="work" class="reveal">
         <div class="section-head">
           <h2>Past Work</h2>
-          <p>Selected projects. Click any game card to open it on Roblox in a new tab.</p>
+          <p>A selection of projects I&apos;ve worked on across different genres.</p>
         </div>
         <div class="project-grid">
           <a class="project-card" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noopener noreferrer">
@@ -1042,7 +1163,7 @@
       </section>
       <section id="approach" class="reveal">
         <div class="section-head">
-          <h2>Why Teams Choose Me</h2>
+          <h2>Why Choose Me</h2>
           <p>
             I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt slowing the team down.
           </p>
@@ -1153,27 +1274,27 @@
         <div class="testimonial-grid">
           <article class="quote-card">
             <blockquote>
-              "Worked with Klyntic as another scripter on a project. He is one of the strongest technical developers I know, and he can build practically anything. Very professional and easy to collaborate with."
+              "Scripter here. I worked with Klyntic, and he is the most technically skilled person I know. He can make literally anything, and working with him was really fun. Hes a very professional guy, but anyone can easily work with him &#129761; - Cruzy"
             </blockquote>
-            <cite>Cruzy &middot; 5/5</cite>
+            <cite>5/5</cite>
           </article>
           <article class="quote-card">
             <blockquote>
-              "DevKlyntic built my full cafe roleplay game and nailed the exact gameplay feel I wanted. Everything ran smoothly with no code issues, and the final result felt front-page ready."
+              "DevKlyntic is the best scripter ever no bias. Ive made like 4 different games through 4 different scripters, and DevKlyntic was 100% the best one. He made my full game which was a Cafe roleplay game. Everything came out super well! The whole gameplay felt exactly as I imagined it to, and everything ran really well. Not a single problem with his code, and it really felt like playing a front page game. 10/10 - lana"
             </blockquote>
-            <cite>Lana &middot; 5/5</cite>
+            <cite>5/5</cite>
           </article>
           <article class="quote-card">
             <blockquote>
-              "I hired him for an army fighting game and the turnaround was incredibly fast without sacrificing quality. The full game worked exactly as expected."
+              "very good scripter. i hired him so that he can make an army fighting game and it was really good. he coded my full game in like 3 hours lol. it worked perfect. best scripter of all time &#127801;&#10084;&#65039;&#8205;&#129657; - Warlord"
             </blockquote>
-            <cite>Warlord &middot; 5/5</cite>
+            <cite>5/5</cite>
           </article>
           <article class="quote-card">
             <blockquote>
-              "Reliable and consistent. The scripts were clean, scalable, and exactly what I asked for."
+              "klyntic is honestly a really good scripter. scripts came out clean and exactly how i wanted, and he is very reliable unlike the others ngl - Reedz"
             </blockquote>
-            <cite>Reedz &middot; 5/5</cite>
+            <cite>5/5</cite>
           </article>
         </div>
       </section>
@@ -1200,7 +1321,30 @@
           </div>
         </article>
       </section>
-      <p class="footer">DevKlyntic &middot; Roblox Luau Scripting Engineer</p>
+      <footer class="footer">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>DevKlyntic</h3>
+            <p>Advanced Roblox Luau scripting for secure systems, clean architecture, and scalable live games.</p>
+          </div>
+          <div class="footer-col">
+            <strong>Quick Access</strong>
+            <a href="#work">Past Work</a>
+            <a href="#rates">Rates</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <strong>Direct Contact</strong>
+            <a href="mailto:devklyntic@gmail.com">devklyntic@gmail.com</a>
+            <span>Discord: devklyntic</span>
+            <a href="https://www.roblox.com/search/users?keyword=DevKlyntic" target="_blank" rel="noopener noreferrer">Roblox: DevKlyntic</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="currentYear"></span> DevKlyntic. Production-grade Roblox scripting.</span>
+          <a href="#home">Back to top</a>
+        </div>
+      </footer>
     </div>
   </main>
 
@@ -1222,6 +1366,11 @@
       }
 
       setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+      var yearNode = document.getElementById("currentYear");
+      if (yearNode) {
+        yearNode.textContent = String(new Date().getFullYear());
+      }
 
       themeToggle.addEventListener("click", function () {
         var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
